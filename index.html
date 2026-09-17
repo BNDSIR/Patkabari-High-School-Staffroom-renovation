@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5e0a0a">
+<title>Lets renovate our Staff room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<style>
+:root{--navy:#17324d;--red:#650909;--red2:#891313;--bg:#f4f7f9;--card:#fff;--text:#17232d;--muted:#687987;--line:#dfe7ed;--green:#177158;--gold:#d58d16;--shadow:0 12px 36px rgba(22,50,77,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri",system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.material-symbols-rounded{vertical-align:middle}
+header{background:linear-gradient(135deg,#17324d,#0d2639 62%,#204b68);color:#fff;padding:13px 12px 18px;box-shadow:0 7px 24px rgba(0,0,0,.13)}.head{max-width:1120px;margin:auto}.brand{display:flex;gap:10px;align-items:center}.logo{width:58px;height:58px;flex:none;background:#fff;border-radius:15px;display:grid;place-items:center;overflow:hidden;border:2px solid rgba(255,255,255,.4)}.logo img{width:100%;height:100%;object-fit:contain;padding:3px}.logo .material-symbols-rounded{font-size:34px;color:var(--navy)}h1{font-size:clamp(1.45rem,4vw,2.65rem);line-height:1.05;margin:0}#schoolName{color:#dbe9f1;font-size:.92rem;margin-top:4px}
+.ticker{height:27px;margin-top:7px;border-radius:8px;background:#650909;display:none;align-items:center;overflow:hidden}.ticker strong{height:100%;display:flex;align-items:center;background:#3f0505;padding:0 8px;font-size:.7rem;flex:none}.ticker-window{min-width:0;overflow:hidden;flex:1}.ticker-text{white-space:nowrap;display:inline-block;padding-left:100%;font-size:.8rem;font-weight:600;animation:scroll 18s linear infinite}@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.loginbar{max-width:1120px;margin:9px auto 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.who{font-size:.81rem;color:#dceaf2;flex:1;min-width:180px}.login-btn{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.13);color:#fff;border-radius:10px;padding:8px 11px;font-weight:700}
+main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;top:5px;z-index:50;margin-bottom:13px}.action{min-height:72px;border:2px solid #9b2828;border-radius:17px;background:linear-gradient(#7e1111,#570707);color:#fff;font-weight:800;font-size:1.02rem;display:flex;gap:8px;align-items:center;justify-content:center;animation:pulse 1.15s ease-in-out infinite alternate;box-shadow:0 10px 26px rgba(95,8,8,.22)}.action .material-symbols-rounded{font-size:28px}@keyframes pulse{from{box-shadow:0 0 0 1px rgba(145,22,22,.2),0 7px 18px rgba(95,8,8,.16)}to{box-shadow:0 0 0 6px rgba(165,30,30,.22),0 12px 30px rgba(95,8,8,.32)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:11px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;gap:9px;align-items:center;box-shadow:0 5px 16px rgba(22,50,77,.055)}.stat i{width:38px;height:38px;border-radius:11px;background:#edf3f7;display:grid;place-items:center;color:var(--navy);font-style:normal}.stat b{display:block;font-size:1.2rem}.stat small{color:var(--muted)}
+.notice{display:none;background:#fff8e9;border:1px solid #efdbaa;color:#72541d;padding:10px 11px;border-radius:12px;margin-bottom:11px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 8px 23px rgba(22,50,77,.06);margin-bottom:12px}.cardhead{display:flex;gap:9px;align-items:center;justify-content:space-between;margin-bottom:10px}.cardhead h2{margin:0;font-size:1.1rem;display:flex;gap:6px;align-items:center}.ghost{border:1px solid #cfdae2;background:#fff;color:var(--navy);border-radius:10px;padding:8px 10px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.sum{border:1px solid #e0e8ee;background:#fafcfd;border-radius:12px;padding:9px}.sum h3{font-size:.87rem;margin:0 0 5px}.sum p{margin:0;color:var(--muted);font-size:.74rem;display:flex;gap:7px;flex-wrap:wrap}.sum b{color:#263e50}
+.filters{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:7px;margin-bottom:9px}input,select,textarea{width:100%;border:1px solid #cad7e0;background:#fbfcfd;border-radius:11px;padding:10px 11px;outline:none;color:var(--text)}input:focus,select:focus,textarea:focus{border-color:#668ba7;box-shadow:0 0 0 4px rgba(50,100,138,.09);background:#fff}
+.list{display:grid;gap:10px}.proposal{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}.chip{border:1px solid #dce6ed;background:#eef4f7;color:#3c5a70;border-radius:99px;font-size:.71rem;padding:3px 7px}.status{background:#eef8f3;color:#276c56}.proposal h3{margin:0 0 5px;font-size:1.05rem}.meta{display:flex;gap:8px;flex-wrap:wrap;color:#71808d;font-size:.76rem}.details{white-space:pre-wrap;line-height:1.55;color:#354651;margin:10px 0}.reactions{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:8px}.react{border:1px solid #dce5eb;background:#fff;border-radius:99px;padding:5px 8px;display:flex;gap:4px;align-items:center}.react.mine{background:#fff7e7;border-color:#d5a245}.react small{color:#6d7a84}
+.vote{border-top:1px dashed #d9e1e7;margin-top:10px;padding-top:10px;display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}.rating{display:flex;gap:4px;align-items:center}.rating .material-symbols-rounded{color:var(--gold);font-variation-settings:'FILL' 1}.stars{color:#bec7cd}.stars .on{color:var(--gold);font-variation-settings:'FILL' 1}.vote-btn{border:0;background:#edf7f2;color:#17654a;border-radius:10px;padding:9px 11px;font-weight:800}.minevote{grid-column:1/-1;background:#f0f7f4;color:#3c6655;border-radius:8px;padding:6px 8px;font-size:.77rem}.empty{text-align:center;color:var(--muted);padding:30px 12px;border:1px dashed #cbd7df;border-radius:14px}
+.overlay,.modal{position:fixed;inset:0;background:rgba(7,17,26,.63);z-index:100;display:none;align-items:center;justify-content:center;padding:10px}.overlay.show,.modal.show{display:flex}.sheet{width:min(720px,100%);max-height:94vh;background:#fff;border-radius:18px;overflow:auto}.sheethead{position:sticky;top:0;background:#fff;border-bottom:1px solid #e2e8ed;z-index:2;padding:11px 13px;display:flex;align-items:center;justify-content:space-between}.sheethead h2,.sheethead h3{margin:0;font-size:1.12rem}.close{border:0;background:#eef2f5;border-radius:9px;width:38px;height:38px}.body{padding:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}label{display:block;font-weight:700;margin-bottom:4px}textarea{min-height:150px;resize:vertical;line-height:1.55}.voicewrap{display:grid;grid-template-columns:1fr auto;gap:6px}.mic{width:44px;height:44px;border:1px solid #cad8e1;background:#eef4f8;color:var(--navy);border-radius:10px}.mic.live{background:#761010;color:#fff;animation:mic .75s infinite alternate}@keyframes mic{to{box-shadow:0 0 0 6px rgba(118,16,16,.16)}}.formactions{display:flex;justify-content:flex-end;gap:7px}.primary{border:0;background:var(--navy);color:#fff;border-radius:11px;padding:10px 14px;min-height:45px;font-weight:800}.login-sheet{width:min(430px,100%)}.pin-note{font-size:.78rem;color:var(--muted);margin-top:5px}.thank{text-align:center;padding:24px 16px}.thank .bouquet{font-size:3rem}.thank h3{color:var(--navy);margin:7px 0}.toast{position:fixed;left:50%;bottom:12px;transform:translate(-50%,90px);z-index:200;background:#17324d;color:#fff;padding:10px 13px;border-radius:11px;opacity:0;transition:.22s;max-width:92vw}.toast.show{transform:translate(-50%,0);opacity:1}.toast.error{background:#8c3535}.loader{position:fixed;inset:0;background:rgba(244,247,249,.87);display:grid;place-items:center;z-index:250}.loader.hide{display:none}.spin{width:39px;height:39px;border-radius:50%;border:4px solid #dbe4ea;border-top-color:var(--navy);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}footer{text-align:center;color:#7a8995;font-size:.78rem;padding:8px 7px 25px}
+@media(max-width:720px){header{padding:9px 9px 14px}.logo{width:48px;height:48px;border-radius:12px}h1{font-size:1.28rem}#schoolName{font-size:.79rem}.ticker{height:24px;margin-top:4px}.ticker strong{font-size:.62rem;padding:0 5px}.ticker-text{font-size:.72rem;animation-duration:15s}main{padding:0 7px;margin-top:8px}.actions{gap:6px}.action{min-height:64px;border-radius:13px;font-size:.83rem;padding:7px 4px;line-height:1.12}.action .material-symbols-rounded{font-size:23px}.stats{gap:5px}.stat{display:block;text-align:center;padding:8px 4px;border-radius:12px}.stat i{width:30px;height:30px;margin:0 auto 4px;border-radius:8px}.stat b{font-size:1.05rem}.stat small{font-size:.64rem;display:block}.card{padding:9px 8px;border-radius:14px}.summary{grid-template-columns:1fr 1fr;gap:5px}.sum{padding:7px}.sum h3{font-size:.79rem}.sum p{font-size:.67rem}.filters{grid-template-columns:1fr;gap:5px}input,select,textarea{font-size:16px;min-height:44px}.proposal{padding:10px 8px;border-radius:14px}.proposal h3{font-size:1rem}.meta{display:grid;gap:1px;font-size:.72rem}.details{font-size:.9rem}.vote{grid-template-columns:1fr;gap:5px}.vote-btn{width:100%;min-height:44px}.minevote{grid-column:auto}.overlay,.modal{padding:0;align-items:flex-end}.overlay .sheet{width:100%;height:100dvh;max-height:none;border-radius:0}.modal .sheet{width:100%;max-height:92vh;border-radius:18px 18px 0 0}.grid{grid-template-columns:1fr}.full{grid-column:auto}.formactions{display:grid;grid-template-columns:1fr 1.25fr}.formactions button{width:100%}}
+@media(max-width:370px){.summary{grid-template-columns:1fr}.action{font-size:.76rem}}
+@media print{body *{visibility:hidden!important}#summaryCard,#summaryCard *{visibility:visible!important}#summaryCard{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none}#printBtn{display:none!important}}
+</style>
+</head>
+<body>
+<div id="loader" class="loader"><div class="spin"></div></div>
+<header>
+  <div class="head">
+    <div class="brand">
+      <div class="logo"><img id="logoImg" alt="School Logo" hidden><span id="logoFallback" class="material-symbols-rounded">school</span></div>
+      <div style="min-width:0;flex:1"><h1>Lets renovate our Staff room</h1><div id="schoolName">Patkabari High School (H.S.)</div>
+        <div id="ticker" class="ticker"><strong>VOTE</strong><div class="ticker-window"><div id="tickerText" class="ticker-text"></div></div></div>
+      </div>
+    </div>
+    <div class="loginbar"><div id="who" class="who">Staff Login প্রয়োজন</div><button id="loginTopBtn" class="login-btn" onclick="openLogin()">Staff Login</button></div>
+  </div>
+</header>
+<main>
+  <div class="actions">
+    <button class="action" onclick="openProposal()"><span class="material-symbols-rounded">add_comment</span><span>নতুন প্রস্তাব দিন</span></button>
+    <button class="action" onclick="document.getElementById('proposalCard').scrollIntoView({behavior:'smooth'})"><span class="material-symbols-rounded">ballot</span><span>সব প্রস্তাব • ভোট • রেটিং</span></button>
+  </div>
+  <section class="stats">
+    <div class="stat"><i><span class="material-symbols-rounded">lightbulb</span></i><div><b id="proposalCount">0</b><small>মোট প্রস্তাব</small></div></div>
+    <div class="stat"><i><span class="material-symbols-rounded">how_to_vote</span></i><div><b id="voteCount">0</b><small>মোট ভোট</small></div></div>
+    <div class="stat"><i><span class="material-symbols-rounded">star</span></i><div><b id="avgRating">0.0</b><small>গড় রেটিং</small></div></div>
+  </section>
+  <div id="notice" class="notice"></div>
+  <section id="summaryCard" class="card"><div class="cardhead"><h2><span class="material-symbols-rounded">analytics</span> বিভাগভিত্তিক সারাংশ</h2><button id="printBtn" class="ghost" onclick="window.print()"><span class="material-symbols-rounded">print</span> প্রিন্ট</button></div><div id="summary" class="summary"></div></section>
+  <section id="proposalCard" class="card"><div class="cardhead"><h2><span class="material-symbols-rounded">forum</span> জমা পড়া প্রস্তাব</h2><button class="ghost" onclick="loadAll()"><span class="material-symbols-rounded">refresh</span> Refresh</button></div>
+    <div class="filters"><input id="search" placeholder="প্রস্তাব খুঁজুন..."><select id="categoryFilter"><option value="">সব বিভাগ</option></select><select id="sort"><option value="new">সর্বশেষ আগে</option><option value="votes">বেশি ভোট</option><option value="rating">বেশি রেটিং</option></select></div>
+    <div id="list" class="list"></div>
+  </section>
+</main>
+<footer>Staff Room Renovation Decision Portal • GitHub Pages + Supabase</footer>
+
+<div id="loginModal" class="modal"><div class="sheet login-sheet"><div class="sheethead"><h3>Staff Login</h3><button class="close" onclick="closeLogin()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
+  <label>আপনার নাম</label><input id="loginName" list="staffList" placeholder="নাম লিখে নির্বাচন করুন"><datalist id="staffList"></datalist>
+  <label style="margin-top:9px">Staff PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="12" placeholder="Staff PIN">
+  <div class="pin-note">প্রথম setup-এ default PIN 1234। Site share করার আগে Supabase থেকে প্রত্যেক staff-এর PIN পরিবর্তন করুন।</div>
+  <button id="loginBtn" class="primary" style="width:100%;margin-top:12px" onclick="staffLogin()">Login</button>
+</div></div></div>
+
+<div id="proposalModal" class="overlay"><div class="sheet"><div class="sheethead"><h2><span class="material-symbols-rounded">edit_square</span> নতুন প্রস্তাব</h2><button class="close" onclick="closeProposal()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
+<form id="proposalForm"><div class="grid">
+  <div><label>বিভাগ</label><select id="pCategory" required></select></div>
+  <div><label>অগ্রাধিকার</label><select id="pPriority" required><option>জরুরি</option><option>উচ্চ</option><option selected>মাঝারি</option><option>সাধারণ</option></select></div>
+  <div class="full"><label>প্রস্তাবের শিরোনাম</label><div class="voicewrap"><input id="pTitle" maxlength="120" required><button class="mic" type="button" onclick="voice('pTitle',this)"><span class="material-symbols-rounded">mic</span></button></div></div>
+  <div class="full"><label>বিস্তারিত</label><div class="voicewrap"><textarea id="pDetails" maxlength="3000" required></textarea><button class="mic" type="button" onclick="voice('pDetails',this)"><span class="material-symbols-rounded">mic</span></button></div><small id="voiceHelp" style="color:#6f7e89">🎙️ মাইক্রোফোনে চাপ দিয়ে বাংলায় বলুন।</small></div>
+  <div class="full"><label>আনুমানিক খরচ (₹) — ঐচ্ছিক</label><input id="pCost" type="number" min="0" step="1"></div>
+  <div class="full formactions"><button type="button" class="ghost" onclick="closeProposal()">বাতিল</button><button id="submitBtn" class="primary" type="submit">প্রস্তাব জমা দিন</button></div>
+</div></form></div></div></div>
+
+<div id="voteModal" class="modal"><div class="sheet login-sheet"><div class="sheethead"><h3>ভোট ও রেটিং</h3><button class="close" onclick="closeVote()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
+  <div id="voteTitle" style="color:#61717d;margin-bottom:9px"></div>
+  <label>রেটিং</label><div id="voteStars" style="display:flex;gap:2px;margin:4px 0 10px"></div>
+  <label>সংক্ষিপ্ত মন্তব্য — ঐচ্ছিক</label><textarea id="voteComment" maxlength="200" style="min-height:80px"></textarea>
+  <button id="castBtn" class="primary" style="width:100%;margin-top:9px" onclick="castVote()">ভোট নিশ্চিত করুন</button>
+</div></div></div>
+
+<div id="thankModal" class="modal"><div class="sheet login-sheet"><div class="thank"><div class="bouquet">💐</div><h3>অনেক ধন্যবাদ</h3><div id="thankText"></div><button class="primary" style="width:100%;margin-top:13px" onclick="document.getElementById('thankModal').classList.remove('show')">ঠিক আছে</button></div></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const STAFF_NAMES = ["Abdul Selim Mondal(TIC)", "Abdur Rahim", "Ahibhusan Roy", "Akkas Hossain", "Amina Khatun", "Amit Kumar Kar", "Anjuman Biswas", "Arijit Chakraborty", "Asraf Ali Shaikh", "Bhaswati Biswas", "Bholanath Debnath", "Biswanath Mondal", "Gopal Chandra Ghosh", "Gopinath Halder", "Haripada Bain", "Humayun Kabir", "Jahana Sultana", "Jahangir Alam", "Jayanti Mondal", "Joy Krishna Roy", "Kanchan Biswas", "Krishna Pramanik", "Md Imran Ali Mondal", "Md Israfil Hossain", "Mita Das", "Mrityunjoy Sarker", "Muktesh Chowdhury", "Munshi Habibur Rahaman", "Nabanita Saren", "Nirupam Mandal", "Pratul Chandra Sarker", "Prokash Majhi", "Ramij Raja Sk", "Sabuj Biswas", "Sadananda Halder", "Sanjoy Ghosh", "Satyajit Majumder", "Shibendra Nath Mondal", "Shrabani Banerjee", "Soma Misrti", "Sujit Mandol", "Sumana Biswas(AI Teacher)", "Sumana Chakraborty Karmakar", "Sumanta Biswas", "Swagata Ghosh", "Swarupa Adhikari", "Swati Malakar", "Tanuja Mondal", "Tapas Das", "Tubai Ghosh", "Viswa Narayan Mondal"];
+const CATEGORIES=['সাজসজ্জা','দেওয়াল ডিজাইন ও রং','আসবাবপত্র','প্লাম্বিং','ইলেকট্রিক্যাল','আলো ও ফ্যান','স্টোরেজ / আলমারি','বসার ব্যবস্থা','পরিচ্ছন্নতা ও হাইজিন','ডিজিটাল / আইটি','সবুজায়ন / ইনডোর প্ল্যান্ট','নিরাপত্তা','অন্যান্য'];
+const {createClient}=supabase;
+const cfg=window.APP_CONFIG||{};
+const sb=createClient(cfg.SUPABASE_URL,cfg.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true}});
+const state={staff:'',settings:{},proposals:[],votes:[],reactions:[],voteId:null,voteRating:0,recognition:null};
+
+document.addEventListener('DOMContentLoaded',init);
+async function init(){
+  setupStatic();
+  try{
+    let {data:{session}}=await sb.auth.getSession();
+    if(!session){
+      const {error}=await sb.auth.signInAnonymously();
+      if(error)throw error;
+    }
+    await restoreStaff();
+    await loadAll();
+    const sec=Math.max(10,Number(cfg.REFRESH_SECONDS||20));
+    setInterval(()=>loadAll(false),sec*1000);
+  }catch(e){toast(errText(e),true)}finally{loading(false)}
+}
+function setupStatic(){
+  document.getElementById('staffList').innerHTML=STAFF_NAMES.map(n=>`<option value="${esc(n)}"></option>`).join('');
+  document.getElementById('pCategory').innerHTML='<option value="">বিভাগ নির্বাচন করুন</option>'+CATEGORIES.map(c=>`<option>${esc(c)}</option>`).join('');
+  document.getElementById('categoryFilter').innerHTML='<option value="">সব বিভাগ</option>'+CATEGORIES.map(c=>`<option>${esc(c)}</option>`).join('');
+  ['search','categoryFilter','sort'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',renderProposals));
+  document.getElementById('proposalForm').addEventListener('submit',submitProposal);
+  const logo=document.getElementById('logoImg'),fallback=document.getElementById('logoFallback');
+  if(cfg.SCHOOL_LOGO){logo.src=cfg.SCHOOL_LOGO;logo.hidden=false;fallback.style.display='none';logo.onerror=()=>{logo.hidden=true;fallback.style.display='inline-block'}}
+}
+async function restoreStaff(){
+  const {data,error}=await sb.rpc('get_my_staff');if(!error&&data){state.staff=data;showIdentity()}
+}
+function showIdentity(){
+  document.getElementById('who').textContent=state.staff?`Login: ${state.staff}`:'Staff Login প্রয়োজন';
+  document.getElementById('loginTopBtn').textContent=state.staff?'Staff বদলান':'Staff Login';
+}
+async function staffLogin(){
+  const name=document.getElementById('loginName').value.trim(),pin=document.getElementById('loginPin').value;
+  if(!STAFF_NAMES.includes(name))return toast('তালিকা থেকে সঠিক staff name নির্বাচন করুন।',true);
+  if(!pin)return toast('Staff PIN লিখুন।',true);
+  const btn=document.getElementById('loginBtn');busy(btn,true,'Login হচ্ছে...');
+  const {data,error}=await sb.rpc('claim_staff_session',{p_staff_name:name,p_pin:pin});
+  busy(btn,false,'Login');if(error)return toast(errText(error),true);
+  state.staff=data;document.getElementById('loginPin').value='';closeLogin();showIdentity();await loadAll(false);toast('Staff Login সফল হয়েছে।');
+}
+function openLogin(){document.getElementById('loginName').value=state.staff||'';document.getElementById('loginModal').classList.add('show')}
+function closeLogin(){document.getElementById('loginModal').classList.remove('show')}
+function requireLogin(){if(!state.staff){openLogin();toast('প্রথমে Staff Login করুন।',true);return false}return true}
+
+async function loadAll(show=true){
+  if(show)loading(true);
+  try{
+    const [p,v,r,s]=await Promise.all([
+      sb.from('proposals').select('*').order('created_at',{ascending:false}),
+      sb.from('votes').select('*'),
+      sb.from('reactions').select('*'),
+      sb.from('app_settings').select('*')
+    ]);
+    for(const x of [p,v,r,s])if(x.error)throw x.error;
+    state.proposals=p.data||[];state.votes=v.data||[];state.reactions=r.data||[];state.settings=Object.fromEntries((s.data||[]).map(x=>[x.key,x.value]));
+    hydrate();
+  }catch(e){toast(errText(e),true)}finally{if(show)loading(false)}
+}
+function hydrate(){
+  document.getElementById('schoolName').textContent=state.settings.SCHOOL_NAME||'Patkabari High School (H.S.)';
+  const ticker=document.getElementById('ticker');if(isTrue(state.settings.VOTING_OPEN)){ticker.style.display='flex';document.getElementById('tickerText').textContent=state.settings.VOTING_SCROLL_MESSAGE||''}else ticker.style.display='none';
+  const notice=state.settings.NOTICE||'';const n=document.getElementById('notice');n.style.display=notice?'block':'none';n.textContent=notice;
+  const total=state.votes.length,avg=total?state.votes.reduce((a,b)=>a+Number(b.rating||0),0)/total:0;
+  document.getElementById('proposalCount').textContent=state.proposals.length;document.getElementById('voteCount').textContent=total;document.getElementById('avgRating').textContent=avg.toFixed(1);
+  renderSummary();renderProposals();
+}
+function enrich(p){
+  const vv=state.votes.filter(v=>v.proposal_id===p.id),rr=state.reactions.filter(r=>r.proposal_id===p.id);
+  const avg=vv.length?vv.reduce((s,v)=>s+Number(v.rating||0),0)/vv.length:0;
+  const counts={};rr.forEach(r=>counts[r.emoji]=(counts[r.emoji]||0)+1);
+  return {...p,voteCount:vv.length,avg,myVote:vv.find(v=>v.staff_name===state.staff)||null,reactionCounts:counts,myReaction:(rr.find(r=>r.staff_name===state.staff)||{}).emoji||''};
+}
+function renderSummary(){
+  const rows=CATEGORIES.map(cat=>{const ps=state.proposals.filter(p=>p.category===cat).map(enrich);if(!ps.length)return null;const votes=ps.reduce((s,p)=>s+p.voteCount,0);const weighted=ps.reduce((s,p)=>s+p.avg*p.voteCount,0);return{cat,count:ps.length,votes,avg:votes?weighted/votes:0}}).filter(Boolean).sort((a,b)=>b.count-a.count||b.votes-a.votes);
+  document.getElementById('summary').innerHTML=rows.length?rows.map(r=>`<div class="sum"><h3>${esc(r.cat)}</h3><p><span>প্রস্তাব <b>${r.count}</b></span><span>ভোট <b>${r.votes}</b></span><span>রেটিং <b>${r.avg.toFixed(1)}</b></span></p></div>`).join(''):'<div class="empty" style="grid-column:1/-1">এখনও কোনো প্রস্তাব নেই।</div>';
+}
+function renderProposals(){
+  let items=state.proposals.map(enrich),q=document.getElementById('search').value.trim().toLowerCase(),cat=document.getElementById('categoryFilter').value,sort=document.getElementById('sort').value;
+  if(q)items=items.filter(p=>[p.title,p.details,p.staff_name,p.category,p.status].join(' ').toLowerCase().includes(q));if(cat)items=items.filter(p=>p.category===cat);
+  if(sort==='votes')items.sort((a,b)=>b.voteCount-a.voteCount);else if(sort==='rating')items.sort((a,b)=>b.avg-a.avg);else items.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  document.getElementById('list').innerHTML=items.length?items.map(card).join(''):'<div class="empty">কোনো প্রস্তাব পাওয়া যায়নি।</div>';
+}
+function card(p){
+  const reactions=['👍','💡','❤️','👏','🌟'].map(e=>`<button class="react ${p.myReaction===e?'mine':''}" onclick="react('${p.id}','${e}')">${e} <small>${p.reactionCounts[e]||0}</small></button>`).join('');
+  const disabled=p.myVote&&!isTrue(state.settings.ALLOW_VOTE_CHANGE)?'disabled':'';
+  const label=p.myVote?(isTrue(state.settings.ALLOW_VOTE_CHANGE)?'ভোট/রেটিং বদলান':'ভোট দেওয়া হয়েছে'):'ভোট দিন';
+  return `<article class="proposal"><div class="chips"><span class="chip">${esc(p.category)}</span><span class="chip">${esc(p.priority)}</span><span class="chip status">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><div class="meta"><span>প্রস্তাবক: ${esc(p.staff_name)}</span><span>${new Date(p.created_at).toLocaleString('bn-IN')}</span>${p.estimated_cost!=null?`<span>আনুমানিক ₹${Number(p.estimated_cost).toLocaleString('en-IN')}</span>`:''}</div><div class="details">${esc(p.details)}</div><div class="reactions"><small style="color:#6d7a84">Feedback:</small>${reactions}</div><div class="vote"><div class="rating"><span class="material-symbols-rounded">star</span><b>${p.avg.toFixed(1)}</b><small>(${p.voteCount} ভোট)</small></div><div class="stars">${[1,2,3,4,5].map(n=>`<span class="material-symbols-rounded ${n<=Math.round(p.avg)?'on':''}">star</span>`).join('')}</div><button class="vote-btn" ${disabled} onclick="openVote('${p.id}')">${label}</button>${p.myVote?`<div class="minevote">আপনার রেটিং: ${p.myVote.rating}/5${p.myVote.comment?' • '+esc(p.myVote.comment):''}</div>`:''}</div></article>`;
+}
+function openProposal(){if(!requireLogin())return;if(!isTrue(state.settings.SUBMISSION_OPEN))return toast('নতুন প্রস্তাব গ্রহণ এখন বন্ধ।',true);document.getElementById('proposalModal').classList.add('show');document.body.style.overflow='hidden'}
+function closeProposal(){stopVoice();document.getElementById('proposalModal').classList.remove('show');document.body.style.overflow=''}
+async function submitProposal(e){
+  e.preventDefault();if(!requireLogin())return;
+  const btn=document.getElementById('submitBtn');busy(btn,true,'জমা হচ্ছে...');
+  const cost=document.getElementById('pCost').value;
+  const args={p_category:document.getElementById('pCategory').value,p_title:document.getElementById('pTitle').value.trim(),p_details:document.getElementById('pDetails').value.trim(),p_estimated_cost:cost===''?null:Number(cost),p_priority:document.getElementById('pPriority').value};
+  const {error}=await sb.rpc('submit_proposal',args);busy(btn,false,'প্রস্তাব জমা দিন');if(error)return toast(errText(error),true);
+  document.getElementById('proposalForm').reset();closeProposal();thank();await loadAll(false);
+}
+async function react(id,emoji){if(!requireLogin())return;const {error}=await sb.rpc('react_to_proposal',{p_proposal_id:id,p_emoji:emoji});if(error)return toast(errText(error),true);await loadAll(false)}
+function openVote(id){if(!requireLogin())return;if(!isTrue(state.settings.VOTING_OPEN))return toast('ভোট গ্রহণ এখন বন্ধ।',true);state.voteId=id;const p=enrich(state.proposals.find(x=>x.id===id));state.voteRating=p.myVote?Number(p.myVote.rating):0;document.getElementById('voteTitle').textContent=p.title;document.getElementById('voteComment').value=p.myVote?p.myVote.comment||'':'';renderVoteStars();document.getElementById('voteModal').classList.add('show')}
+function closeVote(){document.getElementById('voteModal').classList.remove('show');state.voteId=null;state.voteRating=0}
+function renderVoteStars(){document.getElementById('voteStars').innerHTML=[1,2,3,4,5].map(n=>`<button style="border:0;background:none;padding:2px;color:${n<=state.voteRating?'#d58d16':'#bcc6cd'}" onclick="state.voteRating=${n};renderVoteStars()"><span class="material-symbols-rounded" style="font-size:32px;font-variation-settings:'FILL' ${n<=state.voteRating?1:0}">star</span></button>`).join('')}
+async function castVote(){if(!state.voteId||!state.voteRating)return toast('১–৫ স্টার রেটিং দিন।',true);const btn=document.getElementById('castBtn');busy(btn,true,'ভোট হচ্ছে...');const {error}=await sb.rpc('cast_vote',{p_proposal_id:state.voteId,p_rating:state.voteRating,p_comment:document.getElementById('voteComment').value.trim()});busy(btn,false,'ভোট নিশ্চিত করুন');if(error)return toast(errText(error),true);closeVote();thank();await loadAll(false)}
+function thank(){document.getElementById('thankText').innerHTML=`<strong>${esc(state.staff)}</strong> - স্যার/ম্যাম আপনার মূল্যবান মতামতের জন্য অনেক ধন্যবাদ 💐<br>সকলের প্রস্তাবে ভোটিং ও রেটিং-এর মাধ্যমে সিদ্ধান্ত গ্রহণে সহায়তা করুন।`;document.getElementById('thankModal').classList.add('show')}
+
+function voice(id,btn){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast('এই browser-এ Voice Typing support নেই। Chrome ব্যবহার করুন।',true);stopVoice();const rec=new SR();state.recognition=rec;rec.lang='bn-IN';rec.interimResults=true;const target=document.getElementById(id),base=target.value.trim();btn.classList.add('live');let final='';rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)final+=t;else interim+=t}const add=(final||interim).trim();target.value=(base+(base&&add?' ':'')+add).trim()};rec.onend=()=>{btn.classList.remove('live');state.recognition=null};rec.onerror=e=>toast(e.error==='not-allowed'?'Microphone permission দিন।':'Voice Typing সমস্যা হয়েছে।',true);rec.start()}
+function stopVoice(){if(state.recognition){try{state.recognition.stop()}catch(e){}state.recognition=null}document.querySelectorAll('.mic').forEach(b=>b.classList.remove('live'))}
+
+function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}function errText(e){return String(e?.message||e||'একটি সমস্যা হয়েছে।').replace(/^.*?: /,'')}function loading(v){document.getElementById('loader').classList.toggle('hide',!v)}let tm;function toast(m,err=false){const el=document.getElementById('toast');el.textContent=m;el.classList.toggle('error',err);el.classList.add('show');clearTimeout(tm);tm=setTimeout(()=>el.classList.remove('show'),3300)}function busy(btn,on,text){btn.disabled=on;btn.textContent=text}
+</script>
+</body>
+</html>
