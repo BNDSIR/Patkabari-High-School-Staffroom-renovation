@@ -28,6 +28,35 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
 @media(max-width:720px){header{padding:9px 9px 14px}.logo{width:48px;height:48px;border-radius:12px}h1{font-size:1.28rem}#schoolName{font-size:.79rem}.ticker{height:24px;margin-top:4px}.ticker strong{font-size:.62rem;padding:0 5px}.ticker-text{font-size:.72rem;animation-duration:15s}main{padding:0 7px;margin-top:8px}.actions{gap:6px}.action{min-height:64px;border-radius:13px;font-size:.83rem;padding:7px 4px;line-height:1.12}.action .material-symbols-rounded{font-size:23px}.stats{gap:5px}.stat{display:block;text-align:center;padding:8px 4px;border-radius:12px}.stat i{width:30px;height:30px;margin:0 auto 4px;border-radius:8px}.stat b{font-size:1.05rem}.stat small{font-size:.64rem;display:block}.card{padding:9px 8px;border-radius:14px}.summary{grid-template-columns:1fr 1fr;gap:5px}.sum{padding:7px}.sum h3{font-size:.79rem}.sum p{font-size:.67rem}.filters{grid-template-columns:1fr;gap:5px}input,select,textarea{font-size:16px;min-height:44px}.proposal{padding:10px 8px;border-radius:14px}.proposal h3{font-size:1rem}.meta{display:grid;gap:1px;font-size:.72rem}.details{font-size:.9rem}.vote{grid-template-columns:1fr;gap:5px}.vote-btn{width:100%;min-height:44px}.minevote{grid-column:auto}.overlay,.modal{padding:0;align-items:flex-end}.overlay .sheet{width:100%;height:100dvh;max-height:none;border-radius:0}.modal .sheet{width:100%;max-height:92vh;border-radius:18px 18px 0 0}.grid{grid-template-columns:1fr}.full{grid-column:auto}.formactions{display:grid;grid-template-columns:1fr 1.25fr}.formactions button{width:100%}}
 @media(max-width:370px){.summary{grid-template-columns:1fr}.action{font-size:.76rem}}
 @media print{body *{visibility:hidden!important}#summaryCard,#summaryCard *{visibility:visible!important}#summaryCard{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none}#printBtn{display:none!important}}
+
+
+.bottom-print {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 28px;
+}
+
+.print-bottom-btn {
+  width: min(420px, 100%);
+  min-height: 52px;
+  justify-content: center;
+
+  background: #650909;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 14px;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  box-shadow: 0 8px 22px rgba(101, 9, 9, 0.22);
+}
+
+.print-bottom-btn:hover {
+  background: #7d1111;
+}
+  
 </style>
 </head>
 <body>
@@ -44,22 +73,138 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
   </div>
 </header>
 <main>
+
+  <!-- Main Action Buttons -->
   <div class="actions">
-    <button class="action" onclick="openProposal()"><span class="material-symbols-rounded">add_comment</span><span>নতুন প্রস্তাব দিন</span></button>
-    <button class="action" onclick="document.getElementById('proposalCard').scrollIntoView({behavior:'smooth'})"><span class="material-symbols-rounded">ballot</span><span>সব প্রস্তাব • ভোট • রেটিং</span></button>
+    <button class="action" onclick="openProposal()">
+      <span class="material-symbols-rounded">add_comment</span>
+      <span>নতুন প্রস্তাব দিন</span>
+    </button>
+
+    <button
+      class="action"
+      onclick="document.getElementById('proposalCard').scrollIntoView({behavior:'smooth'})">
+      <span class="material-symbols-rounded">ballot</span>
+      <span>সব প্রস্তাব • ভোট • রেটিং</span>
+    </button>
   </div>
+
+
+  <!-- Statistics -->
   <section class="stats">
-    <div class="stat"><i><span class="material-symbols-rounded">lightbulb</span></i><div><b id="proposalCount">0</b><small>মোট প্রস্তাব</small></div></div>
-    <div class="stat"><i><span class="material-symbols-rounded">how_to_vote</span></i><div><b id="voteCount">0</b><small>মোট ভোট</small></div></div>
-    <div class="stat"><i><span class="material-symbols-rounded">star</span></i><div><b id="avgRating">0.0</b><small>গড় রেটিং</small></div></div>
+
+    <div class="stat">
+      <i>
+        <span class="material-symbols-rounded">lightbulb</span>
+      </i>
+      <div>
+        <b id="proposalCount">0</b>
+        <small>মোট প্রস্তাব</small>
+      </div>
+    </div>
+
+    <div class="stat">
+      <i>
+        <span class="material-symbols-rounded">how_to_vote</span>
+      </i>
+      <div>
+        <b id="voteCount">0</b>
+        <small>মোট ভোট</small>
+      </div>
+    </div>
+
+    <div class="stat">
+      <i>
+        <span class="material-symbols-rounded">star</span>
+      </i>
+      <div>
+        <b id="avgRating">0.0</b>
+        <small>গড় রেটিং</small>
+      </div>
+    </div>
+
   </section>
+
+
+  <!-- Notice -->
   <div id="notice" class="notice"></div>
-  <section id="summaryCard" class="card"><div class="cardhead"><h2><span class="material-symbols-rounded">analytics</span> বিভাগভিত্তিক সারাংশ</h2><div id="summary" class="summary"></div></section>
-  <section id="proposalCard" class="card"><div class="cardhead"><h2><span class="material-symbols-rounded">forum</span> জমা পড়া প্রস্তাব</h2><button class="ghost" onclick="loadAll()"><span class="material-symbols-rounded">refresh</span> Refresh</button></div>
-    <div class="filters"><input id="search" placeholder="প্রস্তাব খুঁজুন..."><select id="categoryFilter"><option value="">সব বিভাগ</option></select><select id="sort"><option value="new">সর্বশেষ আগে</option><option value="votes">বেশি ভোট</option><option value="rating">বেশি রেটিং</option></select></div>
-    <button id="printBtn" class="ghost" onclick="window.print()"><span class="material-symbols-rounded">print</span> প্রিন্ট</button></div>
-    <div id="list" class="list"></div>
+
+
+  <!-- Category Summary -->
+  <section id="summaryCard" class="card">
+
+    <div class="cardhead">
+      <h2>
+        <span class="material-symbols-rounded">analytics</span>
+        বিভাগভিত্তিক সারাংশ
+      </h2>
+    </div>
+
+    <div id="summary" class="summary"></div>
+
   </section>
+
+
+  <!-- All Proposals -->
+  <section id="proposalCard" class="card">
+
+    <div class="cardhead">
+
+      <h2>
+        <span class="material-symbols-rounded">forum</span>
+        জমা পড়া প্রস্তাব
+      </h2>
+
+      <button class="ghost" onclick="loadAll()">
+        <span class="material-symbols-rounded">refresh</span>
+        Refresh
+      </button>
+
+    </div>
+
+
+    <!-- Search / Filter / Sort -->
+    <div class="filters">
+
+      <input
+        id="search"
+        placeholder="প্রস্তাব খুঁজুন..."
+      >
+
+      <select id="categoryFilter">
+        <option value="">সব বিভাগ</option>
+      </select>
+
+      <select id="sort">
+        <option value="new">সর্বশেষ আগে</option>
+        <option value="votes">বেশি ভোট</option>
+        <option value="rating">বেশি রেটিং</option>
+      </select>
+
+    </div>
+
+
+    <!-- Proposal List -->
+    <div id="list" class="list"></div>
+
+  </section>
+
+
+  <!-- Print Button at Very Bottom -->
+  <div class="bottom-print">
+
+    <button
+      id="printBtn"
+      class="ghost print-bottom-btn"
+      onclick="window.print()">
+
+      <span class="material-symbols-rounded">print</span>
+      সারাংশ ও প্রস্তাব প্রিন্ট করুন
+
+    </button>
+
+  </div>
+
 </main>
 <footer>Staff Room Renovation Decision Portal • GitHub Pages + Supabase</footer>
 
