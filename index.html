@@ -806,93 +806,301 @@ function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){r
       });
 
       proposalsHTML += `
-        <div class="print-proposal avoid-break">
 
-          <h3>
-            ${index + 1}. ${esc(p.title)}
-          </h3>
+  <section class="proposal-print-page">
 
-          <div class="print-meta">
-            <strong>প্রস্তাবক:</strong> ${esc(p.staff_name)}
-            &nbsp; | &nbsp;
-            <strong>অগ্রাধিকার:</strong> ${esc(p.priority || '')}
-            &nbsp; | &nbsp;
-            <strong>Status:</strong> ${esc(p.status || '')}
-            ${
-              p.estimated_cost != null
-                ? `
-                  &nbsp; | &nbsp;
-                  <strong>আনুমানিক খরচ:</strong>
-                  ₹${Number(p.estimated_cost).toLocaleString('en-IN')}
-                `
-                : ''
-            }
-          </div>
 
-          <div class="print-details">
-            <strong>প্রস্তাবের বিস্তারিত:</strong><br>
-            ${esc(p.details)}
-          </div>
+    <!-- SECTION NAME -->
 
-          <div class="print-vote-summary">
-            <span>
-              মোট ভোট:
-              <strong>${votes.length}</strong>
-            </span>
+    <div class="proposal-page-category">
 
-            <span>
-              গড় রেটিং:
-              <strong>${avgRating} / 5</strong>
-            </span>
+      <span class="proposal-page-category-icon">
+        ${catIcon}
+      </span>
 
-            <span>★★★★★ : <strong>${ratingDistribution[5]}</strong></span>
-            <span>★★★★ : <strong>${ratingDistribution[4]}</strong></span>
-            <span>★★★ : <strong>${ratingDistribution[3]}</strong></span>
-            <span>★★ : <strong>${ratingDistribution[2]}</strong></span>
-            <span>★ : <strong>${ratingDistribution[1]}</strong></span>
-          </div>
+      <span>
+        ${esc(category)}
+      </span>
 
-          <table class="print-table">
-            <thead>
-              <tr>
-                <th style="width:6%">#</th>
-                <th style="width:35%">Staff</th>
-                <th style="width:15%">Rating</th>
-                <th>মন্তব্য</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${voteRows}
-            </tbody>
-          </table>
+    </div>
 
-          <div class="print-reactions">
-            <strong>Emoji Feedback:</strong><br>
-            ${reactionHTML}
-          </div>
 
-        </div>
-      `;
+
+    <!-- PROPOSAL BOX -->
+
+    <div class="print-proposal">
+
+
+      <!-- PROPOSAL TITLE -->
+
+      <h3>
+
+        ${index + 1}. ${esc(p.title)}
+
+      </h3>
+
+
+
+      <!-- BASIC INFORMATION -->
+
+      <div class="print-meta">
+
+        <strong>
+          প্রস্তাবক:
+        </strong>
+
+        ${esc(p.staff_name)}
+
+        &nbsp; | &nbsp;
+
+
+        <strong>
+          অগ্রাধিকার:
+        </strong>
+
+        ${esc(p.priority || '')}
+
+        &nbsp; | &nbsp;
+
+
+        <strong>
+          Status:
+        </strong>
+
+        ${esc(p.status || '')}
+
+
+        ${
+          p.estimated_cost != null
+            ? `
+
+              &nbsp; | &nbsp;
+
+              <strong>
+                আনুমানিক খরচ:
+              </strong>
+
+              ₹${Number(
+                p.estimated_cost
+              ).toLocaleString('en-IN')}
+
+            `
+            : ''
+        }
+
+      </div>
+
+
+
+      <!-- PROPOSAL DETAILS -->
+
+      <div class="print-details">
+
+        <strong>
+          প্রস্তাবের বিস্তারিত:
+        </strong>
+
+        <br>
+
+        ${esc(p.details)}
+
+      </div>
+
+
+
+      <!-- VOTE SUMMARY -->
+
+      <div class="print-vote-summary">
+
+
+        <span>
+
+          মোট ভোট:
+
+          <strong>
+            ${votes.length}
+          </strong>
+
+        </span>
+
+
+
+        <span>
+
+          গড় রেটিং:
+
+          <strong>
+            ${avgRating} / 5
+          </strong>
+
+        </span>
+
+
+
+        <span>
+          ★★★★★ :
+          <strong>
+            ${ratingDistribution[5]}
+          </strong>
+        </span>
+
+
+        <span>
+          ★★★★ :
+          <strong>
+            ${ratingDistribution[4]}
+          </strong>
+        </span>
+
+
+        <span>
+          ★★★ :
+          <strong>
+            ${ratingDistribution[3]}
+          </strong>
+        </span>
+
+
+        <span>
+          ★★ :
+          <strong>
+            ${ratingDistribution[2]}
+          </strong>
+        </span>
+
+
+        <span>
+          ★ :
+          <strong>
+            ${ratingDistribution[1]}
+          </strong>
+        </span>
+
+
+      </div>
+
+
+
+      <!-- STAFF VOTING DETAILS -->
+
+      <table class="print-table">
+
+        <thead>
+
+          <tr>
+
+            <th style="width:6%">
+              #
+            </th>
+
+            <th style="width:36%">
+              Staff
+            </th>
+
+            <th style="width:16%">
+              Rating
+            </th>
+
+            <th>
+              মন্তব্য
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          ${voteRows}
+
+        </tbody>
+
+      </table>
+
+
+
+      <!-- REACTION DETAILS -->
+
+      <div class="print-reactions">
+
+        <strong>
+          Emoji Feedback
+        </strong>
+
+        <br>
+
+        ${reactionHTML}
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+`;
     });
 
     categoryHTML += `
-      <section class="print-category">
-        <h2 class="print-category-title">
-          <span class="cat-icon">${catIcon}</span>
-          <span>${esc(category)}</span>
-        </h2>
 
-        <div class="print-category-summary">
-          <strong>এই বিভাগে প্রস্তাব:</strong> ${proposals.length}
-          &nbsp;&nbsp;
-          <strong>মোট ভোট:</strong> ${categoryVoteCount}
-          &nbsp;&nbsp;
-          <strong>গড় রেটিং:</strong> ${categoryRating} / 5
-        </div>
+  <!-- ============================
+       SECTION COVER PAGE
+  ============================= -->
 
-        ${proposalsHTML}
-      </section>
-    `;
+  <section class="section-cover-page">
+
+    <div class="section-cover-icon">
+      ${catIcon}
+    </div>
+
+    <div class="section-cover-name">
+      ${esc(category)}
+    </div>
+
+    <div class="section-cover-stats">
+
+      <div class="section-cover-stat">
+
+        <strong>
+          ${proposals.length}
+        </strong>
+
+        মোট প্রস্তাব
+
+      </div>
+
+
+      <div class="section-cover-stat">
+
+        <strong>
+          ${categoryVoteCount}
+        </strong>
+
+        মোট ভোট
+
+      </div>
+
+
+      <div class="section-cover-stat">
+
+        <strong>
+          ${categoryRating}
+        </strong>
+
+        গড় রেটিং
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  ${proposalsHTML}
+
+`;
   });
 
   const detailsHTML = `
