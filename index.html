@@ -36,7 +36,6 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
    DETAILED PRINT / PDF REPORT
    Mobile-readable, large-font version
 ========================================= */
-
 .print-report {
   display: none;
 }
@@ -50,516 +49,437 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
 
   html,
   body {
-    background: #ffffff !important;
-    color: #000000 !important;
-
-    font-family:
-      "Hind Siliguri",
-      "Noto Sans Bengali",
-      Arial,
-      sans-serif !important;
-
+    background: #eaf6ff !important;
+    color: #111 !important;
+    font-family: "Hind Siliguri", "Noto Sans Bengali", Arial, sans-serif !important;
     font-size: 14px !important;
     line-height: 1.55 !important;
   }
 
-
-  /* Hide normal webpage */
-
   body * {
     visibility: hidden !important;
   }
-
-
-  /* Show report only */
 
   #printReport,
   #printReport * {
     visibility: visible !important;
   }
 
-
   #printReport {
     display: block !important;
-
     position: absolute;
     left: 0;
     top: 0;
-
     width: 100%;
-
-    background: #ffffff !important;
-    color: #000000 !important;
-
-    font-size: 14px !important;
-  }
-
-
-  /* =====================================
-     REPORT HEADER
-  ===================================== */
-
-  .print-header {
-    text-align: center;
-
-    border: 3px solid #222;
-
-    border-radius: 8px;
-
-    padding: 12px 10px;
-
-    margin-bottom: 16px;
-
-    background: #f7f7f7 !important;
-
-    break-inside: avoid;
-  }
-
-
-  .print-header h1 {
-    margin: 0 0 5px;
-
-    font-size: 25px !important;
-
-    line-height: 1.25;
-
-    font-weight: 800 !important;
-
-    color: #000 !important;
-  }
-
-
-  .print-header h2 {
-    margin: 4px 0;
-
-    font-size: 19px !important;
-
-    line-height: 1.3;
-
-    font-weight: 700 !important;
-
+    background: #eaf6ff !important;
     color: #111 !important;
   }
 
+  /* ============ COMMON PAGE BLOCK ============ */
 
-  .print-header p {
-    margin: 6px 0 0;
-
-    font-size: 12px !important;
-
-    font-weight: 600;
+  .print-page {
+    background: #eaf6ff !important;
+    min-height: 100vh;
+    padding: 8mm 6mm;
+    box-sizing: border-box;
+    page-break-after: always;
+    break-after: page;
   }
 
-
-  /* =====================================
-     OVERALL SUMMARY
-  ===================================== */
-
-  .print-main-stats {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 8px;
-
-    margin: 12px 0 18px;
-
-    break-inside: avoid;
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
   }
 
+  /* ============ COVER PAGE ============ */
 
-  .print-main-stat {
-    border: 2px solid #333;
-
-    border-radius: 7px;
-
-    padding: 10px 5px;
-
+  .print-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
-    background: #fafafa !important;
+    border: 4px solid #12395b;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #d7eeff 0%, #eaf6ff 100%) !important;
+    min-height: 92vh;
+    padding: 25px 20px;
+  }
 
-    font-size: 13px !important;
+  .cover-logo {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px;
+    border: 2px solid #1f4f7a;
+  }
 
+  .cover-school {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #0f2f4d !important;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .cover-title {
+    font-size: 30px !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    background: #12395b !important;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin: 12px 0;
+    line-height: 1.3;
+  }
+
+  .cover-subtitle {
+    font-size: 18px !important;
+    font-weight: 700;
+    color: #163d61 !important;
+    margin-top: 5px;
+  }
+
+  .cover-date {
+    margin-top: 18px;
+    font-size: 14px !important;
+    color: #234b70 !important;
     font-weight: 700;
   }
 
+  .cover-footer {
+    margin-top: 24px;
+    font-size: 14px !important;
+    background: #1d4e78 !important;
+    color: #fff !important;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  /* ============ INDEX PAGE ============ */
+
+  .print-index {
+    border: 3px solid #12395b;
+    border-radius: 14px;
+    background: #f2f9ff !important;
+    min-height: 92vh;
+    padding: 16px;
+  }
+
+  .index-title {
+    text-align: center;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #0e3555 !important;
+    margin: 0 0 16px;
+    border-bottom: 3px solid #21537f;
+    padding-bottom: 10px;
+  }
+
+  .index-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .index-card {
+    border: 2px solid #27567f;
+    border-radius: 14px;
+    background: #dff0ff !important;
+    padding: 16px 14px;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+
+  .index-icon {
+    font-size: 34px !important;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .index-name {
+    font-size: 19px !important;
+    font-weight: 900 !important;
+    color: #12395b !important;
+    line-height: 1.3;
+  }
+
+  /* ============ HEADER / OVERALL STATS ============ */
+
+  .print-header {
+    text-align: center;
+    border: 3px solid #12395b;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background: #dbeeff !important;
+  }
+
+  .print-header h1 {
+    margin: 0 0 5px;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #0e3350 !important;
+  }
+
+  .print-header h2 {
+    margin: 0;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    color: #143d60 !important;
+  }
+
+  .print-header p {
+    margin: 6px 0 0;
+    font-size: 12px !important;
+    font-weight: 700;
+  }
+
+  .print-main-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0 20px;
+  }
+
+  .print-main-stat {
+    border: 2px solid #234b70;
+    border-radius: 10px;
+    padding: 10px 6px;
+    text-align: center;
+    background: #f8fcff !important;
+  }
 
   .print-main-stat strong {
     display: block;
-
-    font-size: 25px !important;
-
-    line-height: 1.1;
-
+    font-size: 26px !important;
     font-weight: 900 !important;
-
+    color: #0f3453 !important;
     margin-bottom: 4px;
   }
 
-
-  /* =====================================
-     CATEGORY
-  ===================================== */
+  /* ============ CATEGORY BLOCK ============ */
 
   .print-category {
     margin-bottom: 22px;
   }
 
-
   .print-category-title {
-    margin: 0 0 9px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    padding: 8px 10px;
-
-    border: 2px solid #333;
-
-    border-left: 8px solid #222;
-
-    border-radius: 5px;
-
-    background: #e8e8e8 !important;
-
-    font-size: 20px !important;
-
+    border: 3px solid #12395b;
+    border-left: 10px solid #0d2b45;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #d8ecff !important;
+    font-size: 22px !important;
     font-weight: 900 !important;
-
-    color: #000 !important;
-
-    break-after: avoid;
+    color: #0f3452 !important;
+    margin: 0 0 10px;
+    page-break-after: avoid !important;
+    break-after: avoid-page !important;
   }
 
+  .cat-icon {
+    font-size: 28px !important;
+    display: inline-block;
+  }
 
   .print-category-summary {
-    border: 2px solid #888;
-
-    border-radius: 6px;
-
-    padding: 8px 10px;
-
+    border: 2px solid #5d7e9d;
+    border-radius: 8px;
+    padding: 9px 12px;
     margin-bottom: 12px;
-
-    background: #fafafa !important;
-
+    background: #f5fbff !important;
     font-size: 14px !important;
-
-    line-height: 1.5;
-
+    line-height: 1.6;
     font-weight: 700;
-
-    break-inside: avoid;
   }
 
-
-  /* =====================================
-     EACH PROPOSAL BOX
-  ===================================== */
+  /* ============ PROPOSAL BOX ============ */
 
   .print-proposal {
-    display: block;
-
-    border: 3px solid #333 !important;
-
-    border-radius: 8px;
-
-    padding: 12px 11px;
-
-    margin: 0 0 15px;
-
+    border: 3px solid #1a4266 !important;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 16px;
     background: #ffffff !important;
 
-    /* Very important */
-    break-inside: avoid-page !important;
     page-break-inside: avoid !important;
-
+    break-inside: avoid-page !important;
     orphans: 4;
     widows: 4;
   }
 
-
-  /* Proposal title */
-
   .print-proposal h3 {
     margin: 0 0 8px;
-
     padding-bottom: 6px;
-
-    border-bottom: 2px solid #777;
-
-    font-size: 20px !important;
-
-    line-height: 1.3;
-
+    border-bottom: 2px solid #6f8ba4;
+    font-size: 21px !important;
+    line-height: 1.35;
     font-weight: 900 !important;
-
-    color: #000 !important;
+    color: #0d3150 !important;
   }
-
-
-  /* Proposal metadata */
 
   .print-meta {
     margin-bottom: 9px;
-
-    padding: 7px 8px;
-
-    border-radius: 5px;
-
-    background: #f3f3f3 !important;
-
+    padding: 8px;
+    border-radius: 6px;
+    background: #eef7ff !important;
     font-size: 13px !important;
-
     line-height: 1.6;
-
-    color: #111 !important;
-
     font-weight: 600;
+    color: #123048 !important;
   }
-
 
   .print-meta strong {
     font-weight: 900 !important;
   }
 
-
-  /* Proposal details */
-
   .print-details {
     margin: 10px 0;
-
     font-size: 15px !important;
-
-    line-height: 1.65;
-
-    color: #111 !important;
-
+    line-height: 1.7;
     white-space: pre-wrap;
+    color: #111 !important;
   }
-
 
   .print-details strong {
-    display: inline-block;
-
     font-size: 15px !important;
-
     font-weight: 900 !important;
-
-    margin-bottom: 3px;
   }
 
-
-  /* =====================================
-     BIG VOTE SUMMARY
-  ===================================== */
+  /* ============ BIG VOTE AREA ============ */
 
   .print-vote-summary {
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 7px;
-
     margin-top: 10px;
-
-    padding: 9px;
-
-    border: 2px solid #555;
-
-    border-radius: 7px;
-
-    background: #f7f7f7 !important;
-
-    font-size: 14px !important;
-
-    break-inside: avoid;
-  }
-
-
-  .print-vote-summary span {
-    display: block;
-
-    border: 1px solid #aaa;
-
-    border-radius: 5px;
-
-    padding: 6px 7px;
-
-    background: #ffffff !important;
-
-    font-weight: 700;
-  }
-
-
-  .print-vote-summary span:first-child {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    border: 3px solid #222;
-
-    font-size: 21px !important;
-
-    font-weight: 900 !important;
-
-    padding: 9px 7px;
-
-    background: #eeeeee !important;
-  }
-
-
-  .print-vote-summary span:nth-child(2) {
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    font-size: 18px !important;
-
-    font-weight: 900 !important;
-  }
-
-
-  /* =====================================
-     VOTER TABLE
-  ===================================== */
-
-  .print-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    margin-top: 10px;
-
-    font-size: 12px !important;
-
-    line-height: 1.4;
-
-    break-inside: avoid;
-  }
-
-
-  .print-table th,
-  .print-table td {
-    border: 1.5px solid #555;
-
-    padding: 6px 6px;
-
-    text-align: left;
-
-    vertical-align: top;
-  }
-
-
-  .print-table th {
-    background: #e8e8e8 !important;
-
-    font-size: 12px !important;
-
-    font-weight: 900 !important;
-  }
-
-
-  .print-table td {
-    font-size: 12px !important;
-  }
-
-
-  /* =====================================
-     EMOJI REACTION SECTION
-  ===================================== */
-
-  .print-reactions {
-    margin-top: 11px;
-
-    padding-top: 8px;
-
-    border-top: 2px dashed #777;
-
-    font-size: 13px !important;
-
-    line-height: 1.5;
-
-    break-inside: avoid;
-  }
-
-
-  .print-reactions > strong {
-    font-size: 15px !important;
-
-    font-weight: 900 !important;
-  }
-
-
-  .print-reaction-box {
-    display: block;
-
-    border: 1.5px solid #777;
-
-    border-radius: 5px;
-
-    margin: 5px 0;
-
-    padding: 6px 8px;
-
-    background: #fafafa !important;
-
-    font-size: 12px !important;
-
-    line-height: 1.5;
-  }
-
-
-  .print-reaction-box strong {
-    font-size: 15px !important;
-
-    font-weight: 900 !important;
-  }
-
-
-  /* =====================================
-     FOOTER
-  ===================================== */
-
-  .print-footer {
-    margin-top: 20px;
-
-    border-top: 2px solid #333;
-
-    padding-top: 9px;
-
-    text-align: center;
-
-    font-size: 11px !important;
-
-    line-height: 1.5;
-
-    color: #333 !important;
-
-    break-inside: avoid;
-  }
-
-
-  /* =====================================
-     PAGE BREAK CONTROL
-  ===================================== */
-
-  .print-proposal,
-  .print-proposal h3,
-  .print-meta,
-  .print-details,
-  .print-vote-summary,
-  .print-reactions {
-
-    break-inside: avoid-page !important;
+    padding: 10px;
+    border: 2px solid #466b8f;
+    border-radius: 8px;
+    background: #eef7ff !important;
     page-break-inside: avoid !important;
   }
 
+  .print-vote-summary span {
+    display: block;
+    border: 1px solid #97aec4;
+    border-radius: 6px;
+    padding: 6px 7px;
+    background: #fff !important;
+    font-size: 14px !important;
+    font-weight: 700;
+  }
 
-  .print-category-title {
-    page-break-after: avoid !important;
-    break-after: avoid-page !important;
+  .print-vote-summary span:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    border: 3px solid #163d61;
+    background: #dbeeff !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    color: #0f3050 !important;
+    padding: 10px;
+  }
+
+  .print-vote-summary span:nth-child(2) {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    color: #163d61 !important;
+  }
+
+  .print-vote-summary strong {
+    font-weight: 900 !important;
+  }
+
+  /* ============ TABLE ============ */
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 11px;
+    font-size: 12px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .print-table th,
+  .print-table td {
+    border: 1.5px solid #567b9d;
+    padding: 6px 6px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .print-table th {
+    background: #d8ecff !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    color: #0f3452 !important;
+  }
+
+  .print-table td {
+    background: #fff !important;
+    font-size: 12px !important;
+  }
+
+  /* ============ REACTION SECTION ============ */
+
+  .print-reactions {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 2px dashed #6282a0;
+    font-size: 13px !important;
+    line-height: 1.55;
+    page-break-inside: avoid !important;
+  }
+
+  .print-reactions > strong {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    color: #12395b !important;
+  }
+
+  .print-reaction-box {
+    display: block;
+    border: 1.5px solid #8aa4bb;
+    border-radius: 6px;
+    margin: 5px 0;
+    padding: 6px 8px;
+    background: #f7fbff !important;
+    font-size: 12px !important;
+    line-height: 1.5;
+  }
+
+  .print-reaction-box strong {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+  }
+
+  /* ============ FOOTER ============ */
+
+  .print-footer {
+    margin-top: 22px;
+    border-top: 2px solid #234b70;
+    padding-top: 9px;
+    text-align: center;
+    font-size: 11px !important;
+    line-height: 1.5;
+    color: #23405a !important;
   }
 
 }
+
 </style>
 </head>
 <body>
@@ -861,537 +781,345 @@ function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){r
     state.settings.SCHOOL_NAME ||
     'Patkabari High School (H.S.)';
 
-
-  /* ============================
-     OVERALL STATISTICS
-  ============================ */
-
   const totalProposals = state.proposals.length;
-
   const totalVotes = state.votes.length;
-
   const overallRating =
     totalVotes
       ? (
-          state.votes.reduce(
-            (sum, v) => sum + Number(v.rating || 0),
-            0
-          ) / totalVotes
+          state.votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) / totalVotes
         ).toFixed(2)
       : '0.00';
 
+  const CATEGORY_META = {
+    'সাজসজ্জা': { icon: '🎨' },
+    'দেওয়াল ডিজাইন ও রং': { icon: '🖌️' },
+    'আসবাবপত্র': { icon: '🪑' },
+    'প্লাম্বিং': { icon: '🚰' },
+    'ইলেকট্রিক্যাল': { icon: '💡' },
+    'আলো ও ফ্যান': { icon: '🌀' },
+    'স্টোরেজ / আলমারি': { icon: '🗄️' },
+    'বসার ব্যবস্থা': { icon: '🛋️' },
+    'পরিচ্ছন্নতা ও হাইজিন': { icon: '🧼' },
+    'ডিজিটাল / আইটি': { icon: '💻' },
+    'সবুজায়ন / ইনডোর প্ল্যান্ট': { icon: '🌿' },
+    'নিরাপত্তা': { icon: '🛡️' },
+    'অন্যান্য': { icon: '📌' }
+  };
 
-  /* ============================
-     GROUP BY CATEGORY
-  ============================ */
+  const logoElement = document.getElementById('logoImg');
+  const logoSrc =
+    logoElement && !logoElement.hidden && logoElement.src
+      ? logoElement.src
+      : '';
 
   const categories = {};
 
   state.proposals.forEach(p => {
-
     if (!categories[p.category]) {
       categories[p.category] = [];
     }
-
     categories[p.category].push(p);
-
   });
 
+  const categoryNames = Object.keys(categories).sort();
+
+  /* =========================
+     COVER PAGE
+  ========================= */
+
+  const coverHTML = `
+    <section class="print-page">
+      <div class="print-cover avoid-break">
+
+        ${
+          logoSrc
+            ? `<img src="${logoSrc}" class="cover-logo">`
+            : ''
+        }
+
+        <div class="cover-school">
+          ${esc(schoolName)}
+        </div>
+
+        <div class="cover-title">
+          Staff Room Renovation<br>
+          Proposal & Voting Report
+        </div>
+
+        <div class="cover-subtitle">
+          মতামত, ভোট, রেটিং ও feedback-ভিত্তিক প্রশাসনিক প্রতিবেদন
+        </div>
+
+        <div class="cover-date">
+          রিপোর্ট তৈরির তারিখ:
+          ${new Date().toLocaleString('en-IN')}
+        </div>
+
+        <div class="cover-footer">
+          Lets renovate our Staff room
+        </div>
+
+      </div>
+    </section>
+  `;
+
+  /* =========================
+     INDEX PAGE
+  ========================= */
+
+  const indexCardsHTML = categoryNames.map(cat => {
+    const icon = CATEGORY_META[cat]?.icon || '📁';
+    return `
+      <div class="index-card avoid-break">
+        <span class="index-icon">${icon}</span>
+        <div class="index-name">${esc(cat)}</div>
+      </div>
+    `;
+  }).join('');
+
+  const indexHTML = `
+    <section class="print-page">
+      <div class="print-index">
+        <h2 class="index-title">
+          সকল বিভাগ / Sections Overview
+        </h2>
+
+        <div class="index-grid">
+          ${indexCardsHTML}
+        </div>
+      </div>
+    </section>
+  `;
+
+  /* =========================
+     DETAILED CONTENT
+  ========================= */
 
   let categoryHTML = '';
 
+  categoryNames.forEach(category => {
 
-  Object.keys(categories)
-    .sort()
-    .forEach(category => {
+    const proposals = categories[category];
+    const catIcon = CATEGORY_META[category]?.icon || '📁';
 
-      const proposals = categories[category];
+    let categoryVotes = [];
 
+    proposals.forEach(p => {
+      categoryVotes.push(
+        ...state.votes.filter(v => v.proposal_id === p.id)
+      );
+    });
 
-      /* CATEGORY VOTES */
+    const categoryVoteCount = categoryVotes.length;
 
-      let categoryVotes = [];
+    const categoryRating =
+      categoryVoteCount
+        ? (
+            categoryVotes.reduce((sum, v) => sum + Number(v.rating || 0), 0) /
+            categoryVoteCount
+          ).toFixed(2)
+        : '0.00';
 
-      proposals.forEach(p => {
+    let proposalsHTML = '';
 
-        categoryVotes.push(
-          ...state.votes.filter(
-            v => v.proposal_id === p.id
-          )
-        );
+    proposals.forEach((p, index) => {
 
-      });
+      const votes = state.votes.filter(v => v.proposal_id === p.id);
 
-
-      const categoryVoteCount =
-        categoryVotes.length;
-
-
-      const categoryRating =
-        categoryVoteCount
+      const avgRating =
+        votes.length
           ? (
-              categoryVotes.reduce(
-                (sum, v) =>
-                  sum + Number(v.rating || 0),
-                0
-              ) / categoryVoteCount
+              votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) /
+              votes.length
             ).toFixed(2)
           : '0.00';
 
+      const ratingDistribution = {
+        1: 0, 2: 0, 3: 0, 4: 0, 5: 0
+      };
 
-      let proposalsHTML = '';
-
-
-      proposals.forEach((p, index) => {
-
-
-        /* ======================
-           VOTES OF PROPOSAL
-        ====================== */
-
-        const votes =
-          state.votes.filter(
-            v => v.proposal_id === p.id
-          );
-
-
-        const avgRating =
-          votes.length
-            ? (
-                votes.reduce(
-                  (sum, v) =>
-                    sum + Number(v.rating || 0),
-                  0
-                ) / votes.length
-              ).toFixed(2)
-            : '0.00';
-
-
-        /* Rating distribution */
-
-        const ratingDistribution = {
-          1: 0,
-          2: 0,
-          3: 0,
-          4: 0,
-          5: 0
-        };
-
-
-        votes.forEach(v => {
-
-          const rating =
-            Number(v.rating || 0);
-
-          if (ratingDistribution[rating] !== undefined) {
-            ratingDistribution[rating]++;
-          }
-
-        });
-
-
-        /* ======================
-           REACTIONS
-        ====================== */
-
-        const reactions =
-          state.reactions.filter(
-            r => r.proposal_id === p.id
-          );
-
-
-        const reactionGroups = {};
-
-        reactions.forEach(r => {
-
-          if (!reactionGroups[r.emoji]) {
-            reactionGroups[r.emoji] = [];
-          }
-
-          reactionGroups[r.emoji].push(
-            r.staff_name
-          );
-
-        });
-
-
-        /* ======================
-           VOTER DETAIL TABLE
-        ====================== */
-
-        let voteRows = '';
-
-        if (votes.length) {
-
-          votes
-            .sort((a, b) =>
-              a.staff_name.localeCompare(
-                b.staff_name
-              )
-            )
-            .forEach((v, i) => {
-
-              voteRows += `
-                <tr>
-
-                  <td>${i + 1}</td>
-
-                  <td>
-                    ${esc(v.staff_name)}
-                  </td>
-
-                  <td>
-                    ${Number(v.rating || 0)} / 5
-                  </td>
-
-                  <td>
-                    ${esc(v.comment || '—')}
-                  </td>
-
-                </tr>
-              `;
-
-            });
-
-        } else {
-
-          voteRows = `
-            <tr>
-              <td colspan="4">
-                কোনো ভোট নেই
-              </td>
-            </tr>
-          `;
-
+      votes.forEach(v => {
+        const rating = Number(v.rating || 0);
+        if (ratingDistribution[rating] !== undefined) {
+          ratingDistribution[rating]++;
         }
-
-
-        /* ======================
-           REACTION DETAILS
-        ====================== */
-
-        let reactionHTML = '';
-
-        ['👍','💡','❤️','👏','🌟']
-          .forEach(emoji => {
-
-            const names =
-              reactionGroups[emoji] || [];
-
-            reactionHTML += `
-
-              <div class="print-reaction-box">
-
-                <strong>
-                  ${emoji} ${names.length}
-                </strong>
-
-                ${
-                  names.length
-                    ? ` — ${names.map(esc).join(', ')}`
-                    : ''
-                }
-
-              </div>
-
-            `;
-
-          });
-
-
-        /* ======================
-           PROPOSAL HTML
-        ====================== */
-
-        proposalsHTML += `
-
-          <div class="print-proposal">
-
-          <h3>
-  ${index + 1}. ${esc(p.title)}
-</h3>
-
-
-            <div class="print-meta">
-
-              <strong>প্রস্তাবক:</strong>
-              ${esc(p.staff_name)}
-
-              &nbsp; | &nbsp;
-
-              <strong>অগ্রাধিকার:</strong>
-              ${esc(p.priority || '')}
-
-              &nbsp; | &nbsp;
-
-              <strong>Status:</strong>
-              ${esc(p.status || '')}
-
-              ${
-                p.estimated_cost != null
-                  ? `
-                    &nbsp; | &nbsp;
-                    <strong>আনুমানিক খরচ:</strong>
-                    ₹${Number(
-                      p.estimated_cost
-                    ).toLocaleString('en-IN')}
-                  `
-                  : ''
-              }
-
-            </div>
-
-
-            <div class="print-details">
-
-              <strong>
-                প্রস্তাবের বিস্তারিত:
-              </strong>
-
-              <br>
-
-              ${esc(p.details)}
-
-            </div>
-
-
-            <!-- VOTE SUMMARY -->
-
-            <div class="print-vote-summary">
-
-  <span>
-    মোট ভোট:
-    <strong>${votes.length}</strong>
-  </span>
-
-  <span>
-    গড় রেটিং:
-    <strong>${avgRating} / 5</strong>
-  </span>
-
-  <span>
-    ★★★★★ :
-    <strong>${ratingDistribution[5]}</strong>
-  </span>
-
-  <span>
-    ★★★★ :
-    <strong>${ratingDistribution[4]}</strong>
-  </span>
-
-  <span>
-    ★★★ :
-    <strong>${ratingDistribution[3]}</strong>
-  </span>
-
-  <span>
-    ★★ :
-    <strong>${ratingDistribution[2]}</strong>
-  </span>
-
-  <span>
-    ★ :
-    <strong>${ratingDistribution[1]}</strong>
-  </span>
-
-</div>
-                        <!-- VOTER DETAILS -->
-
-            <table class="print-table">
-
-              <thead>
-
-                <tr>
-
-                  <th style="width:6%">
-                    #
-                  </th>
-
-                  <th style="width:35%">
-                    Staff
-                  </th>
-
-                  <th style="width:15%">
-                    Rating
-                  </th>
-
-                  <th>
-                    মন্তব্য
-                  </th>
-
-                </tr>
-
-              </thead>
-
-
-              <tbody>
-
-                ${voteRows}
-
-              </tbody>
-
-            </table>
-
-
-            <!-- REACTIONS -->
-
-            <div class="print-reactions">
-
-              <strong>
-                Emoji Feedback:
-              </strong>
-
-              <br>
-
-              ${reactionHTML}
-
-            </div>
-
-          </div>
-
-        `;
-
       });
 
+      const reactions = state.reactions.filter(r => r.proposal_id === p.id);
 
-      /* ======================
-         CATEGORY HTML
-      ====================== */
+      const reactionGroups = {};
 
-      categoryHTML += `
+      reactions.forEach(r => {
+        if (!reactionGroups[r.emoji]) {
+          reactionGroups[r.emoji] = [];
+        }
+        reactionGroups[r.emoji].push(r.staff_name);
+      });
 
-        <section class="print-category">
+      let voteRows = '';
 
-          <h2 class="print-category-title">
+      if (votes.length) {
+        votes
+          .sort((a, b) => a.staff_name.localeCompare(b.staff_name))
+          .forEach((v, i) => {
+            voteRows += `
+              <tr>
+                <td>${i + 1}</td>
+                <td>${esc(v.staff_name)}</td>
+                <td>${Number(v.rating || 0)} / 5</td>
+                <td>${esc(v.comment || '—')}</td>
+              </tr>
+            `;
+          });
+      } else {
+        voteRows = `
+          <tr>
+            <td colspan="4">কোনো ভোট নেই</td>
+          </tr>
+        `;
+      }
 
-            ${esc(category)}
+      let reactionHTML = '';
 
-          </h2>
+      ['👍','💡','❤️','👏','🌟'].forEach(emoji => {
+        const names = reactionGroups[emoji] || [];
+        reactionHTML += `
+          <div class="print-reaction-box">
+            <strong>${emoji} ${names.length}</strong>
+            ${names.length ? ` — ${names.map(esc).join(', ')}` : ''}
+          </div>
+        `;
+      });
 
+      proposalsHTML += `
+        <div class="print-proposal avoid-break">
 
-          <div class="print-category-summary">
+          <h3>
+            ${index + 1}. ${esc(p.title)}
+          </h3>
 
-            <strong>
-              এই বিভাগে প্রস্তাব:
-            </strong>
-
-            ${proposals.length}
-
-            &nbsp;&nbsp;
-
-            <strong>
-              মোট ভোট:
-            </strong>
-
-            ${categoryVoteCount}
-
-            &nbsp;&nbsp;
-
-            <strong>
-              গড় রেটিং:
-            </strong>
-
-            ${categoryRating} / 5
-
+          <div class="print-meta">
+            <strong>প্রস্তাবক:</strong> ${esc(p.staff_name)}
+            &nbsp; | &nbsp;
+            <strong>অগ্রাধিকার:</strong> ${esc(p.priority || '')}
+            &nbsp; | &nbsp;
+            <strong>Status:</strong> ${esc(p.status || '')}
+            ${
+              p.estimated_cost != null
+                ? `
+                  &nbsp; | &nbsp;
+                  <strong>আনুমানিক খরচ:</strong>
+                  ₹${Number(p.estimated_cost).toLocaleString('en-IN')}
+                `
+                : ''
+            }
           </div>
 
+          <div class="print-details">
+            <strong>প্রস্তাবের বিস্তারিত:</strong><br>
+            ${esc(p.details)}
+          </div>
 
-          ${proposalsHTML}
+          <div class="print-vote-summary">
+            <span>
+              মোট ভোট:
+              <strong>${votes.length}</strong>
+            </span>
 
-        </section>
+            <span>
+              গড় রেটিং:
+              <strong>${avgRating} / 5</strong>
+            </span>
 
+            <span>★★★★★ : <strong>${ratingDistribution[5]}</strong></span>
+            <span>★★★★ : <strong>${ratingDistribution[4]}</strong></span>
+            <span>★★★ : <strong>${ratingDistribution[3]}</strong></span>
+            <span>★★ : <strong>${ratingDistribution[2]}</strong></span>
+            <span>★ : <strong>${ratingDistribution[1]}</strong></span>
+          </div>
+
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width:6%">#</th>
+                <th style="width:35%">Staff</th>
+                <th style="width:15%">Rating</th>
+                <th>মন্তব্য</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${voteRows}
+            </tbody>
+          </table>
+
+          <div class="print-reactions">
+            <strong>Emoji Feedback:</strong><br>
+            ${reactionHTML}
+          </div>
+
+        </div>
       `;
-
     });
 
+    categoryHTML += `
+      <section class="print-category">
+        <h2 class="print-category-title">
+          <span class="cat-icon">${catIcon}</span>
+          <span>${esc(category)}</span>
+        </h2>
 
-  /* ============================
-     COMPLETE REPORT
-  ============================ */
+        <div class="print-category-summary">
+          <strong>এই বিভাগে প্রস্তাব:</strong> ${proposals.length}
+          &nbsp;&nbsp;
+          <strong>মোট ভোট:</strong> ${categoryVoteCount}
+          &nbsp;&nbsp;
+          <strong>গড় রেটিং:</strong> ${categoryRating} / 5
+        </div>
 
-  report.innerHTML = `
+        ${proposalsHTML}
+      </section>
+    `;
+  });
 
-    <div class="print-header">
-
-      <h1>
-        ${esc(schoolName)}
-      </h1>
-
-      <h2>
-        Staff Room Renovation
-        Proposal & Voting Report
-      </h2>
-
-      <p>
-        রিপোর্ট তৈরির তারিখ:
-        ${new Date().toLocaleString('en-IN')}
-      </p>
-
-    </div>
-
-
-    <div class="print-main-stats">
-
-      <div class="print-main-stat">
-
-        <strong>
-          ${totalProposals}
-        </strong>
-
-        মোট প্রস্তাব
-
+  const detailsHTML = `
+    <section class="print-page" style="page-break-after:auto; break-after:auto;">
+      <div class="print-header">
+        <h1>${esc(schoolName)}</h1>
+        <h2>Detailed Proposal & Voting Report</h2>
+        <p>রিপোর্ট তৈরির তারিখ: ${new Date().toLocaleString('en-IN')}</p>
       </div>
 
+      <div class="print-main-stats">
+        <div class="print-main-stat">
+          <strong>${totalProposals}</strong>
+          মোট প্রস্তাব
+        </div>
 
-      <div class="print-main-stat">
+        <div class="print-main-stat">
+          <strong>${totalVotes}</strong>
+          মোট ভোট
+        </div>
 
-        <strong>
-          ${totalVotes}
-        </strong>
-
-        মোট ভোট
-
+        <div class="print-main-stat">
+          <strong>${overallRating}</strong>
+          সামগ্রিক গড় রেটিং
+        </div>
       </div>
 
+      ${categoryHTML}
 
-      <div class="print-main-stat">
-
-        <strong>
-          ${overallRating}
-        </strong>
-
-        সামগ্রিক গড় রেটিং
-
+      <div class="print-footer">
+        Staff Room Renovation Decision Portal<br>
+        মতামত, ভোট, রেটিং ও feedback-এর ভিত্তিতে সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন
       </div>
-
-    </div>
-
-
-    ${categoryHTML}
-
-
-    <div class="print-footer">
-
-      Staff Room Renovation Decision Portal
-
-      <br>
-
-      মতামত, ভোট, রেটিং ও feedback-এর ভিত্তিতে
-      সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন
-
-    </div>
-
+    </section>
   `;
 
-
-  /* Wait until DOM is ready */
+  report.innerHTML = coverHTML + indexHTML + detailsHTML;
 
   setTimeout(() => {
-
     window.print();
-
-  }, 250);
-
+  }, 300);
 }
 </script>
 </body>
