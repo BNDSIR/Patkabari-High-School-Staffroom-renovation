@@ -36,223 +36,979 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
    DETAILED PRINT / PDF REPORT
    Mobile-readable, large-font version
 ========================================= */
+/* =========================================================
+   PROFESSIONAL A4 PRINT / PDF REPORT
+   ========================================================= */
+
 .print-report {
   display: none;
 }
 
+
+/* =========================================================
+   PRINT COMPONENT DESIGN
+   These styles also allow JS to measure pages before printing.
+   ========================================================= */
+
+.print-page,
+.section-cover-page,
+.proposal-print-page {
+  width: 210mm;
+  height: 297mm;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: #eaf6ff;
+  color: #111;
+
+  font-family:
+    "Hind Siliguri",
+    "Noto Sans Bengali",
+    Arial,
+    sans-serif;
+}
+
+
+/* =========================================================
+   COVER PAGE
+   ========================================================= */
+
+.print-cover {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+  padding: 18mm 14mm;
+
+  border: 5px solid #12395b;
+
+  background:
+    linear-gradient(
+      180deg,
+      #d7eeff 0%,
+      #eaf6ff 48%,
+      #d5ebfb 100%
+    );
+}
+
+
+.cover-logo {
+  width: 330px;
+  height: 330px;
+
+  object-fit: contain;
+
+  margin-bottom: 20px;
+
+  padding: 10px;
+
+  border: 3px solid #1f4f7a;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+}
+
+
+.cover-school {
+  font-size: 48px !important;
+
+  line-height: 1.25;
+
+  font-weight: 900;
+
+  color: #0f2f4d;
+
+  margin-bottom: 12px;
+}
+
+
+.cover-title {
+  width: 92%;
+
+  box-sizing: border-box;
+
+  padding: 16px 20px;
+
+  margin: 12px 0;
+
+  border-radius: 16px;
+
+  background: #12395b;
+
+  color: #ffffff;
+
+  font-size: 40px !important;
+
+  line-height: 1.3;
+
+  font-weight: 900;
+}
+
+
+.cover-subtitle {
+  max-width: 90%;
+
+  margin-top: 8px;
+
+  font-size: 28px !important;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+
+  color: #163d61;
+}
+
+
+.cover-date {
+  margin-top: 22px;
+
+  font-size: 24px !important;
+
+  font-weight: 700;
+
+  color: #234b70;
+}
+
+
+.cover-footer {
+  margin-top: 26px;
+
+  padding: 11px 18px;
+
+  border-radius: 12px;
+
+  background: #1d4e78;
+
+  color: #ffffff;
+
+  font-size: 24px !important;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   ALL SECTIONS / INDEX PAGE
+   ========================================================= */
+
+.print-index {
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12mm;
+
+  border: 4px solid #12395b;
+
+  background: #f2f9ff;
+}
+
+
+.index-title {
+  margin: 0 0 18px;
+
+  padding-bottom: 12px;
+
+  text-align: center;
+
+  border-bottom: 4px solid #21537f;
+
+  color: #0e3555;
+
+  font-size: 48px !important;
+
+  line-height: 1.2;
+
+  font-weight: 900;
+}
+
+
+.index-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+
+.index-card {
+  min-height: 82px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+
+  border: 3px solid #27567f;
+
+  border-radius: 14px;
+
+  background: #dff0ff;
+}
+
+
+.index-icon {
+  flex: none;
+
+  width: 62px;
+
+  text-align: center;
+
+  font-size: 48px !important;
+
+  line-height: 1;
+}
+
+
+.index-name {
+  text-align: left;
+
+  color: #12395b;
+
+  font-size: 30px !important;
+
+  line-height: 1.25;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   OVERALL SUMMARY PAGE
+   ========================================================= */
+
+.report-summary-page {
+  padding: 12mm;
+
+  background: #eaf6ff;
+}
+
+
+.print-header {
+  text-align: center;
+
+  box-sizing: border-box;
+
+  padding: 14px;
+
+  margin-bottom: 18px;
+
+  border: 4px solid #12395b;
+
+  border-radius: 12px;
+
+  background: #dbeeff;
+}
+
+
+.print-header h1 {
+  margin: 0 0 5px;
+
+  color: #0e3350;
+
+  font-size: 44px !important;
+
+  line-height: 1.2;
+
+  font-weight: 900;
+}
+
+
+.print-header h2 {
+  margin: 4px 0;
+
+  color: #143d60;
+
+  font-size: 36px !important;
+
+  line-height: 1.25;
+
+  font-weight: 900;
+}
+
+
+.print-header p {
+  margin: 7px 0 0;
+
+  color: #294c68;
+
+  font-size: 22px !important;
+
+  font-weight: 700;
+}
+
+
+.print-main-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin: 18px 0;
+}
+
+
+.print-main-stat {
+  box-sizing: border-box;
+
+  min-height: 150px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 12px 8px;
+
+  border: 3px solid #234b70;
+
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  color: #173b59;
+
+  font-size: 22px !important;
+
+  font-weight: 800;
+}
+
+
+.print-main-stat strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #0f3453;
+
+  font-size: 46px !important;
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SECTION COVER PAGE
+   ONE CATEGORY = ONE FULL PAGE
+   ========================================================= */
+
+.section-cover-page {
+  padding: 15mm 12mm;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #eaf6ff,
+      #d7ebfa
+    );
+}
+
+
+.section-cover-inner {
+  width: 94%;
+
+  box-sizing: border-box;
+
+  padding: 22mm 12mm;
+
+  border: 5px solid #12395b;
+
+  border-radius: 20px;
+
+  background: #e1f1ff;
+}
+
+
+.section-cover-icon {
+  margin-bottom: 24px;
+
+  font-size: 110px !important;
+
+  line-height: 1;
+}
+
+
+.section-cover-name {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 18px 20px;
+
+  border-radius: 18px;
+
+  background: #12395b;
+
+  color: #ffffff;
+
+  font-size: 52px !important;
+
+  line-height: 1.25;
+
+  font-weight: 900;
+}
+
+
+.section-cover-stats {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 13px;
+
+  margin-top: 30px;
+}
+
+
+.section-cover-stat {
+  box-sizing: border-box;
+
+  padding: 15px 7px;
+
+  border: 3px solid #315b80;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  color: #214765;
+
+  font-size: 24px !important;
+
+  line-height: 1.25;
+
+  font-weight: 800;
+}
+
+
+.section-cover-stat strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #12395b;
+
+  font-size: 46px !important;
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   ONE PROPOSAL = ONE A4 PAGE
+   ========================================================= */
+
+.proposal-print-page {
+  position: relative;
+
+  padding: 7mm;
+
+  background: #eaf6ff;
+}
+
+
+.proposal-fit-content {
+  width: 100%;
+
+  transform-origin: top left;
+}
+
+
+.proposal-page-category {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  box-sizing: border-box;
+
+  padding: 9px 12px;
+
+  margin-bottom: 10px;
+
+  border: 3px solid #12395b;
+
+  border-left: 12px solid #0b2a44;
+
+  border-radius: 10px;
+
+  background: #d6ebff;
+
+  color: #103652;
+
+  font-size: 30px !important;
+
+  line-height: 1.2;
+
+  font-weight: 900;
+}
+
+
+.proposal-page-category-icon {
+  font-size: 42px !important;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   PROPOSAL BOX
+   ========================================================= */
+
+.print-proposal {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 14px;
+
+  border: 4px solid #163f63;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+
+.print-proposal h3 {
+  margin: 0 0 9px;
+
+  padding: 0 0 8px;
+
+  border-bottom: 3px solid #6f8ba4;
+
+  color: #0d3150;
+
+  font-size: 41px !important;
+
+  line-height: 1.3;
+
+  font-weight: 900;
+}
+
+
+.print-meta {
+  box-sizing: border-box;
+
+  margin-bottom: 10px;
+
+  padding: 9px;
+
+  border: 2px solid #c2d7e9;
+
+  border-radius: 8px;
+
+  background: #eef7ff;
+
+  color: #123048;
+
+  font-size: 23px !important;
+
+  line-height: 1.55;
+
+  font-weight: 600;
+}
+
+
+.print-meta strong {
+  font-weight: 900;
+}
+
+
+.print-details {
+  margin: 11px 0;
+
+  color: #111;
+
+  font-size: 35px !important;
+
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+}
+
+
+.print-details strong {
+  color: #12395b;
+
+  font-size: 27px !important;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   VOTE SUMMARY
+   ========================================================= */
+
+.print-vote-summary {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 7px;
+
+  box-sizing: border-box;
+
+  margin-top: 11px;
+
+  padding: 10px;
+
+  border: 3px solid #466b8f;
+
+  border-radius: 10px;
+
+  background: #eef7ff;
+}
+
+
+.print-vote-summary span {
+  display: block;
+
+  box-sizing: border-box;
+
+  padding: 7px;
+
+  border: 2px solid #97aec4;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  font-size: 24px !important;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+}
+
+
+.print-vote-summary span:first-child {
+  grid-column: 1 / -1;
+
+  padding: 11px;
+
+  text-align: center;
+
+  border: 4px solid #163d61;
+
+  background: #dbeeff;
+
+  color: #0f3050;
+
+  font-size: 42px !important;
+
+  font-weight: 900;
+}
+
+
+.print-vote-summary span:first-child strong {
+  font-size: 52px !important;
+
+  font-weight: 900;
+}
+
+
+.print-vote-summary span:nth-child(2) {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  color: #163d61;
+
+  font-size: 28px !important;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   STAFF VOTING TABLE
+   ========================================================= */
+
+.print-table {
+  width: 100%;
+
+  margin-top: 11px;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+
+.print-table th,
+.print-table td {
+  padding: 6px;
+
+  border: 2px solid #567b9d;
+
+  text-align: left;
+
+  vertical-align: top;
+
+  overflow-wrap: anywhere;
+}
+
+
+.print-table th {
+  background: #d8ecff;
+
+  color: #0f3452;
+
+  font-size: 32px !important;
+
+  line-height: 1.25;
+
+  font-weight: 900;
+}
+
+
+.print-table td {
+  background: #ffffff;
+
+  color: #111;
+
+  font-size: 22px !important;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   REACTIONS
+   ========================================================= */
+
+.print-reactions {
+  margin-top: 12px;
+
+  padding-top: 9px;
+
+  border-top: 3px dashed #6282a0;
+
+  color: #193b57;
+
+  font-size: 23px !important;
+
+  line-height: 1.45;
+}
+
+
+.print-reactions > strong {
+  color: #12395b;
+
+  font-size: 27px !important;
+
+  font-weight: 900;
+}
+
+
+.print-reaction-box {
+  display: block;
+
+  box-sizing: border-box;
+
+  margin: 5px 0;
+
+  padding: 6px 8px;
+
+  border: 2px solid #8aa4bb;
+
+  border-radius: 6px;
+
+  background: #f7fbff;
+
+  color: #203b51;
+
+  font-size: 19px !important;
+
+  line-height: 1.4;
+}
+
+
+.print-reaction-box strong {
+  font-size: 25px !important;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.print-footer {
+  margin-top: 22px;
+
+  padding-top: 10px;
+
+  border-top: 3px solid #234b70;
+
+  text-align: center;
+
+  color: #23405a;
+
+  font-size: 18px !important;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   OFF-SCREEN MEASUREMENT MODE
+
+   This allows JavaScript to determine whether a proposal
+   is too tall before opening the print dialog.
+   ========================================================= */
+
+#printReport.print-measure-mode {
+  display: block !important;
+
+  position: fixed !important;
+
+  left: -3000mm !important;
+
+  top: 0 !important;
+
+  width: 210mm !important;
+
+  visibility: hidden !important;
+
+  pointer-events: none !important;
+
+  z-index: -9999 !important;
+}
+
+
+/* =========================================================
+   ACTUAL PRINT
+   ========================================================= */
+
 @media print {
 
-  /* =====================================================
-     SECTION = ONE COMPLETE PAGE
-  ===================================================== */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
 
-  .section-cover-page {
-    width: 100%;
-    min-height: 277mm;
-    max-height: 277mm;
 
-    box-sizing: border-box;
+  html,
+  body {
+    width: 210mm !important;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0 !important;
 
-    text-align: center;
+    padding: 0 !important;
 
     background: #eaf6ff !important;
 
-    border: 5px solid #12395b;
-    border-radius: 18px;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 
-    padding: 20mm 12mm;
 
-    page-break-before: always !important;
+  body * {
+    visibility: hidden !important;
+  }
+
+
+  #printReport,
+  #printReport * {
+    visibility: visible !important;
+  }
+
+
+  #printReport {
+    display: block !important;
+
+    position: absolute !important;
+
+    left: 0 !important;
+
+    top: 0 !important;
+
+    width: 210mm !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+  }
+
+
+  .print-page,
+  .section-cover-page,
+  .proposal-print-page {
+    page-break-before: auto !important;
+
     page-break-after: always !important;
 
-    break-before: page !important;
+    page-break-inside: avoid !important;
+
+    break-before: auto !important;
+
     break-after: page !important;
 
-    page-break-inside: avoid !important;
     break-inside: avoid-page !important;
   }
 
-
-  .section-cover-icon {
-    font-size: 110px !important;
-    line-height: 1;
-
-    margin-bottom: 22px;
-  }
-
-
-  .section-cover-name {
-    font-size: 52px !important;
-    line-height: 1.25;
-
-    font-weight: 900 !important;
-
-    color: #ffffff !important;
-
-    background: #12395b !important;
-
-    border-radius: 18px;
-
-    padding: 18px 24px;
-
-    width: 90%;
-  }
-
-
-  .section-cover-stats {
-    margin-top: 26px;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 14px;
-
-    width: 90%;
-  }
-
-
-  .section-cover-stat {
-    border: 3px solid #315b80;
-
-    border-radius: 14px;
-
-    background: #ffffff !important;
-
-    padding: 15px 8px;
-
-    font-size: 25px !important;
-
-    font-weight: 800 !important;
-  }
-
-
-  .section-cover-stat strong {
-    display: block;
-
-    font-size: 46px !important;
-
-    color: #12395b !important;
-
-    font-weight: 900 !important;
-  }
-
-
-
-  /* =====================================================
-     EACH PROPOSAL = NEW A4 PAGE
-  ===================================================== */
 
   .proposal-print-page {
-
-    width: 100%;
-
-    min-height: 277mm;
-
-    box-sizing: border-box;
-
-    padding: 5mm 4mm;
-
-    background: #eaf6ff !important;
-
-    page-break-before: always !important;
-    page-break-after: always !important;
-
-    break-before: page !important;
-    break-after: page !important;
-
-    page-break-inside: avoid !important;
-    break-inside: avoid-page !important;
+    overflow: hidden !important;
   }
 
 
-
-  /* proposal section heading at top */
-
-  .proposal-page-category {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    border: 3px solid #12395b;
-
-    border-left: 12px solid #0b2a44;
-
-    border-radius: 10px;
-
-    background: #d6ebff !important;
-
-    padding: 9px 12px;
-
-    margin-bottom: 12px;
-
-    font-size: 30px !important;
-
-    font-weight: 900 !important;
-
-    color: #103652 !important;
-
-    page-break-inside: avoid !important;
-  }
-
-
-  .proposal-page-category-icon {
-
-    font-size: 38px !important;
-
-  }
-
-
-
-  /* =====================================================
-     PROPOSAL BOX MUST STAY TOGETHER
-  ===================================================== */
-
-  .proposal-print-page .print-proposal {
-
-    width: 100%;
-
-    box-sizing: border-box;
-
-    border: 4px solid #163f63 !important;
-
-    border-radius: 14px;
-
-    background: #ffffff !important;
-
-    padding: 14px;
-
-    margin: 0;
-
-    page-break-inside: avoid !important;
-
-    break-inside: avoid-page !important;
-
-    page-break-before: avoid !important;
-
-    page-break-after: avoid !important;
-  }
-
-
-
-  /*
-     Prevent child blocks from being separated
-  */
-
-  .proposal-print-page .print-proposal h3,
-  .proposal-print-page .print-meta,
-  .proposal-print-page .print-details,
-  .proposal-print-page .print-vote-summary,
-  .proposal-print-page .print-table,
-  .proposal-print-page .print-reactions {
+  .proposal-print-page .print-proposal,
+  .proposal-page-category,
+  .print-vote-summary,
+  .print-table,
+  .print-table tr,
+  .print-reactions,
+  .print-reaction-box {
 
     page-break-inside: avoid !important;
 
@@ -260,37 +1016,10 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
   }
 
 
-
-  /* =====================================================
-     TABLE ROW PROTECTION
-  ===================================================== */
-
-  .print-table tr {
-
-    page-break-inside: avoid !important;
-
-    break-inside: avoid-page !important;
-  }
-
-
-  .print-table thead {
-
-    display: table-header-group;
-
-  }
-
-
-
-  /* =====================================================
-     LAST PAGE
-  ===================================================== */
-
-  .proposal-print-page:last-child {
-
+  #printReport > *:last-child {
     page-break-after: auto !important;
 
     break-after: auto !important;
-
   }
 
 }
@@ -582,566 +1311,1156 @@ function stopVoice(){if(state.recognition){try{state.recognition.stop()}catch(e)
 function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}function errText(e){return String(e?.message||e||'একটি সমস্যা হয়েছে।').replace(/^.*?: /,'')}function loading(v){document.getElementById('loader').classList.toggle('hide',!v)}let tm;function toast(m,err=false){const el=document.getElementById('toast');el.textContent=m;el.classList.toggle('error',err);el.classList.add('show');clearTimeout(tm);tm=setTimeout(()=>el.classList.remove('show'),3300)}function busy(btn,on,text){btn.disabled=on;btn.textContent=text}
 
 
-  function printDetailedReport() {
+ function printDetailedReport() {
 
   if (!state.proposals || !state.proposals.length) {
     toast('প্রিন্ট করার মতো কোনো প্রস্তাব নেই।', true);
     return;
   }
 
+
   const report = document.getElementById('printReport');
+
 
   const schoolName =
     state.settings.SCHOOL_NAME ||
     'Patkabari High School (H.S.)';
 
-  const totalProposals = state.proposals.length;
-  const totalVotes = state.votes.length;
+
+  const totalProposals =
+    state.proposals.length;
+
+
+  const totalVotes =
+    state.votes.length;
+
+
   const overallRating =
     totalVotes
       ? (
-          state.votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) / totalVotes
+          state.votes.reduce(
+            (sum, v) =>
+              sum + Number(v.rating || 0),
+            0
+          ) / totalVotes
         ).toFixed(2)
       : '0.00';
 
+
+
+  /* =====================================================
+     CATEGORY ICONS
+     ===================================================== */
+
   const CATEGORY_META = {
-    'সাজসজ্জা': { icon: '🎨' },
-    'দেওয়াল ডিজাইন ও রং': { icon: '🖌️' },
-    'আসবাবপত্র': { icon: '🪑' },
-    'প্লাম্বিং': { icon: '🚰' },
-    'ইলেকট্রিক্যাল': { icon: '💡' },
-    'আলো ও ফ্যান': { icon: '🌀' },
-    'স্টোরেজ / আলমারি': { icon: '🗄️' },
-    'বসার ব্যবস্থা': { icon: '🛋️' },
-    'পরিচ্ছন্নতা ও হাইজিন': { icon: '🧼' },
-    'ডিজিটাল / আইটি': { icon: '💻' },
-    'সবুজায়ন / ইনডোর প্ল্যান্ট': { icon: '🌿' },
-    'নিরাপত্তা': { icon: '🛡️' },
-    'অন্যান্য': { icon: '📌' }
+
+    'সাজসজ্জা':
+      { icon: '🎨' },
+
+    'দেওয়াল ডিজাইন ও রং':
+      { icon: '🖌️' },
+
+    'আসবাবপত্র':
+      { icon: '🪑' },
+
+    'প্লাম্বিং':
+      { icon: '🚰' },
+
+    'ইলেকট্রিক্যাল':
+      { icon: '💡' },
+
+    'আলো ও ফ্যান':
+      { icon: '🌀' },
+
+    'স্টোরেজ / আলমারি':
+      { icon: '🗄️' },
+
+    'বসার ব্যবস্থা':
+      { icon: '🛋️' },
+
+    'পরিচ্ছন্নতা ও হাইজিন':
+      { icon: '🧼' },
+
+    'ডিজিটাল / আইটি':
+      { icon: '💻' },
+
+    'সবুজায়ন / ইনডোর প্ল্যান্ট':
+      { icon: '🌿' },
+
+    'নিরাপত্তা':
+      { icon: '🛡️' },
+
+    'অন্যান্য':
+      { icon: '📌' }
+
   };
 
-  const logoElement = document.getElementById('logoImg');
+
+
+  /* =====================================================
+     SCHOOL LOGO
+     ===================================================== */
+
+  const logoElement =
+    document.getElementById('logoImg');
+
+
   const logoSrc =
-    logoElement && !logoElement.hidden && logoElement.src
+    logoElement &&
+    !logoElement.hidden &&
+    logoElement.src
       ? logoElement.src
       : '';
 
+
+
+  /* =====================================================
+     GROUP PROPOSALS BY CATEGORY
+     ===================================================== */
+
   const categories = {};
 
+
   state.proposals.forEach(p => {
-    if (!categories[p.category]) {
-      categories[p.category] = [];
+
+    const category =
+      p.category || 'অন্যান্য';
+
+
+    if (!categories[category]) {
+      categories[category] = [];
     }
-    categories[p.category].push(p);
+
+
+    categories[category].push(p);
+
   });
 
-  const categoryNames = Object.keys(categories).sort();
 
-  /* =========================
-     COVER PAGE
-  ========================= */
+
+  /*
+     Keep the same order as the website's CATEGORIES array.
+  */
+
+  const categoryNames = [
+
+
+    ...CATEGORIES.filter(
+      category =>
+        categories[category]
+    ),
+
+
+    ...Object.keys(categories).filter(
+      category =>
+        !CATEGORIES.includes(category)
+    )
+
+  ];
+
+
+
+  /* =====================================================
+     PAGE 1 — COVER
+     ===================================================== */
 
   const coverHTML = `
+
     <section class="print-page">
-      <div class="print-cover avoid-break">
+
+      <div class="print-cover">
+
 
         ${
           logoSrc
-            ? `<img src="${logoSrc}" class="cover-logo">`
+
+            ? `
+
+              <img
+                src="${logoSrc}"
+                class="cover-logo"
+                alt="School Logo"
+              >
+
+            `
+
             : ''
         }
 
+
         <div class="cover-school">
+
           ${esc(schoolName)}
+
         </div>
+
 
         <div class="cover-title">
-          Staff Room Renovation<br>
+
+          Staff Room Renovation
+
+          <br>
+
           Proposal & Voting Report
+
         </div>
+
 
         <div class="cover-subtitle">
-          মতামত, ভোট, রেটিং ও feedback-ভিত্তিক প্রশাসনিক প্রতিবেদন
+
+          মতামত, ভোট, রেটিং ও Feedback-এর ভিত্তিতে
+
+          <br>
+
+          স্টাফরুম সংস্কার সংক্রান্ত প্রশাসনিক প্রতিবেদন
+
         </div>
+
 
         <div class="cover-date">
+
           রিপোর্ট তৈরির তারিখ:
+
+          <br>
+
           ${new Date().toLocaleString('en-IN')}
+
         </div>
+
 
         <div class="cover-footer">
+
           Lets renovate our Staff room
+
         </div>
 
+
       </div>
+
     </section>
+
   `;
 
-  /* =========================
-     INDEX PAGE
-  ========================= */
 
-  const indexCardsHTML = categoryNames.map(cat => {
-    const icon = CATEGORY_META[cat]?.icon || '📁';
-    return `
-      <div class="index-card avoid-break">
-        <span class="index-icon">${icon}</span>
-        <div class="index-name">${esc(cat)}</div>
-      </div>
-    `;
-  }).join('');
+
+  /* =====================================================
+     PAGE 2 — ALL SECTION NAMES
+     ===================================================== */
+
+  const indexCardsHTML =
+
+    categoryNames.map(category => {
+
+      const icon =
+        CATEGORY_META[category]?.icon ||
+        '📁';
+
+
+      return `
+
+        <div class="index-card">
+
+          <span class="index-icon">
+
+            ${icon}
+
+          </span>
+
+
+          <div class="index-name">
+
+            ${esc(category)}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join('');
+
+
 
   const indexHTML = `
+
     <section class="print-page">
+
       <div class="print-index">
+
+
         <h2 class="index-title">
-          সকল বিভাগ / Sections Overview
+
+          সকল বিভাগ
+
+          <br>
+
+          Sections Overview
+
         </h2>
 
+
         <div class="index-grid">
+
           ${indexCardsHTML}
+
         </div>
+
+
       </div>
+
     </section>
+
   `;
 
-  /* =========================
-     DETAILED CONTENT
-  ========================= */
+
+
+  /* =====================================================
+     PAGE 3 — OVERALL SUMMARY
+     ===================================================== */
+
+  const overallHTML = `
+
+    <section class="print-page report-summary-page">
+
+
+      <div class="print-header">
+
+        <h1>
+
+          ${esc(schoolName)}
+
+        </h1>
+
+
+        <h2>
+
+          Overall Voting Summary
+
+        </h2>
+
+
+        <p>
+
+          ${new Date().toLocaleString('en-IN')}
+
+        </p>
+
+      </div>
+
+
+
+      <div class="print-main-stats">
+
+
+        <div class="print-main-stat">
+
+          <strong>
+
+            ${totalProposals}
+
+          </strong>
+
+          মোট প্রস্তাব
+
+        </div>
+
+
+
+        <div class="print-main-stat">
+
+          <strong>
+
+            ${totalVotes}
+
+          </strong>
+
+          মোট ভোট
+
+        </div>
+
+
+
+        <div class="print-main-stat">
+
+          <strong>
+
+            ${overallRating}
+
+          </strong>
+
+          সামগ্রিক গড় রেটিং
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="print-footer">
+
+        Staff Room Renovation Decision Portal
+
+        <br>
+
+        সকলের মতামত, ভোট, রেটিং ও Feedback-এর
+        ভিত্তিতে সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন
+
+      </div>
+
+
+    </section>
+
+  `;
+
+
+
+  /* =====================================================
+     SECTION + PROPOSAL PAGES
+     ===================================================== */
 
   let categoryHTML = '';
 
+
+
   categoryNames.forEach(category => {
 
-    const proposals = categories[category];
-    const catIcon = CATEGORY_META[category]?.icon || '📁';
 
-    let categoryVotes = [];
+    const proposals =
+      categories[category];
+
+
+    const catIcon =
+      CATEGORY_META[category]?.icon ||
+      '📁';
+
+
+
+    /* CATEGORY VOTES */
+
+    const categoryVotes = [];
+
 
     proposals.forEach(p => {
+
       categoryVotes.push(
-        ...state.votes.filter(v => v.proposal_id === p.id)
+
+        ...state.votes.filter(
+          v =>
+            v.proposal_id === p.id
+        )
+
       );
+
     });
 
-    const categoryVoteCount = categoryVotes.length;
+
+
+    const categoryVoteCount =
+      categoryVotes.length;
+
+
 
     const categoryRating =
+
       categoryVoteCount
+
         ? (
-            categoryVotes.reduce((sum, v) => sum + Number(v.rating || 0), 0) /
+
+            categoryVotes.reduce(
+              (sum, v) =>
+                sum + Number(v.rating || 0),
+              0
+            )
+
+            /
+
             categoryVoteCount
+
           ).toFixed(2)
+
         : '0.00';
 
-    let proposalsHTML = '';
 
-    proposals.forEach((p, index) => {
 
-      const votes = state.votes.filter(v => v.proposal_id === p.id);
-
-      const avgRating =
-        votes.length
-          ? (
-              votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) /
-              votes.length
-            ).toFixed(2)
-          : '0.00';
-
-      const ratingDistribution = {
-        1: 0, 2: 0, 3: 0, 4: 0, 5: 0
-      };
-
-      votes.forEach(v => {
-        const rating = Number(v.rating || 0);
-        if (ratingDistribution[rating] !== undefined) {
-          ratingDistribution[rating]++;
-        }
-      });
-
-      const reactions = state.reactions.filter(r => r.proposal_id === p.id);
-
-      const reactionGroups = {};
-
-      reactions.forEach(r => {
-        if (!reactionGroups[r.emoji]) {
-          reactionGroups[r.emoji] = [];
-        }
-        reactionGroups[r.emoji].push(r.staff_name);
-      });
-
-      let voteRows = '';
-
-      if (votes.length) {
-        votes
-          .sort((a, b) => a.staff_name.localeCompare(b.staff_name))
-          .forEach((v, i) => {
-            voteRows += `
-              <tr>
-                <td>${i + 1}</td>
-                <td>${esc(v.staff_name)}</td>
-                <td>${Number(v.rating || 0)} / 5</td>
-                <td>${esc(v.comment || '—')}</td>
-              </tr>
-            `;
-          });
-      } else {
-        voteRows = `
-          <tr>
-            <td colspan="4">কোনো ভোট নেই</td>
-          </tr>
-        `;
-      }
-
-      let reactionHTML = '';
-
-      ['👍','💡','❤️','👏','🌟'].forEach(emoji => {
-        const names = reactionGroups[emoji] || [];
-        reactionHTML += `
-          <div class="print-reaction-box">
-            <strong>${emoji} ${names.length}</strong>
-            ${names.length ? ` — ${names.map(esc).join(', ')}` : ''}
-          </div>
-        `;
-      });
-
-      proposalsHTML += `
-
-  <section class="proposal-print-page">
-
-
-    <!-- SECTION NAME -->
-
-    <div class="proposal-page-category">
-
-      <span class="proposal-page-category-icon">
-        ${catIcon}
-      </span>
-
-      <span>
-        ${esc(category)}
-      </span>
-
-    </div>
-
-
-
-    <!-- PROPOSAL BOX -->
-
-    <div class="print-proposal">
-
-
-      <!-- PROPOSAL TITLE -->
-
-      <h3>
-
-        ${index + 1}. ${esc(p.title)}
-
-      </h3>
-
-
-
-      <!-- BASIC INFORMATION -->
-
-      <div class="print-meta">
-
-        <strong>
-          প্রস্তাবক:
-        </strong>
-
-        ${esc(p.staff_name)}
-
-        &nbsp; | &nbsp;
-
-
-        <strong>
-          অগ্রাধিকার:
-        </strong>
-
-        ${esc(p.priority || '')}
-
-        &nbsp; | &nbsp;
-
-
-        <strong>
-          Status:
-        </strong>
-
-        ${esc(p.status || '')}
-
-
-        ${
-          p.estimated_cost != null
-            ? `
-
-              &nbsp; | &nbsp;
-
-              <strong>
-                আনুমানিক খরচ:
-              </strong>
-
-              ₹${Number(
-                p.estimated_cost
-              ).toLocaleString('en-IN')}
-
-            `
-            : ''
-        }
-
-      </div>
-
-
-
-      <!-- PROPOSAL DETAILS -->
-
-      <div class="print-details">
-
-        <strong>
-          প্রস্তাবের বিস্তারিত:
-        </strong>
-
-        <br>
-
-        ${esc(p.details)}
-
-      </div>
-
-
-
-      <!-- VOTE SUMMARY -->
-
-      <div class="print-vote-summary">
-
-
-        <span>
-
-          মোট ভোট:
-
-          <strong>
-            ${votes.length}
-          </strong>
-
-        </span>
-
-
-
-        <span>
-
-          গড় রেটিং:
-
-          <strong>
-            ${avgRating} / 5
-          </strong>
-
-        </span>
-
-
-
-        <span>
-          ★★★★★ :
-          <strong>
-            ${ratingDistribution[5]}
-          </strong>
-        </span>
-
-
-        <span>
-          ★★★★ :
-          <strong>
-            ${ratingDistribution[4]}
-          </strong>
-        </span>
-
-
-        <span>
-          ★★★ :
-          <strong>
-            ${ratingDistribution[3]}
-          </strong>
-        </span>
-
-
-        <span>
-          ★★ :
-          <strong>
-            ${ratingDistribution[2]}
-          </strong>
-        </span>
-
-
-        <span>
-          ★ :
-          <strong>
-            ${ratingDistribution[1]}
-          </strong>
-        </span>
-
-
-      </div>
-
-
-
-      <!-- STAFF VOTING DETAILS -->
-
-      <table class="print-table">
-
-        <thead>
-
-          <tr>
-
-            <th style="width:6%">
-              #
-            </th>
-
-            <th style="width:36%">
-              Staff
-            </th>
-
-            <th style="width:16%">
-              Rating
-            </th>
-
-            <th>
-              মন্তব্য
-            </th>
-
-          </tr>
-
-        </thead>
-
-
-        <tbody>
-
-          ${voteRows}
-
-        </tbody>
-
-      </table>
-
-
-
-      <!-- REACTION DETAILS -->
-
-      <div class="print-reactions">
-
-        <strong>
-          Emoji Feedback
-        </strong>
-
-        <br>
-
-        ${reactionHTML}
-
-      </div>
-
-
-    </div>
-
-
-  </section>
-
-`;
-    });
+    /* =================================================
+       ONE FULL PAGE ONLY FOR CATEGORY / SECTION
+       ================================================= */
 
     categoryHTML += `
 
-  <!-- ============================
-       SECTION COVER PAGE
-  ============================= -->
-
-  <section class="section-cover-page">
-
-    <div class="section-cover-icon">
-      ${catIcon}
-    </div>
-
-    <div class="section-cover-name">
-      ${esc(category)}
-    </div>
-
-    <div class="section-cover-stats">
-
-      <div class="section-cover-stat">
-
-        <strong>
-          ${proposals.length}
-        </strong>
-
-        মোট প্রস্তাব
-
-      </div>
+      <section class="section-cover-page">
 
 
-      <div class="section-cover-stat">
-
-        <strong>
-          ${categoryVoteCount}
-        </strong>
-
-        মোট ভোট
-
-      </div>
+        <div class="section-cover-inner">
 
 
-      <div class="section-cover-stat">
+          <div class="section-cover-icon">
 
-        <strong>
-          ${categoryRating}
-        </strong>
+            ${catIcon}
 
-        গড় রেটিং
-
-      </div>
-
-    </div>
-
-  </section>
+          </div>
 
 
-  ${proposalsHTML}
+          <div class="section-cover-name">
 
-`;
+            ${esc(category)}
+
+          </div>
+
+
+          <div class="section-cover-stats">
+
+
+            <div class="section-cover-stat">
+
+              <strong>
+
+                ${proposals.length}
+
+              </strong>
+
+              মোট প্রস্তাব
+
+            </div>
+
+
+
+            <div class="section-cover-stat">
+
+              <strong>
+
+                ${categoryVoteCount}
+
+              </strong>
+
+              মোট ভোট
+
+            </div>
+
+
+
+            <div class="section-cover-stat">
+
+              <strong>
+
+                ${categoryRating}
+
+              </strong>
+
+              গড় রেটিং
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+    `;
+
+
+
+    /* =================================================
+       EACH PROPOSAL = ONE FULL A4 PAGE
+       ================================================= */
+
+    proposals.forEach((p, index) => {
+
+
+      const votes =
+
+        state.votes.filter(
+          v =>
+            v.proposal_id === p.id
+        );
+
+
+
+      const avgRating =
+
+        votes.length
+
+          ? (
+
+              votes.reduce(
+                (sum, v) =>
+                  sum + Number(v.rating || 0),
+                0
+              )
+
+              /
+
+              votes.length
+
+            ).toFixed(2)
+
+          : '0.00';
+
+
+
+      /* Rating Distribution */
+
+      const ratingDistribution = {
+
+        1: 0,
+
+        2: 0,
+
+        3: 0,
+
+        4: 0,
+
+        5: 0
+
+      };
+
+
+      votes.forEach(v => {
+
+        const rating =
+          Number(v.rating || 0);
+
+
+        if (
+          ratingDistribution[rating]
+          !== undefined
+        ) {
+
+          ratingDistribution[rating]++;
+
+        }
+
+      });
+
+
+
+      /* =================================================
+         EMOJI REACTIONS
+         ================================================= */
+
+      const reactions =
+
+        state.reactions.filter(
+          r =>
+            r.proposal_id === p.id
+        );
+
+
+      const reactionGroups = {};
+
+
+      reactions.forEach(r => {
+
+        if (!reactionGroups[r.emoji]) {
+
+          reactionGroups[r.emoji] = [];
+
+        }
+
+
+        reactionGroups[r.emoji]
+          .push(r.staff_name);
+
+      });
+
+
+
+      /* =================================================
+         STAFF VOTE TABLE
+         ================================================= */
+
+      let voteRows = '';
+
+
+      if (votes.length) {
+
+
+        votes
+
+          .sort(
+            (a, b) =>
+              String(a.staff_name)
+                .localeCompare(
+                  String(b.staff_name)
+                )
+          )
+
+          .forEach((v, i) => {
+
+
+            voteRows += `
+
+              <tr>
+
+                <td>
+
+                  ${i + 1}
+
+                </td>
+
+
+                <td>
+
+                  ${esc(v.staff_name)}
+
+                </td>
+
+
+                <td>
+
+                  ${Number(v.rating || 0)} / 5
+
+                </td>
+
+
+                <td>
+
+                  ${esc(v.comment || '—')}
+
+                </td>
+
+              </tr>
+
+            `;
+
+          });
+
+
+      } else {
+
+
+        voteRows = `
+
+          <tr>
+
+            <td colspan="4">
+
+              কোনো ভোট নেই
+
+            </td>
+
+          </tr>
+
+        `;
+
+      }
+
+
+
+      /* =================================================
+         REACTION DETAILS
+         ================================================= */
+
+      let reactionHTML = '';
+
+
+      ['👍','💡','❤️','👏','🌟']
+        .forEach(emoji => {
+
+
+          const names =
+            reactionGroups[emoji] || [];
+
+
+          reactionHTML += `
+
+            <div class="print-reaction-box">
+
+
+              <strong>
+
+                ${emoji}
+                ${names.length}
+
+              </strong>
+
+
+              ${
+                names.length
+
+                  ? ` — ${names
+                      .map(esc)
+                      .join(', ')}`
+
+                  : ''
+              }
+
+
+            </div>
+
+          `;
+
+        });
+
+
+
+      /* =================================================
+         PROPOSAL PAGE
+         ================================================= */
+
+      categoryHTML += `
+
+        <section class="proposal-print-page">
+
+
+          <div class="proposal-fit-content">
+
+
+            <div class="proposal-page-category">
+
+
+              <span class="proposal-page-category-icon">
+
+                ${catIcon}
+
+              </span>
+
+
+              <span>
+
+                ${esc(category)}
+
+              </span>
+
+
+            </div>
+
+
+
+            <div class="print-proposal">
+
+
+              <h3>
+
+                ${index + 1}.
+
+                ${esc(p.title)}
+
+              </h3>
+
+
+
+              <div class="print-meta">
+
+
+                <strong>
+
+                  প্রস্তাবক:
+
+                </strong>
+
+                ${esc(p.staff_name)}
+
+
+                &nbsp; | &nbsp;
+
+
+                <strong>
+
+                  অগ্রাধিকার:
+
+                </strong>
+
+                ${esc(p.priority || '')}
+
+
+                &nbsp; | &nbsp;
+
+
+                <strong>
+
+                  Status:
+
+                </strong>
+
+                ${esc(p.status || '')}
+
+
+                ${
+                  p.estimated_cost != null
+
+                    ? `
+
+                      &nbsp; | &nbsp;
+
+                      <strong>
+
+                        আনুমানিক খরচ:
+
+                      </strong>
+
+                      ₹${Number(
+                        p.estimated_cost
+                      ).toLocaleString('en-IN')}
+
+                    `
+
+                    : ''
+                }
+
+
+              </div>
+
+
+
+              <div class="print-details">
+
+
+                <strong>
+
+                  প্রস্তাবের বিস্তারিত:
+
+                </strong>
+
+
+                <br>
+
+
+                ${esc(p.details)}
+
+
+              </div>
+
+
+
+              <div class="print-vote-summary">
+
+
+                <span>
+
+                  মোট ভোট:
+
+                  <strong>
+
+                    ${votes.length}
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  গড় রেটিং:
+
+                  <strong>
+
+                    ${avgRating} / 5
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  ★★★★★ :
+
+                  <strong>
+
+                    ${ratingDistribution[5]}
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  ★★★★ :
+
+                  <strong>
+
+                    ${ratingDistribution[4]}
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  ★★★ :
+
+                  <strong>
+
+                    ${ratingDistribution[3]}
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  ★★ :
+
+                  <strong>
+
+                    ${ratingDistribution[2]}
+
+                  </strong>
+
+                </span>
+
+
+
+                <span>
+
+                  ★ :
+
+                  <strong>
+
+                    ${ratingDistribution[1]}
+
+                  </strong>
+
+                </span>
+
+
+              </div>
+
+
+
+              <table class="print-table">
+
+
+                <thead>
+
+                  <tr>
+
+                    <th style="width:7%">
+
+                      #
+
+                    </th>
+
+
+                    <th style="width:35%">
+
+                      Staff
+
+                    </th>
+
+
+                    <th style="width:17%">
+
+                      Rating
+
+                    </th>
+
+
+                    <th style="width:41%">
+
+                      মন্তব্য
+
+                    </th>
+
+                  </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                  ${voteRows}
+
+                </tbody>
+
+
+              </table>
+
+
+
+              <div class="print-reactions">
+
+
+                <strong>
+
+                  Emoji Feedback
+
+                </strong>
+
+
+                <br>
+
+
+                ${reactionHTML}
+
+
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+      `;
+
+
+    });
+
+
   });
 
-  const detailsHTML = `
-    <section class="print-page" style="page-break-after:auto; break-after:auto;">
-      <div class="print-header">
-        <h1>${esc(schoolName)}</h1>
-        <h2>Detailed Proposal & Voting Report</h2>
-        <p>রিপোর্ট তৈরির তারিখ: ${new Date().toLocaleString('en-IN')}</p>
-      </div>
 
-      <div class="print-main-stats">
-        <div class="print-main-stat">
-          <strong>${totalProposals}</strong>
-          মোট প্রস্তাব
-        </div>
 
-        <div class="print-main-stat">
-          <strong>${totalVotes}</strong>
-          মোট ভোট
-        </div>
+  /* =====================================================
+     BUILD REPORT
 
-        <div class="print-main-stat">
-          <strong>${overallRating}</strong>
-          সামগ্রিক গড় রেটিং
-        </div>
-      </div>
+     IMPORTANT:
+     No extra .print-page wrapper around categoryHTML.
+     ===================================================== */
 
-      ${categoryHTML}
+  report.innerHTML =
 
-      <div class="print-footer">
-        Staff Room Renovation Decision Portal<br>
-        মতামত, ভোট, রেটিং ও feedback-এর ভিত্তিতে সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন
-      </div>
-    </section>
-  `;
+    coverHTML +
 
-  report.innerHTML = coverHTML + indexHTML + detailsHTML;
+    indexHTML +
+
+    overallHTML +
+
+    categoryHTML;
+
+
+
+  /* =====================================================
+     AUTO-FIT EACH PROPOSAL INTO ONE A4 PAGE
+
+     Normal-size proposal:
+     scale stays 1.0 = your requested large fonts.
+
+     Only an overflowing proposal is automatically reduced.
+     ===================================================== */
+
+  fitProposalPagesForPrint();
+
+
+
+  /* =====================================================
+     OPEN PRINT
+     ===================================================== */
 
   setTimeout(() => {
+
     window.print();
-  }, 300);
+
+  }, 450);
+
 }
 </script>
 </body>
