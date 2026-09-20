@@ -1107,9 +1107,9 @@ function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){r
 
           <div class="print-proposal">
 
-            <h3>
-              ${index + 1}. ${esc(p.title)}
-            </h3>
+          <h3>
+  ${index + 1}. ${esc(p.title)}
+</h3>
 
 
             <div class="print-meta">
@@ -1159,49 +1159,43 @@ function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){r
 
             <div class="print-vote-summary">
 
-              <span>
-                <strong>
-                  মোট ভোট:
-                </strong>
-                ${votes.length}
-              </span>
+  <span>
+    মোট ভোট:
+    <strong>${votes.length}</strong>
+  </span>
 
-              <span>
-                <strong>
-                  গড় রেটিং:
-                </strong>
-                ${avgRating} / 5
-              </span>
+  <span>
+    গড় রেটিং:
+    <strong>${avgRating} / 5</strong>
+  </span>
 
-              <span>
-                ★★★★★ :
-                ${ratingDistribution[5]}
-              </span>
+  <span>
+    ★★★★★ :
+    <strong>${ratingDistribution[5]}</strong>
+  </span>
 
-              <span>
-                ★★★★ :
-                ${ratingDistribution[4]}
-              </span>
+  <span>
+    ★★★★ :
+    <strong>${ratingDistribution[4]}</strong>
+  </span>
 
-              <span>
-                ★★★ :
-                ${ratingDistribution[3]}
-              </span>
+  <span>
+    ★★★ :
+    <strong>${ratingDistribution[3]}</strong>
+  </span>
 
-              <span>
-                ★★ :
-                ${ratingDistribution[2]}
-              </span>
+  <span>
+    ★★ :
+    <strong>${ratingDistribution[2]}</strong>
+  </span>
 
-              <span>
-                ★ :
-                ${ratingDistribution[1]}
-              </span>
+  <span>
+    ★ :
+    <strong>${ratingDistribution[1]}</strong>
+  </span>
 
-            </div>
-
-
-            <!-- VOTER DETAILS -->
+</div>
+                        <!-- VOTER DETAILS -->
 
             <table class="print-table">
 
