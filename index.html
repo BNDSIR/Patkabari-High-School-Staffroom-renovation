@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#5e0a0a">
+<meta name="theme-color" content="#1e3a8a">
 <title>Lets renovate our Staff room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,1017 +11,292 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <style>
-:root{--navy:#17324d;--red:#650909;--red2:#891313;--bg:#f4f7f9;--card:#fff;--text:#17232d;--muted:#687987;--line:#dfe7ed;--green:#177158;--gold:#d58d16;--shadow:0 12px 36px rgba(22,50,77,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri",system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.material-symbols-rounded{vertical-align:middle}
-header{background:linear-gradient(135deg,#17324d,#0d2639 62%,#204b68);color:#fff;padding:13px 12px 18px;box-shadow:0 7px 24px rgba(0,0,0,.13)}.head{max-width:1120px;margin:auto}.brand{display:flex;gap:10px;align-items:center}.logo{width:58px;height:58px;flex:none;background:#fff;border-radius:15px;display:grid;place-items:center;overflow:hidden;border:2px solid rgba(255,255,255,.4)}.logo img{width:100%;height:100%;object-fit:contain;padding:3px}.logo .material-symbols-rounded{font-size:34px;color:var(--navy)}h1{font-size:clamp(1.45rem,4vw,2.65rem);line-height:1.05;margin:0}#schoolName{color:#dbe9f1;font-size:.92rem;margin-top:4px}
-.ticker{height:27px;margin-top:7px;border-radius:8px;background:#650909;display:none;align-items:center;overflow:hidden}.ticker strong{height:100%;display:flex;align-items:center;background:#3f0505;padding:0 8px;font-size:.7rem;flex:none}.ticker-window{min-width:0;overflow:hidden;flex:1}.ticker-text{white-space:nowrap;display:inline-block;padding-left:100%;font-size:.8rem;font-weight:600;animation:scroll 18s linear infinite}@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
-.loginbar{max-width:1120px;margin:9px auto 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.who{font-size:1.5rem;color:white;flex:1;min-width:180px}.login-btn{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.13);color:#fff;border-radius:10px;padding:8px 11px;font-weight:700}
-main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;top:5px;z-index:50;margin-bottom:13px}.action{min-height:72px;border:2px solid #9b2828;border-radius:17px;background:linear-gradient(#7e1111,#570707);color:#fff;font-weight:800;font-size:1.02rem;display:flex;gap:8px;align-items:center;justify-content:center;animation:pulse 1.15s ease-in-out infinite alternate;box-shadow:0 10px 26px rgba(95,8,8,.22)}.action .material-symbols-rounded{font-size:28px}@keyframes pulse{from{box-shadow:0 0 0 1px rgba(145,22,22,.2),0 7px 18px rgba(95,8,8,.16)}to{box-shadow:0 0 0 6px rgba(165,30,30,.22),0 12px 30px rgba(95,8,8,.32)}}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:11px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;gap:9px;align-items:center;box-shadow:0 5px 16px rgba(22,50,77,.055)}.stat i{width:38px;height:38px;border-radius:11px;background:#edf3f7;display:grid;place-items:center;color:var(--navy);font-style:normal}.stat b{display:block;font-size:1.2rem}.stat small{color:var(--muted)}
-.notice{display:none;background:#fff8e9;border:1px solid #efdbaa;color:#72541d;padding:10px 11px;border-radius:12px;margin-bottom:11px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 8px 23px rgba(22,50,77,.06);margin-bottom:12px}.cardhead{display:flex;gap:9px;align-items:center;justify-content:space-between;margin-bottom:10px}.cardhead h2{margin:0;font-size:1.1rem;display:flex;gap:6px;align-items:center}.ghost{border:1px solid #cfdae2;background:#fff;color:var(--navy);border-radius:10px;padding:8px 10px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.sum{border:1px solid #e0e8ee;background:#fafcfd;border-radius:12px;padding:9px}.sum h3{font-size:.87rem;margin:0 0 5px}.sum p{margin:0;color:var(--muted);font-size:.74rem;display:flex;gap:7px;flex-wrap:wrap}.sum b{color:#263e50}
-.filters{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:7px;margin-bottom:9px}input,select,textarea{width:100%;border:1px solid #cad7e0;background:#fbfcfd;border-radius:11px;padding:10px 11px;outline:none;color:var(--text)}input:focus,select:focus,textarea:focus{border-color:#668ba7;box-shadow:0 0 0 4px rgba(50,100,138,.09);background:#fff}
-.list{display:grid;gap:10px}.proposal{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px}.chip{border:1px solid #dce6ed;background:#eef4f7;color:#3c5a70;border-radius:99px;font-size:.71rem;padding:3px 7px}.status{background:#eef8f3;color:#276c56}.proposal h3{margin:0 0 5px;font-size:1.05rem}.meta{display:flex;gap:8px;flex-wrap:wrap;color:#71808d;font-size:.76rem}.details{white-space:pre-wrap;line-height:1.55;color:#354651;margin:10px 0}.reactions{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:8px}.react{border:1px solid #dce5eb;background:#fff;border-radius:99px;padding:5px 8px;display:flex;gap:4px;align-items:center}.react.mine{background:#fff7e7;border-color:#d5a245}.react small{color:#6d7a84}
-.vote{border-top:1px dashed #d9e1e7;margin-top:10px;padding-top:10px;display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}.rating{display:flex;gap:4px;align-items:center}.rating .material-symbols-rounded{color:var(--gold);font-variation-settings:'FILL' 1}.stars{color:#bec7cd}.stars .on{color:var(--gold);font-variation-settings:'FILL' 1}.vote-btn{border:0;background:#edf7f2;color:#17654a;border-radius:10px;padding:9px 11px;font-weight:800}.minevote{grid-column:1/-1;background:#f0f7f4;color:#3c6655;border-radius:8px;padding:6px 8px;font-size:.77rem}.empty{text-align:center;color:var(--muted);padding:30px 12px;border:1px dashed #cbd7df;border-radius:14px}
-.overlay,.modal{position:fixed;inset:0;background:rgba(7,17,26,.63);z-index:100;display:none;align-items:center;justify-content:center;padding:10px}.overlay.show,.modal.show{display:flex}.sheet{width:min(720px,100%);max-height:94vh;background:#fff;border-radius:18px;overflow:auto}.sheethead{position:sticky;top:0;background:#fff;border-bottom:1px solid #e2e8ed;z-index:2;padding:11px 13px;display:flex;align-items:center;justify-content:space-between}.sheethead h2,.sheethead h3{margin:0;font-size:1.12rem}.close{border:0;background:#eef2f5;border-radius:9px;width:38px;height:38px}.body{padding:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}label{display:block;font-weight:700;margin-bottom:4px}textarea{min-height:150px;resize:vertical;line-height:1.55}.voicewrap{display:grid;grid-template-columns:1fr auto;gap:6px}.mic{width:44px;height:44px;border:1px solid #cad8e1;background:#eef4f8;color:var(--navy);border-radius:10px}.mic.live{background:#761010;color:#fff;animation:mic .75s infinite alternate}@keyframes mic{to{box-shadow:0 0 0 6px rgba(118,16,16,.16)}}.formactions{display:flex;justify-content:flex-end;gap:7px}.primary{border:0;background:var(--navy);color:#fff;border-radius:11px;padding:10px 14px;min-height:45px;font-weight:800}.login-sheet{width:min(430px,100%)}.pin-note{font-size:.78rem;color:var(--muted);margin-top:5px}.thank{text-align:center;padding:24px 16px}.thank .bouquet{font-size:3rem}.thank h3{color:var(--navy);margin:7px 0}.toast{position:fixed;left:50%;bottom:12px;transform:translate(-50%,90px);z-index:200;background:#17324d;color:#fff;padding:10px 13px;border-radius:11px;opacity:0;transition:.22s;max-width:92vw}.toast.show{transform:translate(-50%,0);opacity:1}.toast.error{background:#8c3535}.loader{position:fixed;inset:0;background:rgba(244,247,249,.87);display:grid;place-items:center;z-index:250}.loader.hide{display:none}.spin{width:39px;height:39px;border-radius:50%;border:4px solid #dbe4ea;border-top-color:var(--navy);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}footer{text-align:center;color:#7a8995;font-size:.78rem;padding:8px 7px 25px}
-@media(max-width:720px){header{padding:9px 9px 14px}.logo{width:48px;height:48px;border-radius:12px}h1{font-size:1.28rem}#schoolName{font-size:.79rem}.ticker{height:24px;margin-top:4px}.ticker strong{font-size:.62rem;padding:0 5px}.ticker-text{font-size:.72rem;animation-duration:15s}main{padding:0 7px;margin-top:8px}.actions{gap:6px}.action{min-height:64px;border-radius:13px;font-size:.83rem;padding:7px 4px;line-height:1.12}.action .material-symbols-rounded{font-size:23px}.stats{gap:5px}.stat{display:block;text-align:center;padding:8px 4px;border-radius:12px}.stat i{width:30px;height:30px;margin:0 auto 4px;border-radius:8px}.stat b{font-size:1.05rem}.stat small{font-size:.64rem;display:block}.card{padding:9px 8px;border-radius:14px}.summary{grid-template-columns:1fr 1fr;gap:5px}.sum{padding:7px}.sum h3{font-size:.79rem}.sum p{font-size:.67rem}.filters{grid-template-columns:1fr;gap:5px}input,select,textarea{font-size:16px;min-height:44px}.proposal{padding:10px 8px;border-radius:14px}.proposal h3{font-size:1rem}.meta{display:grid;gap:1px;font-size:.72rem}.details{font-size:.9rem}.vote{grid-template-columns:1fr;gap:5px}.vote-btn{width:100%;min-height:44px}.minevote{grid-column:auto}.overlay,.modal{padding:0;align-items:flex-end}.overlay .sheet{width:100%;height:100dvh;max-height:none;border-radius:0}.modal .sheet{width:100%;max-height:92vh;border-radius:18px 18px 0 0}.grid{grid-template-columns:1fr}.full{grid-column:auto}.formactions{display:grid;grid-template-columns:1fr 1.25fr}.formactions button{width:100%}}
-@media(max-width:370px){.summary{grid-template-columns:1fr}.action{font-size:.76rem}}
-/* Hide printable report on normal screen */
-.print-report {
-  display: none;
+/* Modern Professional Color Palette & Variables */
+:root {
+  --primary: #1e3a8a;
+  --primary-hover: #1e40af;
+  --primary-light: #eff6ff;
+  --secondary: #0ea5e9;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+  --danger: #ef4444;
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text-main); font-family: "Hind Siliguri", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+button, input, select, textarea { font: inherit; outline: none; transition: all 0.2s ease; }
+button { cursor: pointer; }
+.material-symbols-rounded { vertical-align: middle; }
+
+/* Header & Ticker */
+header { background: linear-gradient(135deg, var(--primary), #0f172a); color: #fff; padding: 16px 12px 20px; box-shadow: var(--shadow-md); }
+.head { max-width: 1120px; margin: auto; }
+.brand { display: flex; gap: 14px; align-items: center; }
+.logo { width: 64px; height: 64px; flex: none; background: #fff; border-radius: var(--radius-md); display: grid; place-items: center; overflow: hidden; border: 2px solid rgba(255,255,255,0.2); box-shadow: var(--shadow-sm); }
+.logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.logo .material-symbols-rounded { font-size: 36px; color: var(--primary); }
+h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); line-height: 1.2; margin: 0; font-weight: 700; }
+#schoolName { color: #cbd5e1; font-size: 0.95rem; margin-top: 2px; font-weight: 500; }
+
+.ticker { height: 28px; margin-top: 10px; border-radius: 8px; background: rgba(0,0,0,0.2); display: none; align-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+.ticker strong { height: 100%; display: flex; align-items: center; background: var(--accent); color: #78350f; padding: 0 12px; font-size: 0.75rem; font-weight: 700; flex: none; }
+.ticker-window { min-width: 0; overflow: hidden; flex: 1; }
+.ticker-text { white-space: nowrap; display: inline-block; padding-left: 100%; font-size: 0.85rem; font-weight: 600; color: #f8fafc; animation: scroll 20s linear infinite; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+/* Login Bar */
+.loginbar { max-width: 1120px; margin: 16px auto 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; background: rgba(255,255,255,0.1); padding: 10px 16px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px); }
+.who { font-size: 1.1rem; color: #e2e8f0; flex: 1; min-width: 180px; font-weight: 600; }
+.login-btn { border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: #fff; border-radius: 8px; padding: 8px 16px; font-weight: 600; }
+.login-btn:hover { background: rgba(255,255,255,0.25); }
+
+main { max-width: 1120px; margin: 20px auto 50px; padding: 0 12px; }
+
+/* Action Buttons */
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: sticky; top: 10px; z-index: 50; margin-bottom: 20px; }
+.action { min-height: 72px; border: none; border-radius: var(--radius-lg); color: #fff; font-weight: 700; font-size: 1.05rem; display: flex; gap: 10px; align-items: center; justify-content: center; box-shadow: var(--shadow-md); transition: transform 0.2s, box-shadow 0.2s; }
+.action:first-child { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); animation: pulseBlue 2s infinite alternate; }
+.action:last-child { background: linear-gradient(135deg, #475569, #334155); }
+.action:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.action .material-symbols-rounded { font-size: 28px; }
+@keyframes pulseBlue { from { box-shadow: 0 0 0 0 rgba(30,58,138,0.4); } to { box-shadow: 0 0 0 6px rgba(30,58,138,0.1); } }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; display: flex; gap: 12px; align-items: center; box-shadow: var(--shadow-sm); }
+.stat i { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-light); display: grid; place-items: center; color: var(--primary); font-style: normal; }
+.stat b { display: block; font-size: 1.3rem; color: var(--text-main); line-height: 1.2; }
+.stat small { color: var(--text-muted); font-size: 0.85rem; font-weight: 500; }
+
+.notice { display: none; background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #f59e0b; color: #92400e; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 20px; font-weight: 500; box-shadow: var(--shadow-sm); }
+
+/* Cards & Summary */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+.cardhead { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; }
+.cardhead h2 { margin: 0; font-size: 1.25rem; display: flex; gap: 8px; align-items: center; color: var(--primary); }
+.ghost { border: 1px solid var(--border); background: var(--surface); color: var(--text-main); border-radius: 8px; padding: 8px 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: var(--shadow-sm); }
+.ghost:hover { background: #f8fafc; border-color: #cbd5e1; }
+
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.sum { border: 1px solid var(--border); background: #f8fafc; border-radius: var(--radius-md); padding: 12px; transition: background 0.2s; }
+.sum:hover { background: #f1f5f9; }
+.sum h3 { font-size: 0.95rem; margin: 0 0 8px; color: var(--primary); }
+.sum p { margin: 0; color: var(--text-muted); font-size: 0.8rem; display: flex; gap: 10px; flex-wrap: wrap; }
+.sum b { color: var(--text-main); font-weight: 700; }
+
+/* Filters & Inputs */
+.filters { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+input, select, textarea { width: 100%; border: 1px solid var(--border); background: #f8fafc; border-radius: var(--radius-md); padding: 12px 14px; color: var(--text-main); font-size: 0.95rem; }
+input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,0.1); background: #fff; }
+
+/* Proposals List */
+.list { display: grid; gap: 16px; }
+.proposal { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; background: var(--surface); box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s; }
+.proposal:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.chip { border: 1px solid #e2e8f0; background: #f1f5f9; color: #475569; border-radius: var(--radius-full); font-size: 0.75rem; padding: 4px 10px; font-weight: 600; }
+.status { background: var(--success-bg); color: #065f46; border-color: #a7f3d0; }
+.proposal h3 { margin: 0 0 8px; font-size: 1.15rem; color: var(--primary); }
+.meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--text-muted); font-size: 0.8rem; font-weight: 500; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px; }
+.details { white-space: pre-wrap; line-height: 1.6; color: var(--text-main); margin: 0 0 14px; font-size: 0.95rem; }
+
+/* Reactions & Votes */
+.reactions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.react { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-full); padding: 6px 10px; display: flex; gap: 6px; align-items: center; font-size: 0.9rem; transition: all 0.2s; }
+.react:hover { background: #f8fafc; border-color: #cbd5e1; }
+.react.mine { background: #fef3c7; border-color: #f59e0b; }
+.react small { color: var(--text-muted); font-weight: 600; }
+
+.vote { border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.rating { display: flex; gap: 6px; align-items: center; font-size: 0.9rem; font-weight: 600; }
+.rating .material-symbols-rounded { color: var(--accent); font-variation-settings: 'FILL' 1; }
+.stars { color: #cbd5e1; display: flex; gap: 2px; }
+.stars .on { color: var(--accent); font-variation-settings: 'FILL' 1; }
+.vote-btn { border: 0; background: var(--success-bg); color: #065f46; border-radius: 8px; padding: 10px 16px; font-weight: 700; font-size: 0.95rem; }
+.vote-btn:hover:not([disabled]) { background: #bbf7d0; }
+.vote-btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+.minevote { grid-column: 1 / -1; background: #f8fafc; color: var(--text-main); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 0.85rem; font-weight: 500; }
+
+.empty { text-align: center; color: var(--text-muted); padding: 40px 16px; border: 2px dashed var(--border); border-radius: var(--radius-lg); font-weight: 500; }
+
+/* Modals & Overlays */
+.overlay, .modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; opacity: 0; transition: opacity 0.3s; }
+.overlay.show, .modal.show { display: flex; opacity: 1; }
+.sheet { width: min(720px, 100%); max-height: 90vh; background: var(--surface); border-radius: var(--radius-xl); overflow: auto; box-shadow: var(--shadow-lg); transform: translateY(20px); transition: transform 0.3s; }
+.show .sheet { transform: translateY(0); }
+.sheethead { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border); z-index: 2; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+.sheethead h2, .sheethead h3 { margin: 0; font-size: 1.2rem; color: var(--primary); display: flex; gap: 8px; align-items: center; }
+.close { border: 0; background: #f1f5f9; color: var(--text-muted); border-radius: var(--radius-full); width: 40px; height: 40px; display: grid; place-items: center; }
+.close:hover { background: #e2e8f0; color: var(--danger); }
+.body { padding: 20px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.full { grid-column: 1 / -1; }
+label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--text-main); font-size: 0.95rem; }
+textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+.voicewrap { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.mic { width: 46px; height: 46px; border: 1px solid var(--border); background: #f8fafc; color: var(--primary); border-radius: var(--radius-md); }
+.mic.live { background: var(--danger); color: #fff; border-color: var(--danger); animation: micPulse 1s infinite alternate; }
+@keyframes micPulse { to { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.2); } }
+.formactions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+.primary { border: 0; background: var(--primary); color: #fff; border-radius: var(--radius-md); padding: 12px 20px; min-height: 48px; font-weight: 700; font-size: 1rem; box-shadow: var(--shadow-sm); }
+.primary:hover { background: var(--primary-hover); }
+.login-sheet { width: min(420px, 100%); }
+.pin-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+
+/* Thank You Modal */
+.thank { text-align: center; padding: 30px 20px; }
+.thank .bouquet { font-size: 4rem; margin-bottom: 10px; }
+.thank h3 { color: var(--primary); margin: 0 0 10px; font-size: 1.5rem; }
+.thank p { color: var(--text-main); line-height: 1.6; }
+
+/* Toast & Loader */
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 100px); z-index: 200; background: var(--text-main); color: #fff; padding: 12px 20px; border-radius: var(--radius-md); font-weight: 500; opacity: 0; transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); box-shadow: var(--shadow-lg); max-width: 90vw; text-align: center; }
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+.toast.error { background: var(--danger); }
+.loader { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: grid; place-items: center; z-index: 250; backdrop-filter: blur(2px); }
+.loader.hide { display: none; }
+.spin { width: 44px; height: 44px; border-radius: 50%; border: 4px solid #e2e8f0; border-top-color: var(--primary); animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px 12px 40px; font-weight: 500; }
+
+#printBtn { width: 100%; justify-content: center; padding: 14px; margin-top: 10px; font-size: 1.05rem; }
+
+/* Mobile Adjustments */
+@media (max-width: 720px) {
+  header { padding: 12px 10px 16px; }
+  .logo { width: 54px; height: 54px; }
+  h1 { font-size: 1.3rem; }
+  #schoolName { font-size: 0.85rem; }
+  .loginbar { margin-top: 12px; padding: 10px; flex-direction: column; align-items: stretch; }
+  .who { text-align: center; font-size: 1rem; }
+  main { padding: 0 8px; margin-top: 12px; }
+  .actions { gap: 8px; }
+  .action { min-height: 64px; font-size: 0.9rem; padding: 8px 4px; line-height: 1.2; border-radius: var(--radius-md); }
+  .action .material-symbols-rounded { font-size: 24px; }
+  .stats { gap: 8px; grid-template-columns: repeat(3, 1fr); }
+  .stat { flex-direction: column; text-align: center; padding: 12px 8px; gap: 8px; border-radius: var(--radius-md); }
+  .stat i { width: 36px; height: 36px; font-size: 20px; margin: 0 auto; }
+  .stat b { font-size: 1.1rem; }
+  .stat small { font-size: 0.75rem; }
+  .card { padding: 16px 12px; border-radius: var(--radius-lg); }
+  .summary { grid-template-columns: 1fr; }
+  .filters { grid-template-columns: 1fr; gap: 8px; }
+  input, select, textarea { font-size: 16px; min-height: 48px; } /* 16px prevents iOS zoom */
+  .proposal { padding: 14px 12px; border-radius: var(--radius-md); }
+  .vote { grid-template-columns: 1fr; gap: 10px; text-align: center; }
+  .rating { justify-content: center; }
+  .stars { justify-content: center; margin: 8px 0; }
+  .vote-btn { width: 100%; min-height: 48px; }
+  .minevote { text-align: center; }
+  .overlay, .modal { padding: 0; align-items: flex-end; }
+  .overlay .sheet { width: 100%; height: 100dvh; max-height: none; border-radius: 0; transform: translateY(100%); }
+  .modal .sheet { width: 100%; max-height: 92vh; border-radius: var(--radius-xl) var(--radius-xl) 0 0; transform: translateY(100%); }
+  .grid { grid-template-columns: 1fr; gap: 12px; }
+  .full { grid-column: auto; }
+  .formactions { display: grid; grid-template-columns: 1fr 1fr; }
+  .formactions button { width: 100%; }
+}
+
+@media (max-width: 370px) {
+  .action { font-size: 0.8rem; }
+  .stat { padding: 10px 4px; }
 }
 
 /* =========================================
-   DETAILED PRINT / PDF REPORT
-   Mobile-readable, large-font version
+   DETAILED PRINT / PDF REPORT CSS
 ========================================= */
-/* =========================================================
-   PROFESSIONAL A4 PRINT / PDF REPORT
-   ========================================================= */
-
-.print-report {
-  display: none;
-}
-
-
-/* =========================================================
-   PRINT COMPONENT DESIGN
-   These styles also allow JS to measure pages before printing.
-   ========================================================= */
-
-.print-page,
-.section-cover-page,
-.proposal-print-page {
-  width: 210mm;
-  height: 297mm;
-  box-sizing: border-box;
-  overflow: hidden;
-
-  background: #eaf6ff;
-  color: #111;
-
-  font-family:
-    "Hind Siliguri",
-    "Noto Sans Bengali",
-    Arial,
-    sans-serif;
-}
-
-
-/* =========================================================
-   COVER PAGE
-   ========================================================= */
-
-.print-cover {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  box-sizing: border-box;
-
-  padding: 18mm 14mm;
-
-  border: 5px solid #12395b;
-
-  background:
-    linear-gradient(
-      180deg,
-      #d7eeff 0%,
-      #eaf6ff 48%,
-      #d5ebfb 100%
-    );
-}
-
-
-.cover-logo {
-  width: 330px;
-  height: 330px;
-
-  object-fit: contain;
-
-  margin-bottom: 20px;
-
-  padding: 10px;
-
-  border: 3px solid #1f4f7a;
-
-  border-radius: 18px;
-
-  background: #ffffff;
-}
-
-
-.cover-school {
-  font-size: 48px !important;
-
-  line-height: 1.25;
-
-  font-weight: 900;
-
-  color: #0f2f4d;
-
-  margin-bottom: 12px;
-}
-
-
-.cover-title {
-  width: 92%;
-
-  box-sizing: border-box;
-
-  padding: 16px 20px;
-
-  margin: 12px 0;
-
-  border-radius: 16px;
-
-  background: #12395b;
-
-  color: #ffffff;
-
-  font-size: 40px !important;
-
-  line-height: 1.3;
-
-  font-weight: 900;
-}
-
-
-.cover-subtitle {
-  max-width: 90%;
-
-  margin-top: 8px;
-
-  font-size: 28px !important;
-
-  line-height: 1.45;
-
-  font-weight: 700;
-
-  color: #163d61;
-}
-
-
-.cover-date {
-  margin-top: 22px;
-
-  font-size: 24px !important;
-
-  font-weight: 700;
-
-  color: #234b70;
-}
-
-
-.cover-footer {
-  margin-top: 26px;
-
-  padding: 11px 18px;
-
-  border-radius: 12px;
-
-  background: #1d4e78;
-
-  color: #ffffff;
-
-  font-size: 24px !important;
-
-  font-weight: 800;
-}
-
-
-/* =========================================================
-   ALL SECTIONS / INDEX PAGE
-   ========================================================= */
-
-.print-index {
-  width: 100%;
-  height: 100%;
-
-  box-sizing: border-box;
-
-  padding: 12mm;
-
-  border: 4px solid #12395b;
-
-  background: #f2f9ff;
-}
-
-
-.index-title {
-  margin: 0 0 18px;
-
-  padding-bottom: 12px;
-
-  text-align: center;
-
-  border-bottom: 4px solid #21537f;
-
-  color: #0e3555;
-
-  font-size: 48px !important;
-
-  line-height: 1.2;
-
-  font-weight: 900;
-}
-
-
-.index-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 12px;
-}
-
-
-.index-card {
-  min-height: 82px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 13px;
-
-  box-sizing: border-box;
-
-  padding: 12px 14px;
-
-  border: 3px solid #27567f;
-
-  border-radius: 14px;
-
-  background: #dff0ff;
-}
-
-
-.index-icon {
-  flex: none;
-
-  width: 62px;
-
-  text-align: center;
-
-  font-size: 48px !important;
-
-  line-height: 1;
-}
-
-
-.index-name {
-  text-align: left;
-
-  color: #12395b;
-
-  font-size: 30px !important;
-
-  line-height: 1.25;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   OVERALL SUMMARY PAGE
-   ========================================================= */
-
-.report-summary-page {
-  padding: 12mm;
-
-  background: #eaf6ff;
-}
-
-
-.print-header {
-  text-align: center;
-
-  box-sizing: border-box;
-
-  padding: 14px;
-
-  margin-bottom: 18px;
-
-  border: 4px solid #12395b;
-
-  border-radius: 12px;
-
-  background: #dbeeff;
-}
-
-
-.print-header h1 {
-  margin: 0 0 5px;
-
-  color: #0e3350;
-
-  font-size: 44px !important;
-
-  line-height: 1.2;
-
-  font-weight: 900;
-}
-
-
-.print-header h2 {
-  margin: 4px 0;
-
-  color: #143d60;
-
-  font-size: 36px !important;
-
-  line-height: 1.25;
-
-  font-weight: 900;
-}
-
-
-.print-header p {
-  margin: 7px 0 0;
-
-  color: #294c68;
-
-  font-size: 22px !important;
-
-  font-weight: 700;
-}
-
-
-.print-main-stats {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 12px;
-
-  margin: 18px 0;
-}
-
-
-.print-main-stat {
-  box-sizing: border-box;
-
-  min-height: 150px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  padding: 12px 8px;
-
-  border: 3px solid #234b70;
-
-  border-radius: 13px;
-
-  background: #ffffff;
-
-  color: #173b59;
-
-  font-size: 22px !important;
-
-  font-weight: 800;
-}
-
-
-.print-main-stat strong {
-  display: block;
-
-  margin-bottom: 7px;
-
-  color: #0f3453;
-
-  font-size: 46px !important;
-
-  line-height: 1;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   INDIVIDUAL SECTION COVER PAGE
-   ONE CATEGORY = ONE FULL PAGE
-   ========================================================= */
-
-.section-cover-page {
-  padding: 15mm 12mm;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #eaf6ff,
-      #d7ebfa
-    );
-}
-
-
-.section-cover-inner {
-  width: 94%;
-
-  box-sizing: border-box;
-
-  padding: 22mm 12mm;
-
-  border: 5px solid #12395b;
-
-  border-radius: 20px;
-
-  background: #e1f1ff;
-}
-
-
-.section-cover-icon {
-  margin-bottom: 24px;
-
-  font-size: 110px !important;
-
-  line-height: 1;
-}
-
-
-.section-cover-name {
-  width: 100%;
-
-  box-sizing: border-box;
-
-  padding: 18px 20px;
-
-  border-radius: 18px;
-
-  background: #12395b;
-
-  color: #ffffff;
-
-  font-size: 52px !important;
-
-  line-height: 1.25;
-
-  font-weight: 900;
-}
-
-
-.section-cover-stats {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 13px;
-
-  margin-top: 30px;
-}
-
-
-.section-cover-stat {
-  box-sizing: border-box;
-
-  padding: 15px 7px;
-
-  border: 3px solid #315b80;
-
-  border-radius: 14px;
-
-  background: #ffffff;
-
-  color: #214765;
-
-  font-size: 24px !important;
-
-  line-height: 1.25;
-
-  font-weight: 800;
-}
-
-
-.section-cover-stat strong {
-  display: block;
-
-  margin-bottom: 7px;
-
-  color: #12395b;
-
-  font-size: 46px !important;
-
-  line-height: 1;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   ONE PROPOSAL = ONE A4 PAGE
-   ========================================================= */
-
-.proposal-print-page {
-  position: relative;
-
-  padding: 7mm;
-
-  background: #eaf6ff;
-}
-
-
-.proposal-fit-content {
-  width: 100%;
-
-  transform-origin: top left;
-}
-
-
-.proposal-page-category {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  box-sizing: border-box;
-
-  padding: 9px 12px;
-
-  margin-bottom: 10px;
-
-  border: 3px solid #12395b;
-
-  border-left: 12px solid #0b2a44;
-
-  border-radius: 10px;
-
-  background: #d6ebff;
-
-  color: #103652;
-
-  font-size: 30px !important;
-
-  line-height: 1.2;
-
-  font-weight: 900;
-}
-
-
-.proposal-page-category-icon {
-  font-size: 42px !important;
-
-  line-height: 1;
-}
-
-
-/* =========================================================
-   PROPOSAL BOX
-   ========================================================= */
-
-.print-proposal {
-  width: 100%;
-
-  box-sizing: border-box;
-
-  margin: 0;
-
-  padding: 14px;
-
-  border: 4px solid #163f63;
-
-  border-radius: 14px;
-
-  background: #ffffff;
-}
-
-
-.print-proposal h3 {
-  margin: 0 0 9px;
-
-  padding: 0 0 8px;
-
-  border-bottom: 3px solid #6f8ba4;
-
-  color: #0d3150;
-
-  font-size: 41px !important;
-
-  line-height: 1.3;
-
-  font-weight: 900;
-}
-
-
-.print-meta {
-  box-sizing: border-box;
-
-  margin-bottom: 10px;
-
-  padding: 9px;
-
-  border: 2px solid #c2d7e9;
-
-  border-radius: 8px;
-
-  background: #eef7ff;
-
-  color: #123048;
-
-  font-size: 23px !important;
-
-  line-height: 1.55;
-
-  font-weight: 600;
-}
-
-
-.print-meta strong {
-  font-weight: 900;
-}
-
-
-.print-details {
-  margin: 11px 0;
-
-  color: #111;
-
-  font-size: 35px !important;
-
-  line-height: 1.55;
-
-  white-space: pre-wrap;
-}
-
-
-.print-details strong {
-  color: #12395b;
-
-  font-size: 27px !important;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   VOTE SUMMARY
-   ========================================================= */
-
-.print-vote-summary {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 7px;
-
-  box-sizing: border-box;
-
-  margin-top: 11px;
-
-  padding: 10px;
-
-  border: 3px solid #466b8f;
-
-  border-radius: 10px;
-
-  background: #eef7ff;
-}
-
-
-.print-vote-summary span {
-  display: block;
-
-  box-sizing: border-box;
-
-  padding: 7px;
-
-  border: 2px solid #97aec4;
-
-  border-radius: 7px;
-
-  background: #ffffff;
-
-  font-size: 24px !important;
-
-  line-height: 1.3;
-
-  font-weight: 700;
-}
-
-
-.print-vote-summary span:first-child {
-  grid-column: 1 / -1;
-
-  padding: 11px;
-
-  text-align: center;
-
-  border: 4px solid #163d61;
-
-  background: #dbeeff;
-
-  color: #0f3050;
-
-  font-size: 42px !important;
-
-  font-weight: 900;
-}
-
-
-.print-vote-summary span:first-child strong {
-  font-size: 52px !important;
-
-  font-weight: 900;
-}
-
-
-.print-vote-summary span:nth-child(2) {
-  grid-column: 1 / -1;
-
-  text-align: center;
-
-  color: #163d61;
-
-  font-size: 28px !important;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   STAFF VOTING TABLE
-   ========================================================= */
-
-.print-table {
-  width: 100%;
-
-  margin-top: 11px;
-
-  border-collapse: collapse;
-
-  table-layout: fixed;
-}
-
-
-.print-table th,
-.print-table td {
-  padding: 6px;
-
-  border: 2px solid #567b9d;
-
-  text-align: left;
-
-  vertical-align: top;
-
-  overflow-wrap: anywhere;
-}
-
-
-.print-table th {
-  background: #d8ecff;
-
-  color: #0f3452;
-
-  font-size: 32px !important;
-
-  line-height: 1.25;
-
-  font-weight: 900;
-}
-
-
-.print-table td {
-  background: #ffffff;
-
-  color: #111;
-
-  font-size: 22px !important;
-
-  line-height: 1.35;
-}
-
-
-/* =========================================================
-   REACTIONS
-   ========================================================= */
-
-.print-reactions {
-  margin-top: 12px;
-
-  padding-top: 9px;
-
-  border-top: 3px dashed #6282a0;
-
-  color: #193b57;
-
-  font-size: 23px !important;
-
-  line-height: 1.45;
-}
-
-
-.print-reactions > strong {
-  color: #12395b;
-
-  font-size: 27px !important;
-
-  font-weight: 900;
-}
-
-
-.print-reaction-box {
-  display: block;
-
-  box-sizing: border-box;
-
-  margin: 5px 0;
-
-  padding: 6px 8px;
-
-  border: 2px solid #8aa4bb;
-
-  border-radius: 6px;
-
-  background: #f7fbff;
-
-  color: #203b51;
-
-  font-size: 19px !important;
-
-  line-height: 1.4;
-}
-
-
-.print-reaction-box strong {
-  font-size: 25px !important;
-
-  font-weight: 900;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.print-footer {
-  margin-top: 22px;
-
-  padding-top: 10px;
-
-  border-top: 3px solid #234b70;
-
-  text-align: center;
-
-  color: #23405a;
-
-  font-size: 18px !important;
-
-  line-height: 1.45;
-
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   OFF-SCREEN MEASUREMENT MODE
-
-   This allows JavaScript to determine whether a proposal
-   is too tall before opening the print dialog.
-   ========================================================= */
-
-#printReport.print-measure-mode {
-  display: block !important;
-
-  position: fixed !important;
-
-  left: -3000mm !important;
-
-  top: 0 !important;
-
-  width: 210mm !important;
-
-  visibility: hidden !important;
-
-  pointer-events: none !important;
-
-  z-index: -9999 !important;
-}
-
-
-/* =========================================================
-   ACTUAL PRINT
-   ========================================================= */
-
+.print-report { display: none; }
+.print-page, .section-cover-page, .proposal-print-page { width: 210mm; height: 297mm; box-sizing: border-box; overflow: hidden; background: #f8fafc; color: #0f172a; font-family: "Hind Siliguri", "Noto Sans Bengali", Arial, sans-serif; }
+.print-cover { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box; padding: 18mm 14mm; border: 5px solid var(--primary); background: linear-gradient(180deg, #e0e7ff 0%, #f8fafc 48%, #e0e7ff 100%); }
+.cover-logo { width: 280px; height: 280px; object-fit: contain; margin-bottom: 24px; padding: 16px; border: 3px solid var(--primary-hover); border-radius: 24px; background: #ffffff; box-shadow: var(--shadow-md); }
+.cover-school { font-size: 48px !important; line-height: 1.25; font-weight: 900; color: var(--primary); margin-bottom: 12px; }
+.cover-title { width: 92%; box-sizing: border-box; padding: 20px; margin: 16px 0; border-radius: 16px; background: var(--primary); color: #ffffff; font-size: 40px !important; line-height: 1.3; font-weight: 900; }
+.cover-subtitle { max-width: 90%; margin-top: 8px; font-size: 28px !important; line-height: 1.45; font-weight: 700; color: var(--primary-hover); }
+.cover-date { margin-top: 32px; font-size: 24px !important; font-weight: 700; color: var(--text-muted); }
+.cover-footer { margin-top: auto; padding: 14px 24px; border-radius: 12px; background: var(--primary-hover); color: #ffffff; font-size: 24px !important; font-weight: 800; }
+
+.print-index { width: 100%; height: 100%; box-sizing: border-box; padding: 16mm; border: 4px solid var(--primary); background: #ffffff; }
+.index-title { margin: 0 0 24px; padding-bottom: 16px; text-align: center; border-bottom: 4px solid var(--primary-light); color: var(--primary); font-size: 48px !important; line-height: 1.2; font-weight: 900; }
+.index-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.index-card { min-height: 90px; display: flex; align-items: center; gap: 16px; box-sizing: border-box; padding: 16px; border: 2px solid var(--border); border-radius: 16px; background: #f8fafc; }
+.index-icon { flex: none; width: 70px; text-align: center; font-size: 48px !important; line-height: 1; }
+.index-name { text-align: left; color: var(--primary); font-size: 30px !important; line-height: 1.25; font-weight: 800; }
+
+.report-summary-page { padding: 16mm; background: #ffffff; }
+.print-header { text-align: center; box-sizing: border-box; padding: 24px; margin-bottom: 24px; border: 3px solid var(--border); border-radius: 16px; background: #f8fafc; }
+.print-header h1 { margin: 0 0 8px; color: var(--primary); font-size: 44px !important; line-height: 1.2; font-weight: 900; }
+.print-header h2 { margin: 4px 0; color: var(--text-main); font-size: 36px !important; line-height: 1.25; font-weight: 800; }
+.print-header p { margin: 12px 0 0; color: var(--text-muted); font-size: 22px !important; font-weight: 600; }
+.print-main-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+.print-main-stat { box-sizing: border-box; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; border: 2px solid var(--border); border-radius: 20px; background: var(--primary-light); color: var(--primary); font-size: 24px !important; font-weight: 700; }
+.print-main-stat strong { display: block; margin-bottom: 12px; color: var(--primary-hover); font-size: 56px !important; line-height: 1; font-weight: 900; }
+
+.section-cover-page { padding: 16mm; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(145deg, #f8fafc, #e2e8f0); }
+.section-cover-inner { width: 100%; box-sizing: border-box; padding: 30mm 16mm; border: 5px solid var(--primary); border-radius: 24px; background: #ffffff; box-shadow: var(--shadow-lg); }
+.section-cover-icon { margin-bottom: 32px; font-size: 120px !important; line-height: 1; }
+.section-cover-name { width: 100%; box-sizing: border-box; padding: 24px; border-radius: 20px; background: var(--primary); color: #ffffff; font-size: 56px !important; line-height: 1.25; font-weight: 900; }
+.section-cover-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+.section-cover-stat { box-sizing: border-box; padding: 20px; border: 2px solid var(--border); border-radius: 16px; background: #f8fafc; color: var(--text-muted); font-size: 24px !important; line-height: 1.25; font-weight: 700; }
+.section-cover-stat strong { display: block; margin-bottom: 8px; color: var(--primary); font-size: 48px !important; line-height: 1; font-weight: 900; }
+
+.proposal-print-page { position: relative; padding: 10mm; background: #ffffff; }
+.proposal-fit-content { width: 100%; transform-origin: top left; }
+.proposal-page-category { display: flex; align-items: center; gap: 16px; box-sizing: border-box; padding: 12px 20px; margin-bottom: 16px; border: 2px solid var(--border); border-left: 12px solid var(--primary); border-radius: 12px; background: #f8fafc; color: var(--primary); font-size: 32px !important; line-height: 1.2; font-weight: 800; }
+.proposal-page-category-icon { font-size: 42px !important; line-height: 1; }
+
+.print-proposal { width: 100%; box-sizing: border-box; padding: 20px; border: 3px solid var(--border); border-radius: 16px; background: #ffffff; }
+.print-proposal h3 { margin: 0 0 12px; padding: 0 0 12px; border-bottom: 2px solid var(--border); color: var(--primary-hover); font-size: 42px !important; line-height: 1.3; font-weight: 900; }
+.print-meta { box-sizing: border-box; margin-bottom: 16px; padding: 12px 16px; border-radius: 12px; background: #f1f5f9; color: var(--text-main); font-size: 24px !important; line-height: 1.55; font-weight: 600; }
+.print-meta strong { color: var(--primary); font-weight: 800; }
+.print-details { margin: 16px 0; color: var(--text-main); font-size: 32px !important; line-height: 1.6; white-space: pre-wrap; }
+.print-details strong { color: var(--primary); font-size: 28px !important; font-weight: 800; }
+
+.print-vote-summary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; box-sizing: border-box; margin-top: 20px; padding: 16px; border: 2px solid var(--border); border-radius: 16px; background: #f8fafc; }
+.print-vote-summary span { display: block; box-sizing: border-box; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; font-size: 26px !important; line-height: 1.3; font-weight: 700; color: var(--text-muted); }
+.print-vote-summary span:first-child { grid-column: 1 / -1; padding: 16px; text-align: center; border: 3px solid var(--primary-light); background: var(--primary); color: #ffffff; font-size: 42px !important; font-weight: 800; }
+.print-vote-summary span:first-child strong { font-size: 56px !important; color: var(--accent); }
+.print-vote-summary span:nth-child(2) { grid-column: 1 / -1; text-align: center; color: var(--primary); font-size: 32px !important; font-weight: 800; }
+
+.print-table { width: 100%; margin-top: 20px; border-collapse: collapse; table-layout: fixed; }
+.print-table th, .print-table td { padding: 12px; border: 2px solid var(--border); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.print-table th { background: var(--primary-light); color: var(--primary); font-size: 28px !important; line-height: 1.25; font-weight: 800; }
+.print-table td { background: #ffffff; color: var(--text-main); font-size: 24px !important; line-height: 1.4; }
+
+.print-reactions { margin-top: 24px; padding-top: 16px; border-top: 2px dashed var(--border); color: var(--text-muted); font-size: 24px !important; line-height: 1.45; }
+.print-reactions > strong { color: var(--primary); font-size: 28px !important; font-weight: 800; display: block; margin-bottom: 12px; }
+.print-reaction-box { display: block; box-sizing: border-box; margin: 8px 0; padding: 10px 16px; border: 1px solid var(--border); border-radius: 10px; background: #f8fafc; color: var(--text-main); font-size: 22px !important; line-height: 1.4; }
+.print-reaction-box strong { font-size: 28px !important; font-weight: 800; color: var(--primary); }
+
+.print-footer { margin-top: 32px; padding-top: 16px; border-top: 3px solid var(--primary-light); text-align: center; color: var(--text-muted); font-size: 20px !important; line-height: 1.45; font-weight: 600; }
+
+/* Off-screen Measurement Mode */
+#printReport.print-measure-mode { display: block !important; position: fixed !important; left: -3000mm !important; top: 0 !important; width: 210mm !important; visibility: hidden !important; pointer-events: none !important; z-index: -9999 !important; }
+
+/* Actual Print Media Query */
 @media print {
-
-  @page {
-    size: A4 portrait;
-    margin: 0;
-  }
-
-
-  html,
-  body {
-    width: 210mm !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    background: #eaf6ff !important;
-
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-
-  body * {
-    visibility: hidden !important;
-  }
-
-
-  #printReport,
-  #printReport * {
-    visibility: visible !important;
-  }
-
-
-  #printReport {
-    display: block !important;
-
-    position: absolute !important;
-
-    left: 0 !important;
-
-    top: 0 !important;
-
-    width: 210mm !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-  }
-
-
-  .print-page,
-  .section-cover-page,
-  .proposal-print-page {
-    page-break-before: auto !important;
-
-    page-break-after: always !important;
-
-    page-break-inside: avoid !important;
-
-    break-before: auto !important;
-
-    break-after: page !important;
-
-    break-inside: avoid-page !important;
-  }
-
-
-  .proposal-print-page {
-    overflow: hidden !important;
-  }
-
-
-  .proposal-print-page .print-proposal,
-  .proposal-page-category,
-  .print-vote-summary,
-  .print-table,
-  .print-table tr,
-  .print-reactions,
-  .print-reaction-box {
-
-    page-break-inside: avoid !important;
-
-    break-inside: avoid-page !important;
-  }
-
-
-  #printReport > *:last-child {
-    page-break-after: auto !important;
-
-    break-after: auto !important;
-  }
-
+  @page { size: A4 portrait; margin: 0; }
+  html, body { width: 210mm !important; margin: 0 !important; padding: 0 !important; background: #ffffff !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body * { visibility: hidden !important; }
+  #printReport, #printReport * { visibility: visible !important; }
+  #printReport { display: block !important; position: absolute !important; left: 0 !important; top: 0 !important; width: 210mm !important; margin: 0 !important; padding: 0 !important; }
+  .print-page, .section-cover-page, .proposal-print-page { page-break-before: auto !important; page-break-after: always !important; page-break-inside: avoid !important; break-before: auto !important; break-after: page !important; break-inside: avoid-page !important; }
+  .proposal-print-page { overflow: hidden !important; }
+  .proposal-print-page .print-proposal, .proposal-page-category, .print-vote-summary, .print-table, .print-table tr, .print-reactions, .print-reaction-box { page-break-inside: avoid !important; break-inside: avoid-page !important; }
+  #printReport > *:last-child { page-break-after: auto !important; break-after: auto !important; }
 }
 </style>
 </head>
@@ -1035,7 +310,7 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
         <div id="ticker" class="ticker"><strong>VOTE</strong><div class="ticker-window"><div id="tickerText" class="ticker-text"></div></div></div>
       </div>
     </div>
-    <div class="loginbar"><div id="who" class="who">Staff Login প্রয়োজন</div><button id="loginTopBtn" class="login-btn" onclick="openLogin()">Staff Login</button></div>
+    <div class="loginbar"><div id="who" class="who">Staff Login প্রয়োজন</div><button id="loginTopBtn" class="login-btn" onclick="openLogin()">Staff Login</button></div>
   </div>
 </header>
 <main>
@@ -1046,130 +321,90 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
       <span class="material-symbols-rounded">add_comment</span>
       <span>নতুন প্রস্তাব দিন</span>
     </button>
-
     <button
       class="action"
       onclick="document.getElementById('proposalCard').scrollIntoView({behavior:'smooth'})">
       <span class="material-symbols-rounded">ballot</span>
-      <span>সব প্রস্তাব • ভোট • রেটিং</span>
+      <span>সব প্রস্তাব • ভোট</span>
     </button>
   </div>
 
-
   <!-- Statistics -->
   <section class="stats">
-
     <div class="stat">
-      <i>
-        <span class="material-symbols-rounded">lightbulb</span>
-      </i>
+      <i><span class="material-symbols-rounded">lightbulb</span></i>
       <div>
         <b id="proposalCount">0</b>
         <small>মোট প্রস্তাব</small>
       </div>
     </div>
-
     <div class="stat">
-      <i>
-        <span class="material-symbols-rounded">how_to_vote</span>
-      </i>
+      <i><span class="material-symbols-rounded">how_to_vote</span></i>
       <div>
         <b id="voteCount">0</b>
         <small>মোট ভোট</small>
       </div>
     </div>
-
     <div class="stat">
-      <i>
-        <span class="material-symbols-rounded">star</span>
-      </i>
+      <i><span class="material-symbols-rounded">star</span></i>
       <div>
         <b id="avgRating">0.0</b>
-        <small>গড় রেটিং</small>
+        <small>গড় রেটিং</small>
       </div>
     </div>
-
   </section>
-
 
   <!-- Notice -->
   <div id="notice" class="notice"></div>
 
-
   <!-- Category Summary -->
   <section id="summaryCard" class="card">
-
     <div class="cardhead">
-      <h2>
-        <span class="material-symbols-rounded">analytics</span>
-        বিভাগভিত্তিক সারাংশ
-      </h2>
+      <h2><span class="material-symbols-rounded">analytics</span>বিভাগভিত্তিক সারাংশ</h2>
     </div>
-
     <div id="summary" class="summary"></div>
-
   </section>
-
 
   <!-- All Proposals -->
   <section id="proposalCard" class="card">
-
     <div class="cardhead">
-
-      <h2>
-        <span class="material-symbols-rounded">forum</span>
-        জমা পড়া প্রস্তাব
-      </h2>
-
+      <h2><span class="material-symbols-rounded">forum</span>জমা পড়া প্রস্তাব</h2>
       <button class="ghost" onclick="loadAll()">
-        <span class="material-symbols-rounded">refresh</span>
-        Refresh
+        <span class="material-symbols-rounded">refresh</span> Refresh
       </button>
-
     </div>
-
 
     <!-- Search / Filter / Sort -->
     <div class="filters">
-
-      <input
-        id="search"
-        placeholder="প্রস্তাব খুঁজুন..."
-      >
-
-      <select id="categoryFilter">
-        <option value="">সব বিভাগ</option>
-      </select>
-
+      <input id="search" placeholder="প্রস্তাব খুঁজুন...">
+      <select id="categoryFilter"><option value="">সব বিভাগ</option></select>
       <select id="sort">
         <option value="new">সর্বশেষ আগে</option>
         <option value="votes">বেশি ভোট</option>
         <option value="rating">বেশি রেটিং</option>
       </select>
-
     </div>
-
 
     <!-- Proposal List -->
     <div id="list" class="list"></div>
-
   </section>
 
-
-  <!-- Print Button at Very Bottom -->
-<button id="printBtn" class="ghost" onclick="printDetailedReport()">
-  <span class="material-symbols-rounded">print</span>
-  বিস্তারিত রিপোর্ট প্রিন্ট
-</button>
+  <!-- Print Button -->
+  <button id="printBtn" class="ghost" onclick="printDetailedReport()">
+    <span class="material-symbols-rounded">print</span>
+    বিস্তারিত রিপোর্ট প্রিন্ট
+  </button>
+  
   <section id="printReport" class="print-report"></section>
 </main>
 <footer>Staff Room Renovation Decision Portal • GitHub Pages + Supabase</footer>
 
+<!-- Modals -->
 <div id="loginModal" class="modal"><div class="sheet login-sheet"><div class="sheethead"><h3>Staff Login</h3><button class="close" onclick="closeLogin()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
   <label>আপনার নাম</label><input id="loginName" list="staffList" placeholder="নাম লিখে নির্বাচন করুন"><datalist id="staffList"></datalist>
-  <label style="margin-top:9px">Staff PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="12" placeholder="Staff PIN">
+  <label style="margin-top:12px">Staff PIN</label><input id="loginPin" type="password" inputmode="numeric" maxlength="12" placeholder="Staff PIN">
   <div class="pin-note"> Input default PIN 1234 </div>
-  <button id="loginBtn" class="primary" style="width:100%;margin-top:12px" onclick="staffLogin()">Login</button>
+  <button id="loginBtn" class="primary" style="width:100%;margin-top:16px" onclick="staffLogin()">Login</button>
 </div></div></div>
 
 <div id="proposalModal" class="overlay"><div class="sheet"><div class="sheethead"><h2><span class="material-symbols-rounded">edit_square</span> নতুন প্রস্তাব</h2><button class="close" onclick="closeProposal()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
@@ -1177,19 +412,19 @@ main{max-width:1120px;margin:13px auto 50px;padding:0 10px}.actions{display:grid
   <div><label>বিভাগ</label><select id="pCategory" required></select></div>
   <div><label>অগ্রাধিকার</label><select id="pPriority" required><option>জরুরি</option><option>উচ্চ</option><option selected>মাঝারি</option><option>সাধারণ</option></select></div>
   <div class="full"><label>প্রস্তাবের শিরোনাম</label><div class="voicewrap"><input id="pTitle" maxlength="120" required><button class="mic" type="button" onclick="voice('pTitle',this)"><span class="material-symbols-rounded">mic</span></button></div></div>
-  <div class="full"><label>বিস্তারিত</label><div class="voicewrap"><textarea id="pDetails" maxlength="3000" required></textarea><button class="mic" type="button" onclick="voice('pDetails',this)"><span class="material-symbols-rounded">mic</span></button></div><small id="voiceHelp" style="color:#6f7e89">🎙️ মাইক্রোফোনে চাপ দিয়ে বাংলায় বলুন।</small></div>
+  <div class="full"><label>বিস্তারিত</label><div class="voicewrap"><textarea id="pDetails" maxlength="3000" required></textarea><button class="mic" type="button" onclick="voice('pDetails',this)"><span class="material-symbols-rounded">mic</span></button></div><small id="voiceHelp" style="color:var(--text-muted)">🎙️ মাইক্রোফোনে চাপ দিয়ে বাংলায় বলুন।</small></div>
   <div class="full"><label>আনুমানিক খরচ (₹) — ঐচ্ছিক</label><input id="pCost" type="number" min="0" step="1"></div>
   <div class="full formactions"><button type="button" class="ghost" onclick="closeProposal()">বাতিল</button><button id="submitBtn" class="primary" type="submit">প্রস্তাব জমা দিন</button></div>
 </div></form></div></div></div>
 
 <div id="voteModal" class="modal"><div class="sheet login-sheet"><div class="sheethead"><h3>ভোট ও রেটিং</h3><button class="close" onclick="closeVote()"><span class="material-symbols-rounded">close</span></button></div><div class="body">
-  <div id="voteTitle" style="color:#61717d;margin-bottom:9px"></div>
-  <label>রেটিং</label><div id="voteStars" style="display:flex;gap:2px;margin:4px 0 10px"></div>
+  <div id="voteTitle" style="color:var(--primary); font-weight: 600; margin-bottom:12px"></div>
+  <label>রেটিং</label><div id="voteStars" style="display:flex;gap:4px;margin:4px 0 16px"></div>
   <label>সংক্ষিপ্ত মন্তব্য — ঐচ্ছিক</label><textarea id="voteComment" maxlength="200" style="min-height:80px"></textarea>
-  <button id="castBtn" class="primary" style="width:100%;margin-top:9px" onclick="castVote()">ভোট নিশ্চিত করুন</button>
+  <button id="castBtn" class="primary" style="width:100%;margin-top:16px" onclick="castVote()">ভোট নিশ্চিত করুন</button>
 </div></div></div>
 
-<div id="thankModal" class="modal"><div class="sheet login-sheet"><div class="thank"><div class="bouquet">💐</div><h3>অনেক ধন্যবাদ</h3><div id="thankText"></div><button class="primary" style="width:100%;margin-top:13px" onclick="document.getElementById('thankModal').classList.remove('show')">ঠিক আছে</button></div></div></div>
+<div id="thankModal" class="modal"><div class="sheet login-sheet"><div class="thank"><div class="bouquet">💐</div><h3>অনেক ধন্যবাদ</h3><div id="thankText"></div><button class="primary" style="width:100%;margin-top:20px" onclick="document.getElementById('thankModal').classList.remove('show')">ঠিক আছে</button></div></div></div>
 <div id="toast" class="toast"></div>
 
 <script>
@@ -1228,7 +463,7 @@ async function restoreStaff(){
   const {data,error}=await sb.rpc('get_my_staff');if(!error&&data){state.staff=data;showIdentity()}
 }
 function showIdentity(){
-  document.getElementById('who').textContent=state.staff?`Login: ${state.staff}`:'Staff Login প্রয়োজন';
+  document.getElementById('who').textContent=state.staff?`Login: ${state.staff}`:'Staff Login প্রয়োজন';
   document.getElementById('loginTopBtn').textContent=state.staff?'Staff বদলান':'Staff Login';
 }
 async function staffLogin(){
@@ -1280,13 +515,13 @@ function renderProposals(){
   let items=state.proposals.map(enrich),q=document.getElementById('search').value.trim().toLowerCase(),cat=document.getElementById('categoryFilter').value,sort=document.getElementById('sort').value;
   if(q)items=items.filter(p=>[p.title,p.details,p.staff_name,p.category,p.status].join(' ').toLowerCase().includes(q));if(cat)items=items.filter(p=>p.category===cat);
   if(sort==='votes')items.sort((a,b)=>b.voteCount-a.voteCount);else if(sort==='rating')items.sort((a,b)=>b.avg-a.avg);else items.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
-  document.getElementById('list').innerHTML=items.length?items.map(card).join(''):'<div class="empty">কোনো প্রস্তাব পাওয়া যায়নি।</div>';
+  document.getElementById('list').innerHTML=items.length?items.map(card).join(''):'<div class="empty">কোনো প্রস্তাব পাওয়া যায়নি।</div>';
 }
 function card(p){
   const reactions=['👍','💡','❤️','👏','🌟'].map(e=>`<button class="react ${p.myReaction===e?'mine':''}" onclick="react('${p.id}','${e}')">${e} <small>${p.reactionCounts[e]||0}</small></button>`).join('');
   const disabled=p.myVote&&!isTrue(state.settings.ALLOW_VOTE_CHANGE)?'disabled':'';
   const label=p.myVote?(isTrue(state.settings.ALLOW_VOTE_CHANGE)?'ভোট/রেটিং বদলান':'ভোট দেওয়া হয়েছে'):'ভোট দিন';
-  return `<article class="proposal"><div class="chips"><span class="chip">${esc(p.category)}</span><span class="chip">${esc(p.priority)}</span><span class="chip status">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><div class="meta"><span>প্রস্তাবক: ${esc(p.staff_name)}</span><span>${new Date(p.created_at).toLocaleString('bn-IN')}</span>${p.estimated_cost!=null?`<span>আনুমানিক ₹${Number(p.estimated_cost).toLocaleString('en-IN')}</span>`:''}</div><div class="details">${esc(p.details)}</div><div class="reactions"><small style="color:#6d7a84">Feedback:</small>${reactions}</div><div class="vote"><div class="rating"><span class="material-symbols-rounded">star</span><b>${p.avg.toFixed(1)}</b><small>(${p.voteCount} ভোট)</small></div><div class="stars">${[1,2,3,4,5].map(n=>`<span class="material-symbols-rounded ${n<=Math.round(p.avg)?'on':''}">star</span>`).join('')}</div><button class="vote-btn" ${disabled} onclick="openVote('${p.id}')">${label}</button>${p.myVote?`<div class="minevote">আপনার রেটিং: ${p.myVote.rating}/5${p.myVote.comment?' • '+esc(p.myVote.comment):''}</div>`:''}</div></article>`;
+  return `<article class="proposal"><div class="chips"><span class="chip">${esc(p.category)}</span><span class="chip">${esc(p.priority)}</span><span class="chip status">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><div class="meta"><span>প্রস্তাবক: ${esc(p.staff_name)}</span><span>${new Date(p.created_at).toLocaleString('bn-IN')}</span>${p.estimated_cost!=null?`<span>আনুমানিক ₹${Number(p.estimated_cost).toLocaleString('en-IN')}</span>`:''}</div><div class="details">${esc(p.details)}</div><div class="reactions"><small style="color:var(--text-muted)">Feedback:</small>${reactions}</div><div class="vote"><div class="rating"><span class="material-symbols-rounded">star</span><b>${p.avg.toFixed(1)}</b><small>(${p.voteCount} ভোট)</small></div><div class="stars">${[1,2,3,4,5].map(n=>`<span class="material-symbols-rounded ${n<=Math.round(p.avg)?'on':''}">star</span>`).join('')}</div><button class="vote-btn" ${disabled} onclick="openVote('${p.id}')">${label}</button>${p.myVote?`<div class="minevote">আপনার রেটিং: ${p.myVote.rating}/5${p.myVote.comment?' • '+esc(p.myVote.comment):''}</div>`:''}</div></article>`;
 }
 function openProposal(){if(!requireLogin())return;if(!isTrue(state.settings.SUBMISSION_OPEN))return toast('নতুন প্রস্তাব গ্রহণ এখন বন্ধ।',true);document.getElementById('proposalModal').classList.add('show');document.body.style.overflow='hidden'}
 function closeProposal(){stopVoice();document.getElementById('proposalModal').classList.remove('show');document.body.style.overflow=''}
@@ -1301,1166 +536,277 @@ async function submitProposal(e){
 async function react(id,emoji){if(!requireLogin())return;const {error}=await sb.rpc('react_to_proposal',{p_proposal_id:id,p_emoji:emoji});if(error)return toast(errText(error),true);await loadAll(false)}
 function openVote(id){if(!requireLogin())return;if(!isTrue(state.settings.VOTING_OPEN))return toast('ভোট গ্রহণ এখন বন্ধ।',true);state.voteId=id;const p=enrich(state.proposals.find(x=>x.id===id));state.voteRating=p.myVote?Number(p.myVote.rating):0;document.getElementById('voteTitle').textContent=p.title;document.getElementById('voteComment').value=p.myVote?p.myVote.comment||'':'';renderVoteStars();document.getElementById('voteModal').classList.add('show')}
 function closeVote(){document.getElementById('voteModal').classList.remove('show');state.voteId=null;state.voteRating=0}
-function renderVoteStars(){document.getElementById('voteStars').innerHTML=[1,2,3,4,5].map(n=>`<button style="border:0;background:none;padding:2px;color:${n<=state.voteRating?'#d58d16':'#bcc6cd'}" onclick="state.voteRating=${n};renderVoteStars()"><span class="material-symbols-rounded" style="font-size:32px;font-variation-settings:'FILL' ${n<=state.voteRating?1:0}">star</span></button>`).join('')}
+function renderVoteStars(){document.getElementById('voteStars').innerHTML=[1,2,3,4,5].map(n=>`<button style="border:0;background:none;padding:2px;color:${n<=state.voteRating?'var(--accent)':'#cbd5e1'}" onclick="state.voteRating=${n};renderVoteStars()"><span class="material-symbols-rounded" style="font-size:36px;font-variation-settings:'FILL' ${n<=state.voteRating?1:0}">star</span></button>`).join('')}
 async function castVote(){if(!state.voteId||!state.voteRating)return toast('১–৫ স্টার রেটিং দিন।',true);const btn=document.getElementById('castBtn');busy(btn,true,'ভোট হচ্ছে...');const {error}=await sb.rpc('cast_vote',{p_proposal_id:state.voteId,p_rating:state.voteRating,p_comment:document.getElementById('voteComment').value.trim()});busy(btn,false,'ভোট নিশ্চিত করুন');if(error)return toast(errText(error),true);closeVote();thank();await loadAll(false)}
-function thank(){document.getElementById('thankText').innerHTML=`<strong>${esc(state.staff)}</strong> - স্যার/ম্যাম আপনার মূল্যবান মতামতের জন্য অনেক ধন্যবাদ 💐<br>সকলের প্রস্তাবে ভোটিং ও রেটিং-এর মাধ্যমে সিদ্ধান্ত গ্রহণে সহায়তা করুন।`;document.getElementById('thankModal').classList.add('show')}
+function thank(){document.getElementById('thankText').innerHTML=`<strong>${esc(state.staff)}</strong> - স্যার/ম্যাম আপনার মূল্যবান মতামতের জন্য অনেক ধন্যবাদ 💐<br><br>সকলের প্রস্তাবে ভোটিং ও রেটিং-এর মাধ্যমে সিদ্ধান্ত গ্রহণে সহায়তা করুন।`;document.getElementById('thankModal').classList.add('show')}
 
 function voice(id,btn){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast('এই browser-এ Voice Typing support নেই। Chrome ব্যবহার করুন।',true);stopVoice();const rec=new SR();state.recognition=rec;rec.lang='bn-IN';rec.interimResults=true;const target=document.getElementById(id),base=target.value.trim();btn.classList.add('live');let final='';rec.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)final+=t;else interim+=t}const add=(final||interim).trim();target.value=(base+(base&&add?' ':'')+add).trim()};rec.onend=()=>{btn.classList.remove('live');state.recognition=null};rec.onerror=e=>toast(e.error==='not-allowed'?'Microphone permission দিন।':'Voice Typing সমস্যা হয়েছে।',true);rec.start()}
 function stopVoice(){if(state.recognition){try{state.recognition.stop()}catch(e){}state.recognition=null}document.querySelectorAll('.mic').forEach(b=>b.classList.remove('live'))}
 
 function isTrue(v){return String(v||'').toUpperCase()==='TRUE'}function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}function errText(e){return String(e?.message||e||'একটি সমস্যা হয়েছে।').replace(/^.*?: /,'')}function loading(v){document.getElementById('loader').classList.toggle('hide',!v)}let tm;function toast(m,err=false){const el=document.getElementById('toast');el.textContent=m;el.classList.toggle('error',err);el.classList.add('show');clearTimeout(tm);tm=setTimeout(()=>el.classList.remove('show'),3300)}function busy(btn,on,text){btn.disabled=on;btn.textContent=text}
 
+/* =====================================================
+   THIS FUNCTION WAS MISSING: Handles Print Page Scaling 
+   ===================================================== */
+function fitProposalPagesForPrint() {
+  const report = document.getElementById('printReport');
 
- function printDetailedReport() {
+  /* Render far off-screen so Chrome can calculate true A4 heights. */
+  report.classList.add('print-measure-mode');
 
+  const pages = report.querySelectorAll('.proposal-print-page');
+
+  pages.forEach(page => {
+    const content = page.querySelector('.proposal-fit-content');
+    if (!content) return;
+
+    /* Reset previous scaling before every print. */
+    content.style.transform = 'none';
+    content.style.width = '100%';
+
+    const pageStyle = getComputedStyle(page);
+    const paddingTop = parseFloat(pageStyle.paddingTop) || 0;
+    const paddingBottom = parseFloat(pageStyle.paddingBottom) || 0;
+
+    /* Use the actual rendered A4 page height instead of a fixed px guess. */
+    const availableHeight =
+      page.clientHeight - paddingTop - paddingBottom - 8;
+
+    let requiredHeight = content.scrollHeight;
+
+    /* Keep the requested large fonts when the proposal already fits. */
+    if (requiredHeight <= availableHeight) return;
+
+    /* First estimate. */
+    let scale = availableHeight / requiredHeight;
+
+    /*
+      Widen before scaling so the scaled result still occupies the full
+      printable width and long text/table cells wrap less aggressively.
+    */
+    content.style.width = `${100 / scale}%`;
+
+    /* Width change can reduce the vertical height, so measure again. */
+    requiredHeight = content.scrollHeight;
+    scale = Math.min(1, availableHeight / requiredHeight);
+
+    /* Small safety margin prevents Chrome from pushing the border to page 2. */
+    scale *= 0.97;
+
+    content.style.width = `${100 / scale}%`;
+    content.style.transform = `scale(${scale})`;
+  });
+
+  report.classList.remove('print-measure-mode');
+}
+
+function printDetailedReport() {
   if (!state.proposals || !state.proposals.length) {
     toast('প্রিন্ট করার মতো কোনো প্রস্তাব নেই।', true);
     return;
   }
 
-
   const report = document.getElementById('printReport');
-
-
-  const schoolName =
-    state.settings.SCHOOL_NAME ||
-    'Patkabari High School (H.S.)';
-
-
-  const totalProposals =
-    state.proposals.length;
-
-
-  const totalVotes =
-    state.votes.length;
-
-
-  const overallRating =
-    totalVotes
-      ? (
-          state.votes.reduce(
-            (sum, v) =>
-              sum + Number(v.rating || 0),
-            0
-          ) / totalVotes
-        ).toFixed(2)
-      : '0.00';
-
-
-
-  /* =====================================================
-     CATEGORY ICONS
-     ===================================================== */
+  const schoolName = state.settings.SCHOOL_NAME || 'Patkabari High School (H.S.)';
+  const totalProposals = state.proposals.length;
+  const totalVotes = state.votes.length;
+  const overallRating = totalVotes ? (state.votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) / totalVotes).toFixed(2) : '0.00';
 
   const CATEGORY_META = {
-
-    'সাজসজ্জা':
-      { icon: '🎨' },
-
-    'দেওয়াল ডিজাইন ও রং':
-      { icon: '🖌️' },
-
-    'আসবাবপত্র':
-      { icon: '🪑' },
-
-    'প্লাম্বিং':
-      { icon: '🚰' },
-
-    'ইলেকট্রিক্যাল':
-      { icon: '💡' },
-
-    'আলো ও ফ্যান':
-      { icon: '🌀' },
-
-    'স্টোরেজ / আলমারি':
-      { icon: '🗄️' },
-
-    'বসার ব্যবস্থা':
-      { icon: '🛋️' },
-
-    'পরিচ্ছন্নতা ও হাইজিন':
-      { icon: '🧼' },
-
-    'ডিজিটাল / আইটি':
-      { icon: '💻' },
-
-    'সবুজায়ন / ইনডোর প্ল্যান্ট':
-      { icon: '🌿' },
-
-    'নিরাপত্তা':
-      { icon: '🛡️' },
-
-    'অন্যান্য':
-      { icon: '📌' }
-
+    'সাজসজ্জা': { icon: '🎨' },
+    'দেওয়াল ডিজাইন ও রং': { icon: '🖌️' },
+    'আসবাবপত্র': { icon: '🪑' },
+    'প্লাম্বিং': { icon: '🚰' },
+    'ইলেকট্রিক্যাল': { icon: '💡' },
+    'আলো ও ফ্যান': { icon: '🌀' },
+    'স্টোরেজ / আলমারি': { icon: '🗄️' },
+    'বসার ব্যবস্থা': { icon: '🛋️' },
+    'পরিচ্ছন্নতা ও হাইজিন': { icon: '🧼' },
+    'ডিজিটাল / আইটি': { icon: '💻' },
+    'সবুজায়ন / ইনডোর প্ল্যান্ট': { icon: '🌿' },
+    'নিরাপত্তা': { icon: '🛡️' },
+    'অন্যান্য': { icon: '📌' }
   };
 
-
-
-  /* =====================================================
-     SCHOOL LOGO
-     ===================================================== */
-
-  const logoElement =
-    document.getElementById('logoImg');
-
-
-  const logoSrc =
-    logoElement &&
-    !logoElement.hidden &&
-    logoElement.src
-      ? logoElement.src
-      : '';
-
-
-
-  /* =====================================================
-     GROUP PROPOSALS BY CATEGORY
-     ===================================================== */
+  const logoElement = document.getElementById('logoImg');
+  const logoSrc = logoElement && !logoElement.hidden && logoElement.src ? logoElement.src : '';
 
   const categories = {};
-
-
   state.proposals.forEach(p => {
-
-    const category =
-      p.category || 'অন্যান্য';
-
-
-    if (!categories[category]) {
-      categories[category] = [];
-    }
-
-
+    const category = p.category || 'অন্যান্য';
+    if (!categories[category]) categories[category] = [];
     categories[category].push(p);
-
   });
 
-
-
-  /*
-     Keep the same order as the website's CATEGORIES array.
-  */
-
   const categoryNames = [
-
-
-    ...CATEGORIES.filter(
-      category =>
-        categories[category]
-    ),
-
-
-    ...Object.keys(categories).filter(
-      category =>
-        !CATEGORIES.includes(category)
-    )
-
+    ...CATEGORIES.filter(category => categories[category]),
+    ...Object.keys(categories).filter(category => !CATEGORIES.includes(category))
   ];
 
-
-
-  /* =====================================================
-     PAGE 1 — COVER
-     ===================================================== */
-
   const coverHTML = `
-
     <section class="print-page">
-
       <div class="print-cover">
-
-
-        ${
-          logoSrc
-
-            ? `
-
-              <img
-                src="${logoSrc}"
-                class="cover-logo"
-                alt="School Logo"
-              >
-
-            `
-
-            : ''
-        }
-
-
-        <div class="cover-school">
-
-          ${esc(schoolName)}
-
-        </div>
-
-
-        <div class="cover-title">
-
-          Staff Room Renovation
-
-          <br>
-
-          Proposal & Voting Report
-
-        </div>
-
-
-        <div class="cover-subtitle">
-
-          মতামত, ভোট, রেটিং ও Feedback-এর ভিত্তিতে
-
-          <br>
-
-          স্টাফরুম সংস্কার সংক্রান্ত প্রশাসনিক প্রতিবেদন
-
-        </div>
-
-
-        <div class="cover-date">
-
-          রিপোর্ট তৈরির তারিখ:
-
-          <br>
-
-          ${new Date().toLocaleString('en-IN')}
-
-        </div>
-
-
-        <div class="cover-footer">
-
-          Lets renovate our Staff room
-
-        </div>
-
-
+        ${logoSrc ? `<img src="${logoSrc}" class="cover-logo" alt="School Logo">` : ''}
+        <div class="cover-school">${esc(schoolName)}</div>
+        <div class="cover-title">Staff Room Renovation<br>Proposal & Voting Report</div>
+        <div class="cover-subtitle">মতামত, ভোট, রেটিং ও Feedback-এর ভিত্তিতে<br>স্টাফরুম সংস্কার সংক্রান্ত প্রশাসনিক প্রতিবেদন</div>
+        <div class="cover-date">রিপোর্ট তৈরির তারিখ:<br>${new Date().toLocaleString('en-IN')}</div>
+        <div class="cover-footer">Lets renovate our Staff room</div>
       </div>
-
     </section>
-
   `;
 
+  const indexCardsHTML = categoryNames.map(category => {
+    const icon = CATEGORY_META[category]?.icon || '📁';
+    return `<div class="index-card"><span class="index-icon">${icon}</span><div class="index-name">${esc(category)}</div></div>`;
+  }).join('');
 
-
-  /* =====================================================
-     PAGE 2 — ALL SECTION NAMES
-     ===================================================== */
-
-  const indexCardsHTML =
-
-    categoryNames.map(category => {
-
-      const icon =
-        CATEGORY_META[category]?.icon ||
-        '📁';
-
-
-      return `
-
-        <div class="index-card">
-
-          <span class="index-icon">
-
-            ${icon}
-
-          </span>
-
-
-          <div class="index-name">
-
-            ${esc(category)}
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join('');
-
-
-
-  const indexHTML = `
-
-    <section class="print-page">
-
-      <div class="print-index">
-
-
-        <h2 class="index-title">
-
-          সকল বিভাগ
-
-          <br>
-
-          Sections Overview
-
-        </h2>
-
-
-        <div class="index-grid">
-
-          ${indexCardsHTML}
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-  `;
-
-
-
-  /* =====================================================
-     PAGE 3 — OVERALL SUMMARY
-     ===================================================== */
+  const indexHTML = `<section class="print-page"><div class="print-index"><h2 class="index-title">সকল বিভাগ<br>Sections Overview</h2><div class="index-grid">${indexCardsHTML}</div></div></section>`;
 
   const overallHTML = `
-
     <section class="print-page report-summary-page">
-
-
       <div class="print-header">
-
-        <h1>
-
-          ${esc(schoolName)}
-
-        </h1>
-
-
-        <h2>
-
-          Overall Voting Summary
-
-        </h2>
-
-
-        <p>
-
-          ${new Date().toLocaleString('en-IN')}
-
-        </p>
-
+        <h1>${esc(schoolName)}</h1>
+        <h2>Overall Voting Summary</h2>
+        <p>${new Date().toLocaleString('en-IN')}</p>
       </div>
-
-
-
       <div class="print-main-stats">
-
-
-        <div class="print-main-stat">
-
-          <strong>
-
-            ${totalProposals}
-
-          </strong>
-
-          মোট প্রস্তাব
-
-        </div>
-
-
-
-        <div class="print-main-stat">
-
-          <strong>
-
-            ${totalVotes}
-
-          </strong>
-
-          মোট ভোট
-
-        </div>
-
-
-
-        <div class="print-main-stat">
-
-          <strong>
-
-            ${overallRating}
-
-          </strong>
-
-          সামগ্রিক গড় রেটিং
-
-        </div>
-
-
+        <div class="print-main-stat"><strong>${totalProposals}</strong>মোট প্রস্তাব</div>
+        <div class="print-main-stat"><strong>${totalVotes}</strong>মোট ভোট</div>
+        <div class="print-main-stat"><strong>${overallRating}</strong>সামগ্রিক গড় রেটিং</div>
       </div>
-
-
-
-      <div class="print-footer">
-
-        Staff Room Renovation Decision Portal
-
-        <br>
-
-        সকলের মতামত, ভোট, রেটিং ও Feedback-এর
-        ভিত্তিতে সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন
-
-      </div>
-
-
+      <div class="print-footer">Staff Room Renovation Decision Portal<br>সকলের মতামত, ভোট, রেটিং ও Feedback-এর ভিত্তিতে সিদ্ধান্ত গ্রহণের সহায়ক প্রতিবেদন</div>
     </section>
-
   `;
-
-
-
-  /* =====================================================
-     SECTION + PROPOSAL PAGES
-     ===================================================== */
 
   let categoryHTML = '';
 
-
-
   categoryNames.forEach(category => {
-
-
-    const proposals =
-      categories[category];
-
-
-    const catIcon =
-      CATEGORY_META[category]?.icon ||
-      '📁';
-
-
-
-    /* CATEGORY VOTES */
-
+    const proposals = categories[category];
+    const catIcon = CATEGORY_META[category]?.icon || '📁';
     const categoryVotes = [];
-
-
-    proposals.forEach(p => {
-
-      categoryVotes.push(
-
-        ...state.votes.filter(
-          v =>
-            v.proposal_id === p.id
-        )
-
-      );
-
-    });
-
-
-
-    const categoryVoteCount =
-      categoryVotes.length;
-
-
-
-    const categoryRating =
-
-      categoryVoteCount
-
-        ? (
-
-            categoryVotes.reduce(
-              (sum, v) =>
-                sum + Number(v.rating || 0),
-              0
-            )
-
-            /
-
-            categoryVoteCount
-
-          ).toFixed(2)
-
-        : '0.00';
-
-
-
-    /* =================================================
-       ONE FULL PAGE ONLY FOR CATEGORY / SECTION
-       ================================================= */
+    proposals.forEach(p => { categoryVotes.push(...state.votes.filter(v => v.proposal_id === p.id)); });
+    const categoryVoteCount = categoryVotes.length;
+    const categoryRating = categoryVoteCount ? (categoryVotes.reduce((sum, v) => sum + Number(v.rating || 0), 0) / categoryVoteCount).toFixed(2) : '0.00';
 
     categoryHTML += `
-
       <section class="section-cover-page">
-
-
         <div class="section-cover-inner">
-
-
-          <div class="section-cover-icon">
-
-            ${catIcon}
-
-          </div>
-
-
-          <div class="section-cover-name">
-
-            ${esc(category)}
-
-          </div>
-
-
+          <div class="section-cover-icon">${catIcon}</div>
+          <div class="section-cover-name">${esc(category)}</div>
           <div class="section-cover-stats">
-
-
-            <div class="section-cover-stat">
-
-              <strong>
-
-                ${proposals.length}
-
-              </strong>
-
-              মোট প্রস্তাব
-
-            </div>
-
-
-
-            <div class="section-cover-stat">
-
-              <strong>
-
-                ${categoryVoteCount}
-
-              </strong>
-
-              মোট ভোট
-
-            </div>
-
-
-
-            <div class="section-cover-stat">
-
-              <strong>
-
-                ${categoryRating}
-
-              </strong>
-
-              গড় রেটিং
-
-            </div>
-
-
+            <div class="section-cover-stat"><strong>${proposals.length}</strong>মোট প্রস্তাব</div>
+            <div class="section-cover-stat"><strong>${categoryVoteCount}</strong>মোট ভোট</div>
+            <div class="section-cover-stat"><strong>${categoryRating}</strong>গড় রেটিং</div>
           </div>
-
-
         </div>
-
-
       </section>
-
     `;
 
-
-
-    /* =================================================
-       EACH PROPOSAL = ONE FULL A4 PAGE
-       ================================================= */
-
     proposals.forEach((p, index) => {
+      const votes = state.votes.filter(v => v.proposal_id === p.id);
+      const avgRating = votes.length ? (votes.reduce((sum, v) => sum + Number(v.rating || 0), 0) / votes.length).toFixed(2) : '0.00';
+      const ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+      votes.forEach(v => { const rating = Number(v.rating || 0); if (ratingDistribution[rating] !== undefined) ratingDistribution[rating]++; });
 
-
-      const votes =
-
-        state.votes.filter(
-          v =>
-            v.proposal_id === p.id
-        );
-
-
-
-      const avgRating =
-
-        votes.length
-
-          ? (
-
-              votes.reduce(
-                (sum, v) =>
-                  sum + Number(v.rating || 0),
-                0
-              )
-
-              /
-
-              votes.length
-
-            ).toFixed(2)
-
-          : '0.00';
-
-
-
-      /* Rating Distribution */
-
-      const ratingDistribution = {
-
-        1: 0,
-
-        2: 0,
-
-        3: 0,
-
-        4: 0,
-
-        5: 0
-
-      };
-
-
-      votes.forEach(v => {
-
-        const rating =
-          Number(v.rating || 0);
-
-
-        if (
-          ratingDistribution[rating]
-          !== undefined
-        ) {
-
-          ratingDistribution[rating]++;
-
-        }
-
-      });
-
-
-
-      /* =================================================
-         EMOJI REACTIONS
-         ================================================= */
-
-      const reactions =
-
-        state.reactions.filter(
-          r =>
-            r.proposal_id === p.id
-        );
-
-
+      const reactions = state.reactions.filter(r => r.proposal_id === p.id);
       const reactionGroups = {};
-
-
       reactions.forEach(r => {
-
-        if (!reactionGroups[r.emoji]) {
-
-          reactionGroups[r.emoji] = [];
-
-        }
-
-
-        reactionGroups[r.emoji]
-          .push(r.staff_name);
-
+        if (!reactionGroups[r.emoji]) reactionGroups[r.emoji] = [];
+        reactionGroups[r.emoji].push(r.staff_name);
       });
-
-
-
-      /* =================================================
-         STAFF VOTE TABLE
-         ================================================= */
 
       let voteRows = '';
-
-
       if (votes.length) {
-
-
-        votes
-
-          .sort(
-            (a, b) =>
-              String(a.staff_name)
-                .localeCompare(
-                  String(b.staff_name)
-                )
-          )
-
-          .forEach((v, i) => {
-
-
-            voteRows += `
-
-              <tr>
-
-                <td>
-
-                  ${i + 1}
-
-                </td>
-
-
-                <td>
-
-                  ${esc(v.staff_name)}
-
-                </td>
-
-
-                <td>
-
-                  ${Number(v.rating || 0)} / 5
-
-                </td>
-
-
-                <td>
-
-                  ${esc(v.comment || '—')}
-
-                </td>
-
-              </tr>
-
-            `;
-
-          });
-
-
+        votes.sort((a, b) => String(a.staff_name).localeCompare(String(b.staff_name))).forEach((v, i) => {
+          voteRows += `<tr><td>${i + 1}</td><td>${esc(v.staff_name)}</td><td>${Number(v.rating || 0)} / 5</td><td>${esc(v.comment || '—')}</td></tr>`;
+        });
       } else {
-
-
-        voteRows = `
-
-          <tr>
-
-            <td colspan="4">
-
-              কোনো ভোট নেই
-
-            </td>
-
-          </tr>
-
-        `;
-
+        voteRows = `<tr><td colspan="4">কোনো ভোট নেই</td></tr>`;
       }
 
-
-
-      /* =================================================
-         REACTION DETAILS
-         ================================================= */
-
       let reactionHTML = '';
-
-
-      ['👍','💡','❤️','👏','🌟']
-        .forEach(emoji => {
-
-
-          const names =
-            reactionGroups[emoji] || [];
-
-
-          reactionHTML += `
-
-            <div class="print-reaction-box">
-
-
-              <strong>
-
-                ${emoji}
-                ${names.length}
-
-              </strong>
-
-
-              ${
-                names.length
-
-                  ? ` — ${names
-                      .map(esc)
-                      .join(', ')}`
-
-                  : ''
-              }
-
-
-            </div>
-
-          `;
-
-        });
-
-
-
-      /* =================================================
-         PROPOSAL PAGE
-         ================================================= */
+      ['👍','💡','❤️','👏','🌟'].forEach(emoji => {
+        const names = reactionGroups[emoji] || [];
+        if(names.length > 0) {
+          reactionHTML += `<div class="print-reaction-box"><strong>${emoji} ${names.length}</strong> ${names.length ? ` — ${names.map(esc).join(', ')}` : ''}</div>`;
+        }
+      });
+      if(reactionHTML === '') reactionHTML = '—';
 
       categoryHTML += `
-
         <section class="proposal-print-page">
-
-
           <div class="proposal-fit-content">
-
-
             <div class="proposal-page-category">
-
-
-              <span class="proposal-page-category-icon">
-
-                ${catIcon}
-
-              </span>
-
-
-              <span>
-
-                ${esc(category)}
-
-              </span>
-
-
+              <span class="proposal-page-category-icon">${catIcon}</span>
+              <span>${esc(category)}</span>
             </div>
-
-
-
             <div class="print-proposal">
-
-
-              <h3>
-
-                ${index + 1}.
-
-                ${esc(p.title)}
-
-              </h3>
-
-
-
+              <h3>${index + 1}. ${esc(p.title)}</h3>
               <div class="print-meta">
-
-
-                <strong>
-
-                  প্রস্তাবক:
-
-                </strong>
-
-                ${esc(p.staff_name)}
-
-
-                &nbsp; | &nbsp;
-
-
-                <strong>
-
-                  অগ্রাধিকার:
-
-                </strong>
-
-                ${esc(p.priority || '')}
-
-
-                &nbsp; | &nbsp;
-
-
-                <strong>
-
-                  Status:
-
-                </strong>
-
-                ${esc(p.status || '')}
-
-
-                ${
-                  p.estimated_cost != null
-
-                    ? `
-
-                      &nbsp; | &nbsp;
-
-                      <strong>
-
-                        আনুমানিক খরচ:
-
-                      </strong>
-
-                      ₹${Number(
-                        p.estimated_cost
-                      ).toLocaleString('en-IN')}
-
-                    `
-
-                    : ''
-                }
-
-
+                <strong>প্রস্তাবক:</strong> ${esc(p.staff_name)} &nbsp; | &nbsp;
+                <strong>অগ্রাধিকার:</strong> ${esc(p.priority || '')} &nbsp; | &nbsp;
+                <strong>Status:</strong> ${esc(p.status || '')}
+                ${p.estimated_cost != null ? ` &nbsp; | &nbsp; <strong>আনুমানিক খরচ:</strong> ₹${Number(p.estimated_cost).toLocaleString('en-IN')}` : ''}
               </div>
-
-
-
-              <div class="print-details">
-
-
-                <strong>
-
-                  প্রস্তাবের বিস্তারিত:
-
-                </strong>
-
-
-                <br>
-
-
-                ${esc(p.details)}
-
-
-              </div>
-
-
-
+              <div class="print-details"><strong>প্রস্তাবের বিস্তারিত:</strong><br>${esc(p.details)}</div>
               <div class="print-vote-summary">
-
-
-                <span>
-
-                  মোট ভোট:
-
-                  <strong>
-
-                    ${votes.length}
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  গড় রেটিং:
-
-                  <strong>
-
-                    ${avgRating} / 5
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  ★★★★★ :
-
-                  <strong>
-
-                    ${ratingDistribution[5]}
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  ★★★★ :
-
-                  <strong>
-
-                    ${ratingDistribution[4]}
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  ★★★ :
-
-                  <strong>
-
-                    ${ratingDistribution[3]}
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  ★★ :
-
-                  <strong>
-
-                    ${ratingDistribution[2]}
-
-                  </strong>
-
-                </span>
-
-
-
-                <span>
-
-                  ★ :
-
-                  <strong>
-
-                    ${ratingDistribution[1]}
-
-                  </strong>
-
-                </span>
-
-
+                <span>মোট ভোট: <strong>${votes.length}</strong></span>
+                <span>গড় রেটিং: <strong>${avgRating} / 5</strong></span>
+                <span>★★★★★ : <strong>${ratingDistribution[5]}</strong></span>
+                <span>★★★★ : <strong>${ratingDistribution[4]}</strong></span>
+                <span>★★★ : <strong>${ratingDistribution[3]}</strong></span>
+                <span>★★ : <strong>${ratingDistribution[2]}</strong></span>
+                <span>★ : <strong>${ratingDistribution[1]}</strong></span>
               </div>
-
-
-
               <table class="print-table">
-
-
-                <thead>
-
-                  <tr>
-
-                    <th style="width:7%">
-
-                      #
-
-                    </th>
-
-
-                    <th style="width:35%">
-
-                      Staff
-
-                    </th>
-
-
-                    <th style="width:17%">
-
-                      Rating
-
-                    </th>
-
-
-                    <th style="width:41%">
-
-                      মন্তব্য
-
-                    </th>
-
-                  </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                  ${voteRows}
-
-                </tbody>
-
-
+                <thead><tr><th style="width:7%">#</th><th style="width:35%">Staff</th><th style="width:17%">Rating</th><th style="width:41%">মন্তব্য</th></tr></thead>
+                <tbody>${voteRows}</tbody>
               </table>
-
-
-
-              <div class="print-reactions">
-
-
-                <strong>
-
-                  Emoji Feedback
-
-                </strong>
-
-
-                <br>
-
-
-                ${reactionHTML}
-
-
-              </div>
-
-
+              <div class="print-reactions"><strong>Emoji Feedback</strong>${reactionHTML}</div>
             </div>
-
-
           </div>
-
-
         </section>
-
       `;
-
-
     });
-
-
   });
 
+  report.innerHTML = coverHTML + indexHTML + overallHTML + categoryHTML;
 
+  /*
+    Wait for Bengali web fonts and the school logo before measuring.
+    This prevents Chrome from measuring with a fallback font and then
+    changing line wrapping when the real font arrives.
+  */
+  const startPrint = async () => {
+    if (document.fonts && document.fonts.ready) {
+      await document.fonts.ready;
+    }
 
-  /* =====================================================
-     BUILD REPORT
+    const images = Array.from(report.querySelectorAll('img'));
+    await Promise.all(
+      images.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        });
+      })
+    );
 
-     IMPORTANT:
-     No extra .print-page wrapper around categoryHTML.
-     ===================================================== */
+    /* Give the browser two layout frames before taking measurements. */
+    await new Promise(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve))
+    );
 
-  report.innerHTML =
+    fitProposalPagesForPrint();
 
-    coverHTML +
+    setTimeout(() => {
+      window.print();
+    }, 250);
+  };
 
-    indexHTML +
-
-    overallHTML +
-
-    categoryHTML;
-
-
-
-  /* =====================================================
-     AUTO-FIT EACH PROPOSAL INTO ONE A4 PAGE
-
-     Normal-size proposal:
-     scale stays 1.0 = your requested large fonts.
-
-     Only an overflowing proposal is automatically reduced.
-     ===================================================== */
-
-  fitProposalPagesForPrint();
-
-
-
-  /* =====================================================
-     OPEN PRINT
-     ===================================================== */
-
-  setTimeout(() => {
-
-    window.print();
-
-  }, 450);
-
+  startPrint();
 }
 </script>
 </body>
